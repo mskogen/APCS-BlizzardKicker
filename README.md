@@ -1,2 +1,2 @@
-# APCS-code-stuff
+# APCS-BlizzardKicker
 ApplePeelerCorerSlicer
