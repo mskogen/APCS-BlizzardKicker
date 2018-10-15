@@ -8,19 +8,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mskogen/APCS-code-stuff.git"
+    "url": "git+https://github.com/mskogen/APCS-BlizzardKicker.git"
   },
   "author": "Asher Farr",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mskogen/APCS-code-stuff/issues"
+    "url": "https://github.com/mskogen/APCS-BlizzardKicker/issues"
   },
-  "homepage": "https://github.com/mskogen/APCS-code-stuff#readme",
+  "homepage": "https://github.com/mskogen/APCS-BlizzardKicker#readme",
   "dependencies": {
     "bootstrap": "^4.1.3",
     "express": "^4.16.3",
     "jquery": "^3.3.1",
-    "popper.js": "^1.14.4"
+    "popper.js": "^1.14.4",
+    "pug": "^2.0.3"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
