@@ -1,15 +1,21 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const { body, validationResult } = require('express-validator/check');
+const mongoose = require('mongoose'); //mongodb databases
+const { body, validationResult } = require('express-validator/check'); //checks inputs for validity
 
+const auth = require('http-auth'); //http authorization
+const path = require('path');
 const router = express.Router();
 const Registration = mongoose.model('Registration');
+
+const basic = auth.basic({
+	file: path.join(__dirname, '../users.htpasswd'),
+});
 
 router.get('/', (req, res) => {
 	res.render('form', {title:'Registration Form'});
 });
 
-router.post('/', [
+router.post('/', [ //allow input into form
 	body('name') 
 		.isLength({ min: 1 })
 		.withMessage('Please enter a name'),
@@ -35,7 +41,7 @@ router.post('/', [
 });
 
 
-router.get('/registrations', (req,res) => {
+router.get('/registrations', auth.connect(basic), (req,res) => {
 	Registration.find()
 		.then((registrations) => {
 			res.render('index', {title: 'Listing registrations', registrations});

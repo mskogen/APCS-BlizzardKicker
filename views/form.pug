@@ -4,15 +4,17 @@ block content
 	-data = data || {}
 
 	if errors
-		ul
+		ul.my-errors
 			for error in errors
 				li= error.msg
-	form(action="." method="POST")
+
+	form(action="." method="POST" class="form-registration")
 		label(for="name") Name:
 		input(
 			type="text"
 			id="name"
 			name="name"
+			class="form-control"
 			value=data.name
 		)
 
@@ -21,7 +23,12 @@ block content
 			type="email"
 			id="email"
 			name="email"
+			class="form-control"
 			value=data.email
 		)
 
-		input(type="submit" value="Submit")
+		input(
+			type="submit"
+			value="Submit"
+			class="btn btn-lg btn-primary btn-block"
+		)
