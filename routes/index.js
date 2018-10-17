@@ -12,7 +12,7 @@ const basic = auth.basic({
 });
 
 router.get('/', (req, res) => {
-	res.render('form', {title:'Registration Form'});
+	res.render('home');
 });
 
 router.post('/', [ //allow input into form
