@@ -1,21 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose'); //mongodb databases
 const { body, validationResult } = require('express-validator/check'); //checks inputs for validity
-
-const auth = require('http-auth'); //http authorization
-const path = require('path');
 const router = express.Router();
-const Registration = mongoose.model('Registration');
+const Registration = mongoose.model('Registration'); //uses registration database
 
-const basic = auth.basic({
-	file: path.join(__dirname, '../users.htpasswd'),
-});
-
+//open login page when /login is called
 router.get('/', (req, res) => {
 	res.render('login');
 });
 
-
+//handles post requests
 router.post('/', [ //allow input into form
 	body('email') 
 		.isLength({ min: 1 })
