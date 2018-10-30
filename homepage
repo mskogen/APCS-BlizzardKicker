@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Simple Map</title>
-    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="viewport" content="width=device=width, initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet"
     href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -21,12 +21,9 @@
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-    #mainPage {
-      height:100%
-    }
 
       #map {
-        height: 100%;
+        height: 50%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -39,41 +36,46 @@
 
   </head>
   <body>
-    <div id="algorithmFood col-3">
-      <!--This is a stand-in div to represent the sliders and dropdowns for shred-related
-      preferences-->
-    </div>
+    <div id="mainPage" class="container">
+      <div class="row">
+        <div id="algorithmFood" class="col-sm-3">
+          <!--This is a stand-in div to represent the sliders and dropdowns for shred-related
+          preferences-->
+          Fill out the form below and proceed
 
-    <div id="mainPage col-8">
-      Welcome to BlizzardKicker!<br>
-      According to our calculations, you will receive maximum shred
-      potential at:<br>
+        </div>
 
+        <div id="showRecommendation" class="col-sm-9">
+          Welcome to BlizzardKicker!<br>
+          According to our calculations, you will receive maximum shred
+          potential at:<br>
+          <br>
+          <!--Gotta use bootstrap to break this up into rows and containers. This file
+          is effectively just a place to play around for now until that gets sorted-->
 
-      <!--Gotta use bootstrap to break this up into rows and containers. This file
-        is effectively just a place to play around for now until that gets sorted-->
-      </fieldset>
-      <span id="recommendation">
-        Looks like it's fucking October, kid. Go mountain biking or something
-        ya k00k
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-      </span>
-      <br>Scroll down to see a map of our recommended route!
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      Disclaimer: BlizzardKicker is not responsible for any broken bones, bloody noses,
-      or any other type of reduction in stoke that might result from our advice.
-      <br>
-      <br>
-      We will only take credit for days chock full o' gnar
+          <span id="recommendation">
+            Looks like it's fucking October, kid. Go mountain biking or something
+            ya k00k
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+          </span>
+          <br>Scroll down to see a map of our recommended route!
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          Disclaimer: BlizzardKicker is not responsible for any broken bones, bloody noses,
+          or any other type of reduction in stoke that might result from our advice.
+          <br>
+          <br>
+          We will only take credit for days chock full o' gnar
 
+        </div>
+      </div>
     </div>
     <div id="map"></div>
     <script>
