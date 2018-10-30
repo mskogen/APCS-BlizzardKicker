@@ -1,3 +1,6 @@
+// Fill in areas once dataypes from API are concrete -Kaimar
+
+
 const express = require('express');
 const mongoose = require('mongoose'); //mongodb databases
 
