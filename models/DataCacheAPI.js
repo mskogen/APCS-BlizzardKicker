@@ -1,7 +1,6 @@
 // Author: Kamiar Coffey
 // Purpose: backend structure for storing API data in mongoDB
 
-
 const mongoose = require('mongoose');
 
 const dataCacheSchema = new mongoose.Schema({

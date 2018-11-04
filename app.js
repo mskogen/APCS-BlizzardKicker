@@ -24,6 +24,6 @@ app.use('/', index);
 app.use('/cave', cave);
 app.use('/register', reg);
 app.use('/userPrefs', prefs);
-// app.use('/status_API', datapull);
+app.use('/status_API', datapull);
 
 module.exports = app;
