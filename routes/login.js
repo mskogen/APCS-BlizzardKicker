@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 
 //handles post requests
 router.post('/', [ //allow input into form
-	body('email') 
+	body('email')
 		.isLength({ min: 1 })
 		.withMessage('Please enter a name'),
 	body('pass')

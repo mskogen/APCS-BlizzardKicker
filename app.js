@@ -24,6 +24,6 @@ app.use('/', index);
 app.use('/cave', cave);
 app.use('/register', reg);
 app.use('/userPrefs', prefs);
-app.use('/datapull', datapull);
+// app.use('/datapull', datapull);
 
 module.exports = app;

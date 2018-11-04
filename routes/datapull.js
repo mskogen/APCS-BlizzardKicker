@@ -14,35 +14,38 @@
 
 
 
-const express = require('express');
-const mongoose = require('mongoose');
-const router = express.Router();
-
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-
-const DataCacheAPI = mongoose.model('DataCacheAPI');
-
-// router.get('/', (req, res) => {
-//   res.render('updateAPI');
-// });
-
-// router.post('/updateAPI',
-//   (req, res) => {
+// const express = require('express');
+// const mongoose = require('mongoose');
+// const router = express.Router();
+//
+// var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+//
+// const DataCacheAPI = mongoose.model('DataCacheAPI');
+//
+// // router.get('/', (req, res) => {
+// //   res.render('updateAPI');
+// // });
+//
+// // router.post('/updateAPI',
+// //   (req, res) => {
+// //   }
+// // );
+//   const callAPI = new XMLHttpRequest();
+//   const url='https://api.weatherunlocked.com/api/snowreport/333019?app_id=854428ed&app_key=b75b1bb6575f88dbf10b279301b0d7e4';
+//   callAPI.open("GET", url);
+//   callAPI.send();
+//   callAPI.onreadystatechange=function() {
+//     if(this.readyState==4 && this.status==200) {
+//       var data_object = JSON.parse(callAPI.responseText)
+//
+//       var resortName = new DataCacheAPI( {resortname: data_object.resortname} );
+//       resortName.save()
+//
+//       const newsnow_in = new DataCacheAPI( {newsnow_in: data_object.newsnow_in} );
+//       newsnow_in.save()
+//
+//       res.send('API pull successful');
 //   }
-// );
-  const callAPI = new XMLHttpRequest();
-  const url='https://api.weatherunlocked.com/api/snowreport/333019?app_id=854428ed&app_key=b75b1bb6575f88dbf10b279301b0d7e4';
-  callAPI.open("GET", url);
-  callAPI.send();
-  callAPI.onreadystatechange=function() {
-    if(this.readyState==4 && this.status==200) {
-      var data_object = JSON.parse(callAPI.responseText)
-
-      const resortObject = new DataCacheAPI(data_object);
-      resortObject.save()
-
-      res.send('API pull successful');
-  }
-}
-
-module.exports = router;
+// }
+//
+// module.exports = router;
