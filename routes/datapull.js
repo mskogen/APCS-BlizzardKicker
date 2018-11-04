@@ -20,7 +20,7 @@ const router = express.Router();
 
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-const DataCacheAPI = mongoose.model('Registration');
+const DataCacheAPI = mongoose.model('DataCacheAPI');
 
 // router.get('/', (req, res) => {
 //   res.render('updateAPI');
@@ -38,11 +38,8 @@ const DataCacheAPI = mongoose.model('Registration');
     if(this.readyState==4 && this.status==200) {
       var data_object = JSON.parse(callAPI.responseText)
 
-      const resortName = new DataCacheAPI(data_object.resortname);
-      resortName.save()
-
-      const newSnow_in = new DataCacheAPI(data_object.newsnow_in);
-      newSnow_in.save()
+      const resortObject = new DataCacheAPI(data_object);
+      resortObject.save()
 
       res.send('API pull successful');
   }

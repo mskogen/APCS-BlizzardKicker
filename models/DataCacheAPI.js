@@ -5,13 +5,20 @@
 const mongoose = require('mongoose');
 
 const dataCacheSchema = new mongoose.Schema({
-  snowDepth: {
+  resortid: {
     type: Number,
-    trim: true,
   },
-  currentTemp: { // Farenheit
+  resortname: {
+    type: String,
+  },
+  resortcountry: {
+    type: String,
+  },
+  newsnow_cm: {
     type: Number,
-    trim: true,
+  },
+  newsnow_in: {
+    type: Number,
   },
 });
 
