@@ -15,3 +15,6 @@ ApplePeelerCorerSlicer
 4. `brew services start mongodb`
 5. `npm run watch`
 6. go to http://localhost:3000
+
+## required installations
+1. npm install xmlhttprequest

@@ -1,36 +1,51 @@
 // Author: Kamiar Coffey
 // Purpose: javscript code to pull from API and pass to mongoDB
+// Weather unlocked does not allow US ski resort data on free version
+// username: APCS pw: blizzardkicker email: kamiar.junk@gmail.com
+// https://developer.weatherunlocked.com/ user: APCS_Master pw: blizzardkicker email: kamiar.junk@gmail.com
+// App name: APCS's App
+// App ID: 854428ed
+// Key: ea41306d613ed7bbcfcbb8ece0c62b06
+// Key2: b75b1bb6575f88dbf10b279301b0d7e4
+// Val d'Isere resort key: 333019
+// api.weatherunlocked.com/api/snowreport/999001?app_id={APP_ID}&app_key={APP_KEY}
+// api/snowreport/{resort_id}?app_id={854428ed}&app_key={ea41306d613ed7bbcfcbb8ece0c62b06}
+// api.weatherunlocked.com/api/snowreport/999001?app_id={854428ed}&app_key={ea41306d613ed7bbcfcbb8ece0c62b06}
+
+
 
 const express = require('express');
 const mongoose = require('mongoose');
-const DataCacheAPI = mongose.model('DataCacheAPI'); // use DataCacheAPI database
+const router = express.Router();
 
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-// $.ajax({
-//   url: "https://api.weatherunlocked.com/api/snowreport/{RESORT_ID}?app_id={APP_ID}&app_key={APP_KEY}",
-//   type: "GET",
-//   success: function (parsedResponse, statusText, jqXhr) {
-//     console.log(parsedResponse);
-//   },
-//   error: function (error) {
-//       console.log(error);
-//   }
+const DataCacheAPI = mongoose.model('Registration');
+
+// router.get('/', (req, res) => {
+//   res.render('updateAPI');
 // });
 
-// Val d'Isere resort key: 333019
+// router.post('/updateAPI',
+//   (req, res) => {
+//   }
+// );
+  const callAPI = new XMLHttpRequest();
+  const url='https://api.weatherunlocked.com/api/snowreport/333019?app_id=854428ed&app_key=b75b1bb6575f88dbf10b279301b0d7e4';
+  callAPI.open("GET", url);
+  callAPI.send();
+  callAPI.onreadystatechange=function() {
+    if(this.readyState==4 && this.status==200) {
+      var data_object = JSON.parse(callAPI.responseText)
 
-var callAPI = new XMLHttpRequest();
-var url = 'https://api.weatherunlocked.com/api/snowreport/333019?app_id=854428ed&app_key=b75b1bb6575f88dbf10b279301b0d7e4';
-callAPI.open('GET', url, true);
+      const resortName = new DataCacheAPI(data_object.resortname);
+      resortName.save()
 
-callAPI.onload = function () {
-  var data = JSON.parse(this.response);
-  console.log(data['resortname']);
-  console.log(data['newsnow_in']);
-  };
+      const newSnow_in = new DataCacheAPI(data_object.newsnow_in);
+      newSnow_in.save()
 
-callAPI.send();
+      res.send('API pull successful');
+  }
+}
 
-
-// var Resort = mongose.model('DataCacheAPI', schema);
-// var snowFall = new Resort()
+module.exports = router;
