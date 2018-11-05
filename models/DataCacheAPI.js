@@ -4,6 +4,7 @@
 const mongoose = require('mongoose');
 
 const dataCacheSchema = new mongoose.Schema({
+// can store the entire JSON object
   resortid: {
     type: Number,
   },

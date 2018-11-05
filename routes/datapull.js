@@ -15,27 +15,27 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
-var use = require('../models/DataCacheAPI.js')
-const DataCacheAPI = mongoose.model('DataCacheAPI');
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-const callAPI = new XMLHttpRequest();
-const url='https://api.weatherunlocked.com/api/snowreport/333019?app_id=854428ed&app_key=b75b1bb6575f88dbf10b279301b0d7e4';
-callAPI.open("GET", url);
-callAPI.send();
-callAPI.onreadystatechange=function() {
-  if(this.readyState==4 && this.status==200) {
-    var data_object = JSON.parse(callAPI.responseText)
+router.get('/', function (req, res) {
+    var use = require('../models/DataCacheAPI.js')
+    const DataCacheAPI = mongoose.model('DataCacheAPI');
+    var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-    var resortName = new DataCacheAPI( {resortname: data_object.resortname} );
-    resortName.save()
+    const callAPI = new XMLHttpRequest();
+    const url='https://api.weatherunlocked.com/api/snowreport/333019?app_id=854428ed&app_key=b75b1bb6575f88dbf10b279301b0d7e4';
+    callAPI.open("GET", url);
+    callAPI.send();
+    callAPI.onreadystatechange=function() {
+      if(this.readyState==4 && this.status==200) {
+        var data_object = JSON.parse(callAPI.responseText)
 
-    const newsnow_in = new DataCacheAPI( {newsnow_in: data_object.newsnow_in} );
-    newsnow_in.save()
-  }
-}
+        var resortName = new DataCacheAPI( {resortname: data_object.resortname} );
+        resortName.save()
 
-router.post('/status_API', function (req, res) {
+        const newsnow_in = new DataCacheAPI( {newsnow_in: data_object.newsnow_in} );
+        newsnow_in.save()
+      }
+    }
     res.render('status_API');
 });
 
