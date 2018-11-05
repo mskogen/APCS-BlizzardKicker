@@ -16,9 +16,11 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                sh 'bash ./jenkins/scripts/deliver.sh'
+                sh 'npm run watch &'
+                sh 'sleep 1'
+                sh 'echo $! > .pidfile'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh 'bash ./jenkins/scripts/kill.sh'
+                sh 'kill $(cat .pidfile)'
             }
         }
     }
