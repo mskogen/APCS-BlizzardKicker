@@ -2,6 +2,10 @@ const express = require('express');
 
 const index = require('./routes/index');
 const login = require('./routes/login');
+const cave = require('./routes/cave');
+const reg = require('./routes/register');
+const prefs = require('./routes/userPrefs');
+const datapull = require('./routes/datapull');
 
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -17,5 +21,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/login', login);
 app.use('/', index);
+app.use('/cave', cave);
+app.use('/register', reg);
+app.use('/userPrefs', prefs);
+app.use('/status_API', datapull);
 
 module.exports = app;
