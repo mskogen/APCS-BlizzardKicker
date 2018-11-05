@@ -19,6 +19,7 @@ pipeline {
                 sh 'npm run watch &'
                 sh 'sleep 1'
                 sh 'echo $! > .pidfile'
+                sh 'cat .pidfile'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 sh 'kill $(cat .pidfile)'
             }
