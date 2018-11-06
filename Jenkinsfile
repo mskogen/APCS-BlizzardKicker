@@ -17,6 +17,7 @@ pipeline {
         stage('Deliver') {
             steps {
                 sh 'npm run watch &'
+            }
         }
     }
 }
