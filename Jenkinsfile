@@ -17,13 +17,6 @@ pipeline {
         stage('Deliver') {
             steps {
                 sh 'npm run watch &'
-
-                sh 'set -x'
-                sh 'echo $! > .pidfile'
-                sh 'cat .pidfile'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh 'kill $(cat .pidfile)'
-            }
         }
     }
 }
