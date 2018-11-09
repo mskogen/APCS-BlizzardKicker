@@ -1,0 +1,11 @@
+if registrations.length
+	table
+		tr
+		th Name
+		th Email
+		each registration in registrations
+			tr
+				td= registration.name
+				td= registration.email
+else
+	p No registrations yet :(

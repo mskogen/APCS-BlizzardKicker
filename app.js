@@ -6,6 +6,7 @@ const cave = require('./routes/cave');
 const reg = require('./routes/register');
 const prefs = require('./routes/userPrefs');
 const datapull = require('./routes/datapull');
+const viewData = require('./routes/viewData');
 
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -25,5 +26,6 @@ app.use('/cave', cave);
 app.use('/register', reg);
 app.use('/userPrefs', prefs);
 app.use('/status_API', datapull);
+app.use('/viewData', viewData);
 
 module.exports = app;
