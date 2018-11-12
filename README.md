@@ -24,3 +24,5 @@ It allows you to run everything on any computer without running mongo or node.
 4. `brew services start mongodb`
 5. `npm run watch`
 6. Go to http://localhost:3000
+
+If it is not running locally change `DATABASE=mongodb://mongo:27017/BlizzardKickerDev` to `DATABASE=localhost://mongo:27017/BlizzardKickerDev` in .env
