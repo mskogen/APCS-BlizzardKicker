@@ -4,7 +4,8 @@
   "description": "first version",
   "main": "index.js",
   "scripts": {
-    "watch": "nodemon ./start.js"
+    "watch": "nodemon ./start.js",
+    "start": "node ./start.js"
   },
   "repository": {
     "type": "git",

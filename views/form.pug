@@ -1,36 +1,35 @@
 //A File from tutorial
 
-extends layout
 
-block content
-	-data = data || {}
 
-	if errors
-		ul.my-errors
-			for error in errors
-				li= error.msg
+-data = data || {}
 
-	form(action="." method="POST" class="form-registration")
-		label(for="name") Name:
-		input(
-			type="text"
-			id="name"
-			name="name"
-			class="form-control"
-			value=data.name
-		)
+if errors
+	ul.my-errors
+		for error in errors
+			li= error.msg
 
-		label(for="email") Email:
-		input(
-			type="email"
-			id="email"
-			name="email"
-			class="form-control"
-			value=data.email
-		)
+form(action="." method="POST" class="form-registration")
+	label(for="Email") email:
+	input(
+		type="text"
+		id="email"
+		name="email"
+		class="form-control"
+		value=data.email
+	)
 
-		input(
-			type="submit"
-			value="Submit"
-			class="btn btn-lg btn-primary btn-block"
-		)
+	label(for="Password") Password:
+	input(
+		type="Password"
+		id="Password"
+		name="Password"
+		class="form-control"
+		value=data.pass
+	)
+
+	input(
+		type="submit"
+		value="Submit"
+		class="btn btn-lg btn-primary btn-block"
+	)

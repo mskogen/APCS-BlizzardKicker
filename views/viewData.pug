@@ -1,11 +1,11 @@
 if registrations.length
 	table
 		tr
-		th Name
 		th Email
+		th Password
 		each registration in registrations
 			tr
-				td= registration.name
 				td= registration.email
+				td= registration.pass
 else
 	p No registrations yet :(

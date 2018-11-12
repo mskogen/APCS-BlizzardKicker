@@ -21,11 +21,12 @@ app.use(express.static('node_modules'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //app.use('/login', login);
-app.use('/', index);
+
 app.use('/cave', cave);
 app.use('/register', reg);
 app.use('/userPrefs', prefs);
 app.use('/status_API', datapull);
 app.use('/viewData', viewData);
+app.use('/', index);
 
 module.exports = app;

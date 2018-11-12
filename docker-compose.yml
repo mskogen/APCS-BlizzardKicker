@@ -1,0 +1,19 @@
+version: "2"
+services:
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - data-volume:/data/db
+    ports:
+      - "27017:27017"
+  app:
+    container_name: node_app
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+volumes:
+   data-volume:
