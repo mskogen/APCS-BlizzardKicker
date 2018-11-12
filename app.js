@@ -7,6 +7,7 @@ const reg = require('./routes/register');
 const prefs = require('./routes/userPrefs');
 const datapull = require('./routes/datapull');
 const viewData = require('./routes/viewData');
+const learn_more = require('./routes/learn_more');
 
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -28,5 +29,6 @@ app.use('/userPrefs', prefs);
 app.use('/status_API', datapull);
 app.use('/viewData', viewData);
 app.use('/', index);
+app.use('/learn_more', learn_more);
 
 module.exports = app;
