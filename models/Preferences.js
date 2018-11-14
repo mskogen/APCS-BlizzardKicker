@@ -18,4 +18,4 @@ const userPrefsSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('DataCacheAPI', dataCacheSchema);
+module.exports = mongoose.model('Preferences', userPrefsSchema);
