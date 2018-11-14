@@ -12,28 +12,28 @@
 // api/snowreport/{resort_id}?app_id={854428ed}&app_key={ea41306d613ed7bbcfcbb8ece0c62b06}
 // api.weatherunlocked.com/api/snowreport/999001?app_id={854428ed}&app_key={ea41306d613ed7bbcfcbb8ece0c62b06}
 
-const express = require('express');
-const mongoose = require('mongoose');
+const express = require('express'); // use express routing
+const mongoose = require('mongoose'); // use mongo database
 const router = express.Router();
 
-router.get('/', function (req, res) {
-    var use = require('../models/DataCacheAPI.js')
-    const DataCacheAPI = mongoose.model('DataCacheAPI');
-    var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+router.get('/', function (req, res) { // upp data upon get request
+    var use = require('../models/DataCacheAPI.js') // route to mongoDB schema
+    const DataCacheAPI = mongoose.model('DataCacheAPI'); // use DataCacheAPI schema
+    var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest; // include API request pulls
 
     const callAPI = new XMLHttpRequest();
     const url='https://api.weatherunlocked.com/api/snowreport/333019?app_id=854428ed&app_key=b75b1bb6575f88dbf10b279301b0d7e4';
     callAPI.open("GET", url);
     callAPI.send();
-    callAPI.onreadystatechange=function() {
+    callAPI.onreadystatechange=function() { // execute when the API returns
       if(this.readyState==4 && this.status==200) {
-        var data_object = JSON.parse(callAPI.responseText)
+        var data_object = JSON.parse(callAPI.responseText) // turn the JSON response into an object
 
-        var resortName = new DataCacheAPI( {resortname: data_object.resortname} );
-        resortName.save()
+        var resort = new DataCacheAPI( {resortname: data_object.resortname, newsnow_in: data_object.newsnow_in} ); // put the data into the mongoDB object
+        resort.save()
 
-        const newsnow_in = new DataCacheAPI( {newsnow_in: data_object.newsnow_in} );
-        newsnow_in.save()
+        // const newsnow_in = new DataCacheAPI(  );
+        // newsnow_in.save()
       }
     }
     res.render('status_API');
