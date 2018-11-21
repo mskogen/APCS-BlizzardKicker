@@ -1,73 +1,38 @@
-doctype html
-html(lang='en')
-  head
-    -data = data || {}
+extends ../layouts/layout
+block append head
+  link(href='/css/index.css', rel='stylesheet')
+block content
+  .row.justify-content-center.h-75
+    .col-md-auto.align-self-center.main-content
+      .row.justify-content-center
+        h1 Blizzard Kicker
+      .row.justify-content-center
+        p Welcome to Blizzard Kicker
+      .row.justify-content-center
+        button.btn.btn-lg.btn-secondary(type="button" data-toggle="modal" data-target="#loginModal") Login
 
-      if errors
-        ul.my-errors
-          for error in errors
-            li= error.msg
+  //This is the login popup
+  #loginModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          h5.modal-title#LoginTitle Login
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") &times;
+        form.form-container.form-signin(method='POST')    
+          .modal-body        
+              h1.h3.mb-3.font-weight-normal Please sign in
+              label.sr-only(for='inputEmail') Email address
+              input#inputEmail.form-control(name='email', type='email', placeholder='Email address', required='', autofocus='')
+              label.sr-only(for='inputPassword') Password
+              input#inputPassword.form-control(name='pass', type='password', placeholder='Password', required='')
+              .checkbox.mb-3
+                label
+                  input(type='checkbox', value='remember-me')
+                  |  Remember me
+          .modal-footer
+            button.btn.btn-primary(type='submit') Sign in
+            button.btn.btn-secondary(type="button" data-dismiss="modal") Close
 
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
-    meta(name='description', content='')
-    meta(name='author', content='')
-    //link(rel='icon', href='../../../../favicon.ico')
-    title BlizzardKicker
-    // Bootstrap core CSS
-    link(href='/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
-    // Custom styles for this template
-    link(href='/css/index.css', rel='stylesheet')
-  body.text-center
-    .cover-container.d-flex.h-100.p-3.mx-auto.flex-column
-      header.masthead.mb-auto
-        .inner
-          h3.masthead-brand BlizzardKicker
-          nav.nav.nav-masthead.justify-content-center
-            a.nav-link.active(href='#') Home
-            a.nav-link(href='/status_API') Update API Data
-            a.nav-link(href='#', onclick='openForm()') Login
-            #myForm.form-popup
-              form.form-container(method="POST" class="form-signin")
-                img.mb-4(src='https://getbootstrap.com/assets/brand/bootstrap-solid.svg', alt='', width='72', height='72')
-                h1.h3.mb-3.font-weight-normal Please sign in
-                label.sr-only(for='inputEmail') Email address
-                input#inputEmail.form-control(name='email',type='email', placeholder='Email address', required='', autofocus='', value=data.email)
-                label.sr-only(for='inputPassword') Password
-                input#inputPassword.form-control(name='pass',type='password', placeholder='Password', required='', value=data.pass)
-                .checkbox.mb-3
-                  label
-                    input(type='checkbox', value='remember-me')
-                    |  Remember me
-                button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
-                button.btn.btn-lg.btn-primary.cancel.btn-block(type='button', onclick='closeForm()') Close
-                p.mt-5.mb-3.text-muted © 2017-2018
-      main.inner.cover(role='main')
-        h1.cover-heading BlizzardKicker.
-        p.lead
-          | Welcome to BlizzardKicker
-        p.lead
-          a.btn.btn-lg.btn-secondary(href='/learn_more') Learn More 
-      footer.mastfoot.mt-auto
-        .inner
-          p
-            | Cover template for
-            a(href='https://getbootstrap.com/') Bootstrap
-            | , by
-            a(href='https://twitter.com/mdo') @mdo
-            | .
-    //
-      Bootstrap core JavaScript
-      ==================================================
-    // Placed at the end of the document so the pages load faster
-    script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
-    script.
-      window.jQuery || document.write('<script src="/jquery/dist/jquery-slim.min.js"><\\/script>')
-      function openForm() {
-        document.getElementById("myForm").style.display = "block";
-      }
-      function closeForm() {
-        document.getElementById("myForm").style.display = "none";
-      }
-    script(src='/popper/dist/popper.min.js')
-    script(src='/bootstrap/dist/js/bootstrap.min.js')
+
+

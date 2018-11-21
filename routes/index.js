@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
 	res.render('index');
 });
 
+
 //handles post requests
 router.post('/', [ //allow input into form
 	body('email')
