@@ -1,6 +1,5 @@
 //Data Scraper to take info from onthesnow
 const rp = require('request-promise');
-const url = 'https://www.onthesnow.com/colorado/vail/skireport.html';
 const $ = require('cheerio');
 
 const skiData = function(url) {
@@ -36,5 +35,6 @@ const skiData = function(url) {
 	  //handle error
 	});
 };
+
 
 module.exports = skiData;
