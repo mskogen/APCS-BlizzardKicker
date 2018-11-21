@@ -1,0 +1,17 @@
+extends ../layouts/layout.pug
+block append head
+  link(href='/css/index.css', rel='stylesheet')
+
+block content
+  table
+    tr
+      th Snow Upper
+      th Snow Middle
+      th Snow Lower
+      th Snowfall
+    tr
+      td= cond.condition.upper.snow
+      td= cond.condition.middle.snow
+      td= cond.condition.lower.snow
+      td= cond.snowfall.today
+
