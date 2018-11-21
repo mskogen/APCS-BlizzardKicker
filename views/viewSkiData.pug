@@ -1,17 +1,26 @@
 extends ../layouts/layout.pug
 block append head
-  link(href='/css/index.css', rel='stylesheet')
+  link(href='/css/skiViewer.css', rel='stylesheet')
 
 block content
+  h1= cond.resort
   table
     tr
+      td
       th Snow Upper
       th Snow Middle
       th Snow Lower
       th Snowfall
     tr
-      td= cond.condition.upper.snow
-      td= cond.condition.middle.snow
-      td= cond.condition.lower.snow
+      th Depth
+      td= cond.depths.upper.snow
+      td= cond.depths.middle.snow
+      td= cond.depths.lower.snow
       td= cond.snowfall.today
+    tr
+      th Condition
+      td= cond.depths.upper.condition
+      td= cond.depths.middle.condition
+      td= cond.depths.lower.condition
+      td
 
