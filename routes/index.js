@@ -9,6 +9,15 @@ router.get('/', (req, res) => {
 });
 
 
+function checkExistingUser(userObject) { // reutrns the userID if there is a user, otherwise returns false
+	var recordName = db.registrations.find( { email:userObject.body.email} ).fetch()[0].name;
+	if (recordName) {
+		// res.send('This email is already registered');
+		return true;
+	}
+	return false;
+}
+
 //handles post requests
 router.post('/', [ //allow input into form
 	body('email')
@@ -20,8 +29,9 @@ router.post('/', [ //allow input into form
 	],
 	(req, res) => {
 		const errors = validationResult(req);
+		var existingUser = checkExistingUser
 
-		if (errors.isEmpty()){
+		if (errors.isEmpty() && !existingUser) {
 			const registration = new Registration(req.body);
 			registration.save()
 				.then(() => { res.send('Thank you for your registration!'); })
