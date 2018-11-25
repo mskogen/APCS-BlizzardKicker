@@ -4,18 +4,44 @@ const { body, validationResult } = require('express-validator/check'); //checks 
 const router = express.Router();
 const Registration = mongoose.model('Registration'); //uses registration database
 
+//var db = mongoose('registration', ['registration'])
+
 router.get('/', (req, res) => {
 	res.render('index');
 });
 
+// find() returns a cursor (aka a pointer)
+// findOne() returns a document
+/* works in the shell -- however, to script, need to create connection using port ID
+> use BlizzardKickerDev
+switched to db BlizzardKickerDev
+> x = db.registrations.find({user:'kamiar.coffey@colorado.edu'});
+> print(x)
+DBQuery: BlizzardKickerDev.registrations -> { "user" : "kamiar.coffey@colorado.edu" }
+*/
 
-function checkExistingUser(userObject) { // reutrns the userID if there is a user, otherwise returns false
-	var recordName = db.registrations.find( { email:userObject.body.email} ).fetch()[0].name;
-	if (recordName) {
-		// res.send('This email is already registered');
-		return true;
-	}
-	return false;
+function checkExistingUser (userObject) { // reutrns the userID if there is a user, otherwise returns false
+	/* This method should also work if the connection is correct, which it is NOT RIGHT NOW!
+	// var recordName = db.registrations.find( { email:userObject.email} );
+	// if (recordName) {
+	// 	console.log(recordName)
+	// 	console.log(recordName.email)
+	// 	return true;
+	// } else {
+	// 	return false;
+	// }
+
+/* Method useing models (creates a new document from the databse schema) */
+	Registration.find( {email:userObject.email}, function(error, userFound) {
+	    if(error) {
+	        console.log('Mongose error');
+	    } else if (!userFound) {
+	        return false;
+	    } else {
+					console.log('Found an existing user');
+					return true;
+	    }
+	});
 }
 
 //handles post requests
@@ -29,7 +55,7 @@ router.post('/', [ //allow input into form
 	],
 	(req, res) => {
 		const errors = validationResult(req);
-		var existingUser = checkExistingUser
+		var existingUser = checkExistingUser(req.body)
 
 		if (errors.isEmpty() && !existingUser) {
 			const registration = new Registration(req.body);
