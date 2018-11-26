@@ -1,7 +1,7 @@
 // Fill in areas once dataypes from API are concrete -Kaimar
 const express = require('express');
 const mongoose = require('mongoose'); //mongodb databases
-const skiData= require('../scraping/skiDataScraper.js')
+const skiData= require('../Scraping/skiDataScraper.js')
 
 const Registration = mongoose.model('Registration');
 
