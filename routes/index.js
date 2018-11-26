@@ -74,7 +74,7 @@ router.post('/', [ //allow input into form
 		var existingUser = false;
 		// console.log(existingUser);
 		// console.log(req.body.email);
-		Registration.findOne({email: req.body.email}, function(error, user) {
+		Registration.findOne({email: req.body.email}).then(function(error, user) {
 			console.log('here', result)
 			if (error) {
 				console.log('Databse error');
@@ -84,7 +84,7 @@ router.post('/', [ //allow input into form
 			} else {
 				console.log('not found');
 			}
-		});
+    	});
 
 		if ( (errors.isEmpty()) && (!existingUser) ) {
 			var registration = new Registration(req.body);
