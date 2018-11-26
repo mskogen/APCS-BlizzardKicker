@@ -5,6 +5,7 @@ const router = express.Router();
 const Registration = mongoose.model('Registration'); //uses registration database
 const bodyParser = require('body-parser');
 
+// const db = require('../models/Registration');
 // npm install body-parser
 
 router.get('/', (req, res) => {
