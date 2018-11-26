@@ -3,6 +3,10 @@ const mongoose = require('mongoose'); //mongodb databases
 const { body, validationResult } = require('express-validator/check'); //checks inputs for validity
 const router = express.Router();
 const Registration = mongoose.model('Registration'); //uses registration database
+const bodyParser = require('body-parser');
+
+// const db = require('../models/Registration');
+// npm install body-parser
 
 router.get('/', (req, res) => {
 	res.render('index');
