@@ -21,6 +21,7 @@ app.set('view engine', 'pug');
 app.use(express.static('styles'));
 app.use(express.static('node_modules'));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 //app.use('/login', login);
 
