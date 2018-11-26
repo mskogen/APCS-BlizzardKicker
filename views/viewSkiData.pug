@@ -1,0 +1,48 @@
+extends ../layouts/layout.pug
+block append head
+  link(href='/css/skiViewer.css', rel='stylesheet')
+
+block content
+  h1=cond.resort
+  table
+    tr
+      td
+      th Snow Upper
+      th Snow Middle
+      th Snow Lower
+      th Snowfall
+    tr
+      th Depth
+      td= cond.condition.upper.snow
+      td= cond.condition.middle.snow
+      td= cond.condition.lower.snow
+      td= cond.snowfall.today
+    tr
+      th Condition
+      td= cond.condition.upper.condition
+      td= cond.condition.middle.condition
+      td= cond.condition.lower.condition
+      td
+  h3 Snowfall
+  table
+    tr
+      th(colspan="2") Historical
+    tr
+      th Date
+      th Snowfall
+    each item in cond.snowfall.historical
+      tr
+        td=item[0]
+        td=item[1]
+    tr
+      th(colspan="2") Predicted
+    tr
+      th Date
+      th Snowfall
+    each item in cond.snowfall.predicted
+      tr
+        td=item[0]
+        td=item[1]
+
+
+

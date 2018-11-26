@@ -53,3 +53,15 @@ body {
 .modal-body input{
   margin: 3px
 }
+
+table, th, td{
+  border: 3px solid white;
+  padding: 4px;
+}
+
+
+
+
+
+
+

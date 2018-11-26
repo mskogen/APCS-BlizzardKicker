@@ -1,0 +1,50 @@
+doctype html
+block head
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    // link(rel='icon', href='../../../../favicon.ico')
+    title BlizzardKicker
+    // Bootstrap core CSS
+    link(href='/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+    // Custom styles for this template
+
+.container-fluid
+  header
+    .row.justify-content-center
+      nav.navbar.navbar-expand-lg.navbar-dark
+        a.navbar-brand(href="/") Blizzardkicker
+        //Makes the menu collapsable
+        button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+          span.navbar-toggler-icon
+        .collapse.navbar-collapse#navbarSupportedContent
+          ul.navbar-nav.mr-auto
+            li.nav-item
+              a.nav-link(href="#") Login
+            li.nav-item
+              a.nav-link(href="/status_API") Update API Data
+            li.nav-item
+              a.nav-link(href="/viewData") View Data
+            li.nav-item
+              a.nav-link(href="/viewSkiData") View Ski Data
+
+  block content
+
+          
+//
+  Bootstrap core JavaScript
+  ==================================================
+// Placed at the end of the document so the pages load faster
+script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+script.
+  window.jQuery || document.write('<script src="/jquery/dist/jquery-slim.min.js"><\\\/script>')
+  function openForm() {
+  document.getElementById("myForm").style.display = "block";
+  }
+  function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+  }
+script(src='/popper.js/dist/popper.js')
+script(src='/bootstrap/dist/js/bootstrap.min.js')
