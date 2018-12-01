@@ -2,12 +2,12 @@
 const express = require('express');
 const mongoose = require('mongoose'); //mongodb databases
 
-const Registration = mongoose.model('Registration');
+const User = require('../models/Registration');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-	Registration.find()
+	User.find()
 		.then((registrations) => {
 			res.render('viewData', {registrations})
 		})

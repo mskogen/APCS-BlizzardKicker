@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 extends ../layouts/layout
 
 block append head
@@ -14,3 +15,16 @@ block content
           td= registration.pass
   else
     p No registrations yet :(
+=======
+if registrations.length
+	table
+		tr
+		th Email
+		th Password
+		each registration in registrations
+			tr
+				td= registration.email
+				td= registration.pass
+else
+	p No registrations yet :(
+>>>>>>> Stashed changes
