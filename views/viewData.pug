@@ -1,21 +1,3 @@
-<<<<<<< Updated upstream
-extends ../layouts/layout
-
-block append head
-  link(href='/css/skiViewer.css', rel='stylesheet')
-block content
-  if registrations.length
-    table
-      tr
-      th Email
-      th Password
-      each registration in registrations
-        tr
-          td= registration.email
-          td= registration.pass
-  else
-    p No registrations yet :(
-=======
 if registrations.length
 	table
 		tr
@@ -27,4 +9,3 @@ if registrations.length
 				td= registration.pass
 else
 	p No registrations yet :(
->>>>>>> Stashed changes

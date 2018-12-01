@@ -1,9 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose'); //mongodb databases
 const router = express.Router();
-<<<<<<< Updated upstream
-const Registration = mongoose.model('Registration'); //uses registration database
-=======
 const User = require('../models/Registration');
 // const Registration = mongoose.model('Registration'); //uses registration database
 
@@ -13,54 +10,29 @@ const bodyParser = require('body-parser'); // duplicate??
 // const express = require('express');
 // const router = express.Router();
 
->>>>>>> Stashed changes
 
 // GET route for reading data
 router.get('/', function (req, res, next) {
 	res.render('index');
 });
 
-<<<<<<< Updated upstream
-//handles post requests
-router.post('/', [ //allow input into form
-	body('email')
-		.isLength({ min: 1 })
-		.withMessage('Please enter a name'),
-	body('pass')
-		.isLength({ min: 1 })
-		.withMessage('Please enter a password'),
-	],
-	(req, res) => {
-		const errors = validationResult(req);
-
-		if (errors.isEmpty()){
-			const registration = new Registration(req.body);
-			registration.save()
-				.then(() => { res.send('Thank you for your registration!'); })
-				.catch(() => { res.send('Sorry something went wrong.');})
-		}else{
-			res.render('login', {
-				errors: errors.array(),
-				data: req.body,
-				});
-		}
-});
-
-module.exports = router;
-=======
 
 //POST route for updating data
 router.post('/', function (req, res, next) {
+	console.log(req.body.password);
   if (req.body.email && req.body.password) { // both required
     var userData = {
       email: req.body.email,
       password: req.body.password,
     }
+		console.log('user data constructed!');
+
 
     User.create(userData, function (error, user) {
       if (error) {
         return next(error);
       } else {
+				console.log('user created!');
         req.session.userId = user._id;
         return res.redirect('/profile');
       }
@@ -173,4 +145,3 @@ module.exports = router;
 // });
 //
 // module.exports = router;
->>>>>>> Stashed changes
