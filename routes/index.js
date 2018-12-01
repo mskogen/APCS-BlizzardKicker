@@ -19,6 +19,7 @@ router.get('/', function (req, res, next) {
 
 //POST route for updating data
 router.post('/', function (req, res, next) {
+	console.log(req.body.email);
 	console.log(req.body.password);
   if (req.body.email && req.body.password) { // both required
     var userData = {
@@ -38,10 +39,10 @@ router.post('/', function (req, res, next) {
       }
     });
 
-  } else if (req.body.email && req.body.password) {
+  } else if (req.body.existingEmail && req.body.existingPassword) {
     User.authenticate(req.body.email, req.body.password, function (error, user) {
       if (error || !user) {
-        var err = new Error('Wrong email or password.');
+        var err = new Error('Account not found');
         err.status = 401;
         return next(err);
       } else {
@@ -50,7 +51,7 @@ router.post('/', function (req, res, next) {
       }
     });
   } else {
-    var err = new Error('All fields required.');
+    var err = new Error('You must either login or register');
     err.status = 400;
     return next(err);
   }
