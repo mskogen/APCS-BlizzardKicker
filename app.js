@@ -25,8 +25,7 @@ app.use(bodyParser.json());
 
 //app.use('/login', login);
 
-app.use(app.router);
-index.initialize(app);
+
 
 app.use('/cave', cave);
 app.use('/register', reg);
@@ -35,7 +34,7 @@ app.use('/status_API', datapull);
 app.use('/viewData', viewData);
 app.use('/viewSkiData', viewSkiData);
 app.use('/learn_more', learn_more);
-// app.use('/', index);
+app.use('/', index);
 
 
 

@@ -40,16 +40,15 @@ router.post('/', [ //allow input into form
 				existingUser = true;
 				// User.username = body.email;
 				// User.password = body.pass;
-				res.send('User authenticated');
+				// res.send('User authenticated');
 				// res.render('cave');
-				// res.render('cave', {
-				// 	username: body.email,
-				// 	password: body.pass,
-				// });
+				res.render('login_error', {
+					data: req.body,
+					});
 			})
-			.catch(() => {
-				res.send('Databse lookup error');
-			})
+			// .catch(() => {
+			// 	res.send('Database lookup error');
+			// })
 
 		if ( (errors.isEmpty()) && (!existingUser) ) {
 			var registration = new Registration(req.body);

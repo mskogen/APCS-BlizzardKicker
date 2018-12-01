@@ -3,29 +3,28 @@ const mongoose = require('mongoose'); //mongodb databases
 
 const router = express.Router();
 
-<<<<<<< Updated upstream
-// router.get('/', (req, res) => {
-// 	res.render('cave');
-// });
 
-var USERLIBRARY = USERLIBRARY || (function(){
-    var _args = {}; // private
+router.get('/', (req, res) => {
+	res.render('cave');
+});
 
-    return {
-        init : function(Args) {
-            _args = Args;
-            // some other initialising
-        },
-        helloWorld : function() {
-            alert('Hello World! -' + _args[0]);
-        }
-    };
-}());
+// var USERLIBRARY = USERLIBRARY || (function(){
+//     var _args = {}; // private
+//
+//     return {
+//         init : function(Args) {
+//             _args = Args;
+//             // some other initialising
+//         },
+//         helloWorld : function() {
+//             alert('Hello World! -' + _args[0]);
+//         }
+//     };
+// }());
 
-const domContainer = document.querySelector('#button_container');
-ReactDOM.render(e(LikeButton), domContainer);
+// const domContainer = document.querySelector('#button_container');
+// ReactDOM.render(e(LikeButton), domContainer);
 
-=======
 // class User {
 //     constructor(username, password) {
 //         this.username = username;
@@ -57,24 +56,24 @@ const User = {
   skillLevel: null,
 };
 
-var USERLIBRARY = USERLIBRARY || (function(){
-    var userData = { // private
-      username: null,
-      password: null,
-      skillLevel: null,
-    };
-
-    return {
-      setSkillLevel: function(Args) {
-          userData.skillLevel = Args;
-      },
-
-      greeting : function() {
-          alert('Welcome to Blizzard Kicker' + userData[0]);
-      }
-    };
-}
-());
+// var USERLIBRARY = USERLIBRARY || (function(){
+//     var userData = { // private
+//       username: null,
+//       password: null,
+//       skillLevel: null,
+//     };
+//
+//     return {
+//       setSkillLevel: function(Args) {
+//           userData.skillLevel = Args;
+//       },
+//
+//       greeting : function() {
+//           alert('Welcome to Blizzard Kicker' + userData[0]);
+//       }
+//     };
+// }
+// ());
 
 // 'use strict';
 //
@@ -113,5 +112,5 @@ var USERLIBRARY = USERLIBRARY || (function(){
 // router.get('/', (req, res) => {
 // 	res.render('cave');
 // });
->>>>>>> Stashed changes
-// module.exports = router;
+
+module.exports = router;
