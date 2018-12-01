@@ -35,14 +35,20 @@ router.post('/', [ //allow input into form
 	(req, res) => {
 		var errors = validationResult(req);
 		var existingUser = false;
-		var validPass = false;
-		Registration.find({email:body.email})
+		Registration.find({email:body.email, pass:body.pass})
 			.then((registrations) => {
 				existingUser = true;
-				res.send('This email is alredy registred. Please login instead.');
+				// User.username = body.email;
+				// User.password = body.pass;
+				res.send('User authenticated');
+				// res.render('cave');
+				// res.render('cave', {
+				// 	username: body.email,
+				// 	password: body.pass,
+				// });
 			})
 			.catch(() => {
-				res.send('Mongo lookup error');
+				res.send('Databse lookup error');
 			})
 
 		if ( (errors.isEmpty()) && (!existingUser) ) {
