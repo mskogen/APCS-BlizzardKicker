@@ -1,0 +1,46 @@
+html
+  head
+    style.
+      table {
+      align-text: center;
+      border: 1px solid black;
+      border-collapse: collapse;
+      margin: 0px;
+      padding: 0px;
+      }
+      td, th {
+      white-space: nowrap;
+      border: 1px solid black;
+      }
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    title User Cave
+    script.
+      $(document).ready(function() {
+      $('#currentEmail').text(req.session.userID)
+      })
+      })
+  body
+    div
+      table(style='width:30%')
+        tbody
+          tr
+            td current user
+            td
+              p#currentEmail Undefined
+
+
+
+<!-- curl 'https://api.forecast.io/forecast/27dde63e41f8b402f995c7bbb7367493/40.014984,-105.270546'>results.json -->
+
+
+
+    <!-- We will put our React component inside this div. -->
+    <!-- <div id="like_button_container"></div> -->
+
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <!-- <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script> -->
+
+    <!-- Load our React component. -->
+    <!-- <script src="routes/cave.js"></script> -->

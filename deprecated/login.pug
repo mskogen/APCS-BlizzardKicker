@@ -1,0 +1,15 @@
+doctype html
+// Kamiar Coffey
+html
+  head
+    title Existing User Login
+    // Custom Theme files
+    link(href='styles/css/index.css', rel='stylesheet', type='text/css')
+  body
+    .form-registration
+      h2 Login
+        form(action='/', method='post')
+          input(type='text', name='existingEmail', placeholder='Registered email', required='')
+          input(type='password', name='existingPassword', placeholder='Password', required='')
+          .tp
+            input(type='submit', value='Login')
