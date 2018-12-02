@@ -10,6 +10,8 @@ block content
         p Welcome to Blizzard Kicker
       .row.justify-content-center
         button.btn.btn-lg.btn-secondary(type="button" data-toggle="modal" data-target="#loginModal") Register Here
+      .row.justify-content-center
+        button.btn.btn-lg.btn-secondary(type="button" data-toggle="modal" data-target="#registerModal") Login Here
 
   //This is the login popup
   #loginModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
@@ -32,4 +34,26 @@ block content
                   |  Remember me
           .modal-footer
             button.btn.btn-primary(type='submit') Register
+            button.btn.btn-secondary(type="button" data-dismiss="modal") Close
+            
+  #registerModal.modal.fade(tabindex='-2', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          h5.modal-title#RegisterTitle Login
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") &times;
+        form.form-container.form-signin(method='POST')
+          .modal-body
+              h1.h3.mb-3.font-weight-normal Your registered email
+              label.sr-only(for='inputEmail') Email address
+              input#inputEmail.form-control(name='existingEmail', type='email', placeholder='Email address', required='', autofocus='')
+              label.sr-only(for='inputPassword') Password
+              input#inputPassword.form-control(name='existingPassword', type='password', placeholder='Password', required='')
+              .checkbox.mb-3
+                label
+                  input(type='checkbox', value='remember-me')
+                  |  Remember me
+          .modal-footer
+            button.btn.btn-primary(type='submit') Login
             button.btn.btn-secondary(type="button" data-dismiss="modal") Close
