@@ -5,10 +5,6 @@ var mongoose = require('mongoose'); // needed here in addition to start.js
 var session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
-var React = require('react');
-var ReactDOM = require('react-dom');
-
-
 const app = express();
 const index = require('./routes/index');
 const cave = require('./routes/cave');

@@ -16,52 +16,7 @@ router.get('/', function (req, res, next) {
 	res.render('index');
 });
 
-<<<<<<< HEAD
-// find() returns a cursor (aka a pointer)
-// findOne() returns a document
-/* works in the shell -- however, to script, need to create connection using port ID
-> use BlizzardKickerDev
-switched to db BlizzardKickerDev
-> x = db.registrations.find({user:'kamiar.coffey@colorado.edu'});
-> print(x)
-DBQuery: BlizzardKickerDev.registrations -> { "user" : "kamiar.coffey@colorado.edu" }
-*/
 
-
-//handles post requests
-router.post('/', [ //allow input into form
-	body('email')
-		.isLength({ min: 1 })
-		.withMessage('Please enter a name'),
-	body('pass')
-		.isLength({ min: 1 })
-		.withMessage('Please enter a password'),
-	],
-	(req, res) => {
-		var errors = validationResult(req);
-		var existingUser = false;
-		var validPass = false;
-		Registration.find({email:body.email})
-			.then((registrations) => {
-				existingUser = true;
-				res.send('This email is alredy registred. Please login instead.');
-			})
-			.catch(() => {
-				res.send('Mongo lookup error');
-			})
-
-		if ( (errors.isEmpty()) && (!existingUser) ) {
-			var registration = new Registration(req.body);
-			registration.save()
-				.then(() => { res.send('Thank you for your registration!'); })
-				.catch(() => { res.send('Sorry something went wrong.');})
-		}else{
-			res.render('login_error', {
-				errors: errors.array(),
-				data: req.body,
-				});
-		}
-=======
 
 //POST route for updating data
 router.post('/', function (req, res, next) {
@@ -131,7 +86,6 @@ router.get('/logout', function (req, res, next) {
       }
     });
   }
->>>>>>> dev
 });
 
 module.exports = router;
