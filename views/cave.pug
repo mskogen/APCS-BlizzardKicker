@@ -1,0 +1,70 @@
+doctype html
+html
+  head
+    title User Cave
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    // jQuery Library
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    // Latest compiled JavaScript for Bootstrap
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    // Load React.
+    // Note: when deploying, replace "development.js" with "production.min.js".
+    script(src='https://unpkg.com/react@16/umd/react.development.js', crossorigin='')
+    script(src='https://unpkg.com/react-dom@16/umd/react-dom.development.js', crossorigin='')
+    // Load our React component.
+    script(src='routes/cave.js')
+    // Any non-bootstrap CSS needs to go here. I suppose we should use this sparingly
+    style.
+  body
+    #mainPage.container
+      .row
+        #algorithmFood.col-sm-3
+          //
+            This is a stand-in div to represent the sliders and dropdowns for shred-related
+            preferences
+          | Fill out the form below and proceed
+        #showRecommendation.col-sm-9
+          | Welcome to BlizzardKicker!
+          br
+          |           According to our calculations, you will receive maximum shred
+          |           potential at:
+          br
+          br
+          //
+            Gotta use bootstrap to break this up into rows and containers. This file
+            is effectively just a place to play around for now until that gets sorted
+          span#recommendation
+            | Looks like it's fucking October, kid. Go mountain biking or something
+            | ya k00k
+            br
+            br
+            br
+            br
+            br
+          br
+          | Scroll down to see a map of our recommended route!
+          br
+          br
+          br
+          br
+          br
+          |           Disclaimer: BlizzardKicker is not responsible for any broken bones, bloody noses,
+          |           or any other type of reduction in stoke that might result from our advice.
+          br
+          br
+          |           We will only take credit for days chock full o' gnar
+    #map
+    script.
+      var map;
+      function initMap() {
+      // For now, this is the location of Copper mountain
+      //We will need to figure out how to pull the recommended lat/long from Mongo
+      //and put it in here. PS slash comments are sick, shut up
+      var mtRecommend = {lat: 39.502, lng: -106.151};
+      // The map, centered at our recommendation (CURRENTLY JUST COPPER, #IKONFTW)
+      var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 8, center: mtRecommend});
+      // The marker, positioned at Uluru
+      var marker = new google.maps.Marker({position: mtRecommend, map: map});
+      }
+    script(src='https://maps.googleapis.com/maps/api/js?key=<INSERT_GMAPS_KEY>&callback=initMap', async='', defer='')

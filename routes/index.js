@@ -32,8 +32,8 @@ router.post('/', function (req, res, next) {
         return next(error);
       } else {
 				console.log('user created!');
-        req.session.userId = user._id;
-        return res.redirect('/profile');
+        req.session.userId = user.email;
+        return res.render('profile');
       }
     });
 
@@ -44,8 +44,8 @@ router.post('/', function (req, res, next) {
         err.status = 401;
         return next(err);
       } else {
-        req.session.userId = user._id;
-        return res.redirect('/profile');
+        req.session.userId = user.email;
+        return res.render('profile');
       }
     });
   } else {

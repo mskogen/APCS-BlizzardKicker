@@ -5,6 +5,8 @@ var mongoose = require('mongoose'); // needed here in addition to start.js
 var session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
+var React = require('react');
+var ReactDOM = require('react-dom');
 
 
 const app = express();
@@ -38,7 +40,7 @@ db.once('open', function () {
 
 //use sessions for tracking logins
 app.use(session ({
-  secret: 'work hard',
+  secret: 'hackathon',
   resave: true,
   saveUninitialized: false,
   store: new MongoStore({
