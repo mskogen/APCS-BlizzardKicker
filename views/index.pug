@@ -2,6 +2,10 @@ extends ../layouts/layout
 block append head
   link(href='/css/index.css', rel='stylesheet')
 block content
+  //highlight the current page
+  script.
+    document.getElementById('viewData').classList.add('active')
+
   .row.justify-content-center.h-75
     .col-md-auto.align-self-center.main-content
       .row.justify-content-center
@@ -11,11 +15,9 @@ block content
       .row.justify-content-center
         button.btn.btn-lg.btn-secondary(type="button" data-toggle="modal" data-target="#registerModal") Register 
         button.btn.btn-lg.btn-primary(type="button" data-toggle="modal" data-target="#loginModal") Login
-      //  .row.justify-content-center
-          button.btn.btn-lg.btn-secondary(type="button" data-toggle="modal" data-target="#registerModal") Login Here
 
-  //This is the login popup
-  #registerModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
+  //This is the registration popup
+  #registerModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='registrationModal', aria-hidden='true')
     .modal-dialog(role='document')
       .modal-content
         .modal-header
@@ -36,8 +38,8 @@ block content
           .modal-footer
             button.btn.btn-primary(type='submit') Register
             button.btn.btn-secondary(type="button" data-dismiss="modal") Close
-            
-  #loginModal.modal.fade(tabindex='-2', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
+  //login popup        
+  #loginModal.modal.fade(tabindex='-2', role='dialog', aria-labelledby='loginModal', aria-hidden='true')
     .modal-dialog(role='document')
       .modal-content
         .modal-header

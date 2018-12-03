@@ -11,13 +11,13 @@ a:hover {
 
 /* Custom default button */
 .btn-secondary,
-/*.btn-secondary:hover,*/
 .btn-secondary:focus {
   color: #333;
   text-shadow: none; /* Prevent inheritance from `body` */
   background-color: #fff;
   border: .05rem solid #fff;
 }
+
 
 .btn-secondary:hover{
   color: #333;
@@ -30,9 +30,7 @@ a:hover {
 .btn-primary,
 .btn-primary:hover,
 .btn-primary:focus {
-  /*color: #333;*/
   text-shadow: none; /* Prevent inheritance from `body` */
-  /*background-color: #fff;*/
   border: .05rem solid #0069D9;
 }
 
