@@ -1,98 +1,283 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Simple Map</title>
-    <meta name="viewport" content="width=device=width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <!--jQuery Library-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-    </script>
+<!-- Our Custom CSS -->
+<link rel="stylesheet" href="style2.css">
 
-    <!-- Latest compiled JavaScript for Bootstrap-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
-    </script>
+<!-- Scrollbar Custom CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+<!--Google Maps jQuery Library and meta tags-->
+<meta name="viewport" content="width=device=width, initial-scale=1.0">
+<meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+
+
+<!--script that is supposed to expand/collapse the sidebar-->
+<script>
+  $(document).ready(function () {
+
+    $("#sidebar").mCustomScrollbar({
+         theme: "minimal"
+    });
+
+    $('#sidebarCollapse').on('click', function () {
+        // open or close navbar
+        $('#sidebar').toggleClass('active');
+        // close dropdowns
+        $('.collapse.in').toggleClass('in');
+        // and also adjust aria-expanded attributes we use for the open/closed arrows
+        // in our CSS
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+
+});
+</script>
+
+
+<style>
 
 
 
-    <!--Any non-bootstrap CSS needs to go here. I suppose we should use this sparingly-->
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
+.wrapper {
+    display: flex;
+    width: 100%;
+}
 
-      #map {
-        height: 50%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-    <!--Bootstrap css-->
+label {
+  padding-top:5px;
+}
 
-  </head>
-  <body>
-    <div id="mainPage" class="container">
-      <div class="row">
-        <div id="algorithmFood" class="col-sm-3">
-          <!--This is a stand-in div to represent the sliders and dropdowns for shred-related
-          preferences-->
-          Fill out the form below and proceed
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #00ff00;
+    color: #000;
+    transition: all 0.3s;
+    padding:10px;
+}
 
+input, h6 {
+  padding-top:10px;
+}
+
+#centerPage {
+  margin-left:150px;
+}
+
+#introContent {
+  height:20%;
+}
+
+#mtnRecommendation {
+
+}
+
+displayRec {
+  display:none;
+}
+
+.displayRec img {
+  max-width:50%;
+  max-height:200px;
+}
+
+.displayRec #mtnName {
+  font-size:40px;
+}
+
+
+#map {
+  height:50%;
+  margin-right:10px;
+  width:100%;
+  display:overflow;
+}
+
+
+
+</style>
+
+
+
+
+
+
+</head>
+
+<body>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Customize Your Stoke</h3>
         </div>
 
-        <div id="showRecommendation" class="col-sm-9">
-          Welcome to BlizzardKicker!<br>
-          According to our calculations, you will receive maximum shred
-          potential at:<br>
-          <br>
-          <!--Gotta use bootstrap to break this up into rows and containers. This file
-          is effectively just a place to play around for now until that gets sorted-->
+        <ul class="list-unstyled components">
 
-          <span id="recommendation">
-            Looks like it's fucking October, kid. Go mountain biking or something
-            ya k00k
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-          </span>
-          <br>Scroll down to see a map of our recommended route!
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          Disclaimer: BlizzardKicker is not responsible for any broken bones, bloody noses,
-          or any other type of reduction in stoke that might result from our advice.
-          <br>
-          <br>
-          We will only take credit for days chock full o' gnar
+            <li class="active">
+              <div class="input-group">
+                <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pass Held</button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" id="ikonPass" href="#">Ikon Pass</a>
+                    <a class="dropdown-item" id="epicLocal" href="#">Epic Local Pass</a>
+                    <a class="dropdown-item" id="passThree" href="#">Superpass or whatever</a>
+                    <div role="separator" class="dropdown-divider"></div>
+                    <a class="dropdown-item" id="noPass" href="#">Not a Season Passholder</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <h6>Please rate the importance of each of these items on a scale of 1-10</h6>
+            <li>
+                <label for="trafficRange">Drive Time</label>
+                <br />
+                <input type="range" class="custom-range" id="trafficRange" min="1" max="10" step="0.5" >
+            </li>
+            <li>
+              <label for="snowConditionsRange">Snow Conditions</label>
+              <br />
+              <input type="range" class="custom-range" id="snowConditionsRange" min="1" max="10" step="0.5" >
+            </li>
+            <li>
+              <label for="weatherRange">Weather</label>
+              <br />
+              <input type="range" class="custom-range" id="weatherRange" min="1" max="10" step="0.5" >
+            </li>
 
-        </div>
-      </div>
+        </ul>
+
+    </nav>
+    <!-- Page Content -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
+            </div>
+        </nav>
     </div>
-    <div id="map"></div>
-    <script>
-      var map;
-      function initMap() {
-        // For now, this is the location of Copper mountain
-        //We will need to figure out how to pull the recommended lat/long from Mongo
-        //and put it in here. PS slash comments are sick, shut up
-        var mtRecommend = {lat: 39.502, lng: -106.151};
-        // The map, centered at our recommendation (CURRENTLY JUST COPPER, #IKONFTW)
-        var map = new google.maps.Map(
-          document.getElementById('map'), {zoom: 8, center: mtRecommend});
-          // The marker, positioned at Uluru
-          var marker = new google.maps.Marker({position: mtRecommend, map: map});
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<INSERT_GMAPS_KEY>&callback=initMap"
-    async defer></script>
-  </body>
+    <!--end sidebar-->
+
+
+    <!--actual main page-->
+    <div id="centerPage" class="">
+      <div id="introContent">
+      Welcome to BlizzardKicker!<br>
+      According to our calculations, you will receive maximum shred
+      potential at:<br>
+      <br>
+      </div>
+      <div id="mtnRecommendation">
+        <div class="displayRec" id="copperMountain">
+          <img src="https://media.glassdoor.com/sqll/345206/copper-mountain-squarelogo-1481645745154.png"
+          alt="Copper Mountain">
+          <span id="mtnName">Copper Mountain</span>
+          <span id="mtnLocation">Frisco, CO</span>
+          <span id="mtnTemperature"></span>
+          <span id="mtnSkyStatus"></span>
+          <span id="mtnJourneyTime"></span>
+          <span id="mtnCoordinates" style="display: none;">39.503467, -106.142187</span>
+        </div>
+        <div class="displayRec" id="winterPark">
+          <img src="https://www.skyhinews.com/wp-content/uploads/2018/09/winter-park-resort-rentals-260-738.jpg"
+          alt="Winter Park">
+          <span id="mtnName">Winter Park</span>
+          <span id="mtnLocation">Winter Park, CO</span>
+          <span id="mtnTemperature"></span>
+          <span id="mtnSkyStatus"></span>
+          <span id="mtnJourneyTime"></span>
+          <span id="mtnCoordinates" style="display: none;">39.888026, -105.762063</span>
+        </div>
+        <div class="displayRec" id="eldoraMountain">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrqO-pzZ3Sy2cpR9IURDz_ZvP5bYCzPZi2fN5KE4tu9HqRNZeq"
+          alt="Eldora Mountain">
+          <span id="mtnName">Eldora Mountain Resort</span>
+          <span id="mtnLocation">Nederland, CO</span>
+          <span id="mtnTemperature"></span>
+          <span id="mtnSkyStatus"></span>
+          <span id="mtnJourneyTime"></span>
+          <span id="mtnCoordinates" style="display: none;">39.937904, -105.583854</span>
+        </div>
+        <div class="displayRec" id="keystoneResort">
+          <img src="https://slopeskishop.com/wp-content/uploads/2018/10/keystone-logo.png"
+          alt="Keystone Resort">
+          <span id="mtnName">Keystone Resort</span>
+          <span id="mtnLocation">Keystone, CO</span>
+          <span id="mtnTemperature"></span>
+          <span id="mtnSkyStatus"></span>
+          <span id="mtnJourneyTime"></span>
+          <span id="mtnCoordinates" style="display: none;">39.605381, -105.954722</span>
+        </div>
+        <div class="displayRec" id="arapahoeBasin">
+          <img src="https://artbymike.files.wordpress.com/2010/09/abasin-logo-under-construction.jpg"
+          alt="Keystone Resort">
+          <span id="mtnName">Arapahoe Basin</span>
+          <span id="mtnLocation">Keystone, CO</span>
+          <span id="mtnTemperature"></span>
+          <span id="mtnSkyStatus"></span>
+          <span id="mtnJourneyTime"></span>
+          <span id="mtnCoordinates" style="display: none;">39.642733, -105.872157</span>
+        </div>
+        <div class="displayRec" id="breckenridgeResort">
+          <img src="https://artbymike.files.wordpress.com/2010/09/abasin-logo-under-construction.jpg"
+          alt="Keystone Resort">
+          <span id="mtnName">Breckenridge Resort</span>
+          <span id="mtnLocation">Breckenridge, CO</span>
+          <span id="mtnTemperature"></span>
+          <span id="mtnSkyStatus"></span>
+          <span id="mtnJourneyTime"></span>
+          <span id="mtnCoordinates" style="display: none;">39.482793, -106.065168</span>
+        </div>
+
+      </div>
+      <div id="map"></div>
+      <!--Google Maps API scripts-->
+      <script>
+        var map;
+        function initMap() {
+          // For now, this is the location of Copper mountain
+          //We will need to figure out how to pull the recommended lat/long from Mongo
+          //and put it in here. PS slash comments are sick, shut up
+          var mtRecommend = {lat: 39.502, lng: -106.151};
+          // The map, centered at our recommendation (CURRENTLY JUST COPPER, #IKONFTW)
+          var map = new google.maps.Map(
+            document.getElementById('map'), {zoom: 8, center: mtRecommend});
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker({position: mtRecommend, map: map});
+        }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-QwVCYVzGxcwYP1MFAIBEG5Jav0hDNa8&callback=initMap"
+      async defer></script>
+    </div>
+
+</div>
+
+
+
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+</body>
 </html>
