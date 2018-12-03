@@ -1,46 +1,196 @@
+doctype html
 html
   head
-    style.
-      table {
-      align-text: center;
-      border: 1px solid black;
-      border-collapse: collapse;
-      margin: 0px;
-      padding: 0px;
-      }
-      td, th {
-      white-space: nowrap;
-      border: 1px solid black;
-      }
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
+    // Our Custom CSS
+    link(rel='stylesheet', href='style2.css')
+    // Scrollbar Custom CSS
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css')
+    // Google Maps jQuery Library and meta tags
+    meta(name='viewport', content='width=device=width, initial-scale=1.0')
+    meta(charset='utf-8')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
-    title User Cave
+    // script that is supposed to expand/collapse the sidebar
     script.
-      $(document).ready(function() {
-      $('#currentEmail').text(req.session.userID)
-      })
-      })
+      $(document).ready(function () {
+      $("#sidebar").mCustomScrollbar({
+      theme: "minimal"
+      });
+      $('#sidebarCollapse').on('click', function () {
+      // open or close navbar
+      $('#sidebar').toggleClass('active');
+      // close dropdowns
+      $('.collapse.in').toggleClass('in');
+      // and also adjust aria-expanded attributes we use for the open/closed arrows
+      // in our CSS
+      $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+      });
+      });
+    style.
+      .wrapper {
+      display: flex;
+      width: 100%;
+      }
+      label {
+      padding-top:5px;
+      }
+      #sidebar {
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      z-index: 999;
+      background: #00ff00;
+      color: #000;
+      transition: all 0.3s;
+      padding:10px;
+      }
+      input, h6 {
+      padding-top:10px;
+      }
+      #centerPage {
+      margin-left:150px;
+      }
+      #introContent {
+      height:20%;
+      }
+      #mtnRecommendation {
+      }
+      displayRec {
+      display:none;
+      }
+      .displayRec img {
+      max-width:50%;
+      max-height:200px;
+      }
+      .displayRec #mtnName {
+      font-size:40px;
+      }
+      #map {
+      height:50%;
+      margin-right:10px;
+      width:100%;
+      display:overflow;
+      }
   body
-    div
-      table(style='width:30%')
-        tbody
-          tr
-            td current user
-            td
-              p#currentEmail Undefined
-
-
-
-<!-- curl 'https://api.forecast.io/forecast/27dde63e41f8b402f995c7bbb7367493/40.014984,-105.270546'>results.json -->
-
-
-
-    <!-- We will put our React component inside this div. -->
-    <!-- <div id="like_button_container"></div> -->
-
-    <!-- Load React. -->
-    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-    <!-- <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script> -->
-
-    <!-- Load our React component. -->
-    <!-- <script src="routes/cave.js"></script> -->
+    .wrapper
+      // Sidebar
+      nav#sidebar
+        .sidebar-header
+          h3 Customize Your Stoke
+        ul.list-unstyled.components
+          li.active
+            .input-group
+              input.form-control(type='text', aria-label='Text input with dropdown button')
+              .input-group-append
+                button.btn.btn-outline-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Pass Held
+                .dropdown-menu
+                  a#ikonPass.dropdown-item(href='#') Ikon Pass
+                  a#epicLocal.dropdown-item(href='#') Epic Local Pass
+                  a#passThree.dropdown-item(href='#') Superpass or whatever
+                  .dropdown-divider(role='separator')
+                  a#noPass.dropdown-item(href='#') Not a Season Passholder
+          h6 Please rate the importance of each of these items on a scale of 1-10
+          li
+            label(for='trafficRange') Drive Time
+            br
+            input#trafficRange.custom-range(type='range', min='1', max='10', step='0.5')
+          li
+            label(for='snowConditionsRange') Snow Conditions
+            br
+            input#snowConditionsRange.custom-range(type='range', min='1', max='10', step='0.5')
+          li
+            label(for='weatherRange') Weather
+            br
+            input#weatherRange.custom-range(type='range', min='1', max='10', step='0.5')
+      // Page Content
+      #content
+        nav.navbar.navbar-expand-lg.navbar-light.bg-light
+          .container-fluid
+            button#sidebarCollapse.btn.btn-info(type='button')
+              i.fas.fa-align-left
+              span Toggle Sidebar
+      // end sidebar
+      // actual main page
+      #centerPage
+        #introContent
+          | Welcome to BlizzardKicker!
+          br
+          |       According to our calculations, you will receive maximum shred
+          |       potential at:
+          br
+          br
+        #mtnRecommendation
+          #copperMountain.displayRec
+            img(src='https://media.glassdoor.com/sqll/345206/copper-mountain-squarelogo-1481645745154.png', alt='Copper Mountain')
+            span#mtnName Copper Mountain
+            span#mtnLocation Frisco, CO
+            span#mtnTemperature
+            span#mtnSkyStatus
+            span#mtnJourneyTime
+            span#mtnCoordinates(style='display: none;') 39.503467, -106.142187
+          #winterPark.displayRec
+            img(src='https://www.skyhinews.com/wp-content/uploads/2018/09/winter-park-resort-rentals-260-738.jpg', alt='Winter Park')
+            span#mtnName Winter Park
+            span#mtnLocation Winter Park, CO
+            span#mtnTemperature
+            span#mtnSkyStatus
+            span#mtnJourneyTime
+            span#mtnCoordinates(style='display: none;') 39.888026, -105.762063
+          #eldoraMountain.displayRec
+            img(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrqO-pzZ3Sy2cpR9IURDz_ZvP5bYCzPZi2fN5KE4tu9HqRNZeq', alt='Eldora Mountain')
+            span#mtnName Eldora Mountain Resort
+            span#mtnLocation Nederland, CO
+            span#mtnTemperature
+            span#mtnSkyStatus
+            span#mtnJourneyTime
+            span#mtnCoordinates(style='display: none;') 39.937904, -105.583854
+          #keystoneResort.displayRec
+            img(src='https://slopeskishop.com/wp-content/uploads/2018/10/keystone-logo.png', alt='Keystone Resort')
+            span#mtnName Keystone Resort
+            span#mtnLocation Keystone, CO
+            span#mtnTemperature
+            span#mtnSkyStatus
+            span#mtnJourneyTime
+            span#mtnCoordinates(style='display: none;') 39.605381, -105.954722
+          #arapahoeBasin.displayRec
+            img(src='https://artbymike.files.wordpress.com/2010/09/abasin-logo-under-construction.jpg', alt='Keystone Resort')
+            span#mtnName Arapahoe Basin
+            span#mtnLocation Keystone, CO
+            span#mtnTemperature
+            span#mtnSkyStatus
+            span#mtnJourneyTime
+            span#mtnCoordinates(style='display: none;') 39.642733, -105.872157
+          #breckenridgeResort.displayRec
+            img(src='https://artbymike.files.wordpress.com/2010/09/abasin-logo-under-construction.jpg', alt='Keystone Resort')
+            span#mtnName Breckenridge Resort
+            span#mtnLocation Breckenridge, CO
+            span#mtnTemperature
+            span#mtnSkyStatus
+            span#mtnJourneyTime
+            span#mtnCoordinates(style='display: none;') 39.482793, -106.065168
+        #map
+        // Google Maps API scripts
+        script.
+          var map;
+          function initMap() {
+          // For now, this is the location of Copper mountain
+          //We will need to figure out how to pull the recommended lat/long from Mongo
+          //and put it in here. PS slash comments are sick, shut up
+          var mtRecommend = {lat: 39.502, lng: -106.151};
+          // The map, centered at our recommendation (CURRENTLY JUST COPPER, #IKONFTW)
+          var map = new google.maps.Map(
+          document.getElementById('map'), {zoom: 8, center: mtRecommend});
+          // The marker, positioned at Uluru
+          var marker = new google.maps.Marker({position: mtRecommend, map: map});
+          }
+        script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC-QwVCYVzGxcwYP1MFAIBEG5Jav0hDNa8&callback=initMap', async='', defer='')
+    // jQuery CDN - Slim version (=without AJAX)
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+    // Popper.JS
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', integrity='sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ', crossorigin='anonymous')
+    // Bootstrap JS
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', integrity='sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm', crossorigin='anonymous')
+    // jQuery Custom Scroller CDN
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js')

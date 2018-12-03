@@ -34,7 +34,7 @@ router.post('/', function (req, res, next) {
       } else {
 				console.log('user created!');
         req.session.userId = user.email;
-        return res.render('profile');
+        res.redirect('/cave');
       }
     });
 
@@ -46,7 +46,7 @@ router.post('/', function (req, res, next) {
         return next(err);
       } else {
         req.session.userId = user.email;
-        return res.render('profile');
+        res.redirect('/cave');
       }
     });
   } else {
