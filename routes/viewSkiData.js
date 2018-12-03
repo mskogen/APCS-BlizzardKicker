@@ -8,6 +8,7 @@ const User = require('../models/Registration');
 const router = express.Router();
 
 router.get('/', (req, res) => {
+	//calling the skiData Api
 	skiData("https://www.onthesnow.com/colorado/loveland/skireport.html").then((cond) => {
 		res.render('viewSkiData', {cond});
 	}).catch(() => {res.send('Sorry! Something went wrong.');})

@@ -2,6 +2,10 @@ extends ../layouts/layout
 block append head
   link(href='/css/index.css', rel='stylesheet')
 block content
+  //highlight the current page
+  script.
+    document.getElementById('viewData').classList.add('active')
+
   .row.justify-content-center.h-75
     .col-md-auto.align-self-center.main-content
       .row.justify-content-center
@@ -9,16 +13,15 @@ block content
       .row.justify-content-center
         p Welcome to Blizzard Kicker
       .row.justify-content-center
-        button.btn.btn-lg.btn-secondary(type="button" data-toggle="modal" data-target="#loginModal") Register Here
-      .row.justify-content-center
-        button.btn.btn-lg.btn-secondary(type="button" data-toggle="modal" data-target="#registerModal") Login Here
+        button.btn.btn-lg.btn-secondary(type="button" data-toggle="modal" data-target="#registerModal") Register 
+        button.btn.btn-lg.btn-primary(type="button" data-toggle="modal" data-target="#loginModal") Login
 
-  //This is the login popup
-  #loginModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
+  //This is the registration popup
+  #registerModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='registrationModal', aria-hidden='true')
     .modal-dialog(role='document')
       .modal-content
         .modal-header
-          h5.modal-title#LoginTitle Regisration
+          h5.modal-title#RegisterTitle Registration
           button.close(type="button" data-dismiss="modal" aria-label="Close")
             span(aria-hidden="true") &times;
         form.form-container.form-signin(method='POST')
@@ -35,12 +38,12 @@ block content
           .modal-footer
             button.btn.btn-primary(type='submit') Register
             button.btn.btn-secondary(type="button" data-dismiss="modal") Close
-            
-  #registerModal.modal.fade(tabindex='-2', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
+  //login popup        
+  #loginModal.modal.fade(tabindex='-2', role='dialog', aria-labelledby='loginModal', aria-hidden='true')
     .modal-dialog(role='document')
       .modal-content
         .modal-header
-          h5.modal-title#RegisterTitle Login
+          h5.modal-title#LoginTitle Login
           button.close(type="button" data-dismiss="modal" aria-label="Close")
             span(aria-hidden="true") &times;
         form.form-container.form-signin(method='POST')
