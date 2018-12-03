@@ -31,6 +31,12 @@ html
     script.
       $(&apos;#currentUser&apos;).text(req.session.userId)
 
+    script.
+      function logOut() {
+      req.session.destroy();
+      return res.redirect('/');
+      }
+
     style.
       .wrapper {
       display: flex;
@@ -122,6 +128,7 @@ html
         #introContent
           | Welcome to BlizzardKicker! 
           p#currentUser User
+          button(onclick='logOut()') Log Out
           br
           |       According to our calculations, you will receive maximum shred
           |       potential at:
