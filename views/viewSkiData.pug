@@ -3,6 +3,8 @@ block append head
   link(href='/css/skiViewer.css', rel='stylesheet')
 
 block content
+  script.
+    document.getElementById('viewSkiData').classList.add('active')
   h1=cond.resort
   table
     tr

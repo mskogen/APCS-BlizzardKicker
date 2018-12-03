@@ -1,89 +1,40 @@
-doctype html
-html
-  head
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
-    // Our Custom CSS
-    link(rel='stylesheet', href='style2.css')
-    // Scrollbar Custom CSS
-    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css')
-    // Google Maps jQuery Library and meta tags
-    meta(name='viewport', content='width=device=width, initial-scale=1.0')
-    meta(charset='utf-8')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
-    // script that is supposed to expand/collapse the sidebar
-    script.
-      $(document).ready(function () {
-      $("#sidebar").mCustomScrollbar({
-      theme: "minimal"
-      });
-      $('#sidebarCollapse').on('click', function () {
-      // open or close navbar
-      $('#sidebar').toggleClass('active');
-      // close dropdowns
-      $('.collapse.in').toggleClass('in');
-      // and also adjust aria-expanded attributes we use for the open/closed arrows
-      // in our CSS
-      $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-      });
-      });
-      
-      
-    script.
-      $(&apos;#currentUser&apos;).text(req.session.userId)
+extends ../layouts/layout
+block append head
+  // Our Custom CSS
+  link(rel='stylesheet', href='css/cave.css')
+  // Scrollbar Custom CSS
+  //- link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css')
+  // Google Maps jQuery Library and meta tags
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+  // script that is supposed to expand/collapse the sidebar
+  script.
+    $(document).ready(function () {
+    $("#sidebar").mCustomScrollbar({
+    theme: "minimal"
+    });
+    $('#sidebarCollapse').on('click', function () {
+    // open or close navbar
+    $('#sidebar').toggleClass('active');
+    // close dropdowns
+    $('.collapse.in').toggleClass('in');
+    // and also adjust aria-expanded attributes we use for the open/closed arrows
+    // in our CSS
+    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+    });
+    
+    
+  script.
+    $(&apos;#currentUser&apos;).text(req.session.userId)
 
-    script.
-      function logOut() {
-      req.session.destroy();
-      return res.redirect('/');
-      }
-
-    style.
-      .wrapper {
-      display: flex;
-      width: 100%;
-      }
-      label {
-      padding-top:5px;
-      }
-      #sidebar {
-      width: 250px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      z-index: 999;
-      background: #00ff00;
-      color: #000;
-      transition: all 0.3s;
-      padding:10px;
-      }
-      input, h6 {
-      padding-top:10px;
-      }
-      #centerPage {
-      margin-left:150px;
-      }
-      #introContent {
-      height:20%;
-      }
-      #mtnRecommendation {
-      }
-      displayRec {
-      display:none;
-      }
-      .displayRec img {
-      max-width:50%;
-      max-height:200px;
-      }
-      .displayRec #mtnName {
-      font-size:40px;
-      }
-      #map {
-      height:50%;
-      margin-right:10px;
-      width:100%;
-      display:overflow;
-      }
+  script.
+    function logOut() {
+    req.session.destroy();
+    return res.redirect('/');
+    }
+block content
+  script.
+    document.getElementById('cave').classList.add('active')
   body
     .wrapper
       // Sidebar

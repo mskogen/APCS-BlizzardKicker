@@ -1,11 +1,17 @@
-if registrations.length
-	table
-		tr
-		th Email
-		th Password
-		each registration in registrations
+extends ../layouts/layout
+block append head
+	link(href='/css/skiViewer.css', rel='stylesheet')
+block content
+	script.
+		document.getElementById('viewData').classList.add('active')
+	if registrations.length
+		table
 			tr
-				td= registration.email
-				td= registration.pass
-else
-	p No registrations yet :(
+			th Email
+			th Password
+			each registration in registrations
+				tr
+					td= registration.email
+					td= registration.password
+	else
+		p No registrations yet :(

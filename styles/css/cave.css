@@ -1,0 +1,57 @@
+
+.wrapper {
+display: flex;
+width: 100%;
+}
+
+label {
+padding-top:5px;
+}
+
+#sidebar {
+width: 250px;
+position: fixed;
+top: 0;
+left: 0;
+height: 100vh;
+z-index: 999;
+background: #00ff00;
+color: #000;
+transition: all 0.3s;
+padding:10px;
+}
+
+input, h6 {
+padding-top:10px;
+}
+
+#centerPage {
+margin-left:150px;
+}
+
+#introContent {
+height:20%;
+}
+
+#mtnRecommendation {
+}
+
+displayRec {
+display:none;
+}
+
+.displayRec img {
+max-width:50%;
+max-height:200px;
+}
+
+.displayRec #mtnName {
+font-size:40px;
+}
+
+#map {
+height:50%;
+margin-right:10px;
+width:100%;
+display:overflow;
+}
