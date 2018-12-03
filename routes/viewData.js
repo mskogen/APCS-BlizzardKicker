@@ -12,5 +12,6 @@ router.get('/', (req, res) => {
 			res.render('viewData', {registrations})
 		})
 		.catch(() => {res.send('Sorry! Something went wrong.');})
+
 });
 module.exports = router;
