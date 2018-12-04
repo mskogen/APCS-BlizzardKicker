@@ -32,9 +32,11 @@ block append head
     req.session.destroy();
     return res.redirect('/');
     }
+
+block vars
+  - var currentPage = "cave"
+
 block content
-  script.
-    document.getElementById('cave').classList.add('active')
   body
     .wrapper
       // Sidebar

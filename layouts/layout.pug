@@ -12,6 +12,8 @@ block head
     // Custom styles for this template
     link(href='/css/default.css', rel='stylesheet')
 
+block vars
+
 .container-fluid
   header
     .row.justify-content-center
@@ -34,6 +36,8 @@ block head
               a.nav-link(href="/viewData") View Data
             li.nav-item#viewSkiData
               a.nav-link(href="/viewSkiData") View Ski Data
+            script.
+              document.getElementById('#{currentPage}').classList.add('active')
             
 
 

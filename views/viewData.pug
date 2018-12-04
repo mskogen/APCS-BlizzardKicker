@@ -1,19 +1,21 @@
 extends ../layouts/layout
 block append head
-	link(href='/css/skiViewer.css', rel='stylesheet')
-block content
-	script.
-		document.getElementById('viewData').classList.add('active')
-	if registrations.length
-		table
-			tr
-			th Email
-			th Password
-			each registration in registrations
-				tr
-					td= registration.email
-					td= registration.password
-	else
-		p No registrations yet :(
+  link(href='/css/skiViewer.css', rel='stylesheet')
 
-	
+block vars
+  - var currentPage = "viewData"
+
+block content
+  if registrations.length
+    table
+      tr
+      th Email
+      th Password
+      each registration in registrations
+        tr
+          td= registration.email
+          td= registration.password
+  else
+    p No registrations yet :(
+
+  

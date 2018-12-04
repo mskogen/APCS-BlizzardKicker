@@ -1,22 +1,33 @@
 extends ../layouts/layout
 block append head
   link(href='/css/register.css', rel='stylesheet')
+block vars
+  - var currentPage = "register"
 block content
   //highlight current
-  script.
-    document.getElementById('register').classList.add('active')
   .row.justify-content-center.loginRow
     .col-md-5.align-self-center
       form.form-container.form-signin(action='userLogin' method='POST')
         .form-body
           h1.mb-3.font-weight-normal Register
-          label.sr-only(for='inputEmail') Email address
-          input#inputEmail.form-control.mb-3(name='email', type='email', placeholder='Email address', required='', autofocus='')
-          label.sr-only(for='inputPassword') Password
-          input#inputPassword.form-control.mb-3(name='password', type='password', placeholder='Password', required='')
-          .checkbox
-            label
-              input(type='checkbox', value='remember-me')
-              |  Remember me
+          label(for='inputEmail') Email address
+          input#inputEmail.form-control.mb-3(name='email'
+            type='email'
+            placeholder='Email address'
+            required
+            autofocus='')
+
+          label(for='inputUser') Username
+          input#inputUser.form-control.mb-3(name='username'
+            type='text'
+            placeholder='Username'
+            required
+            autofocus='')
+
+          label(for='inputPassword') Password
+          input#inputPassword.form-control.mb-3(name='password'
+            type='password'
+            placeholder='Password'
+            required)
           p#errorMessage= error
           button.btn.btn-primary(type='submit') Register

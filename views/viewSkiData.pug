@@ -2,9 +2,10 @@ extends ../layouts/layout.pug
 block append head
   link(href='/css/skiViewer.css', rel='stylesheet')
 
+block vars
+  - var currentPage = "viewSkiData"
+
 block content
-  script.
-    document.getElementById('viewSkiData').classList.add('active')
   h1=cond.resort
   table
     tr

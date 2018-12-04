@@ -1,9 +1,9 @@
 extends ../layouts/layout
 block append head
   link(href='/css/login.css', rel='stylesheet')
+block vars
+  - var currentPage = "login"
 block content
-  script.
-    document.getElementById('login').classList.add('active')
   .row.justify-content-center.loginRow
     .col-md-5.align-self-center
       form.form-container.form-signin(action='login' method='POST')
