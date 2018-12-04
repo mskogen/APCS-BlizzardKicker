@@ -17,51 +17,9 @@ router.get('/', function (req, res, next) {
 	res.render('index');
 });
 
+//javascript for register posting to /register page
 
-
-//POST route for registration
-router.post('/register', function (req, res, next) {
-  if (req.body.email && req.body.password) { // both filled, create new user
-    var userData = {
-      email: req.body.email,
-      password: req.body.password,
-    }
-		console.log('user data constructed!');
-
-
-    User.create(userData, function (error, user) {
-      if (error) {
-        return next(error);
-      } else {
-				console.log('user created!');
-        req.session.userId = user.email;
-        res.redirect('/cave');
-      }
-    });
-  }
-});
-//POST for logining in
-router.post('/userLogin', function (req, res, next){
-	if (req.body.email && req.body.password) {
-    User.auth(req.body.email, req.body.password, function (error, user) {
-      if (error) {
-        res.redirect(url.format({
-          pathname: '/login',
-          query:{
-            "err":error.message
-          }
-        }));
-      } else {
-        req.session.userId = user.email;
-        res.redirect('/cave');
-      }
-    });
-  } else {
-    var err = new Error('You must either login or register');
-    err.status = 400;
-    return next(err);
-  }
-});
+//javascript for login posting to /login page
 
 // GET route after registering
 router.get('/profile', function (req, res, next) {
