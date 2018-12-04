@@ -18,8 +18,8 @@ router.get('/', function (req, res, next) {
 
 
 
-//POST route for updating data
-router.post('/', function (req, res, next) {
+//POST route for registration
+router.post('/register', function (req, res, next) {
   if (req.body.email && req.body.password) { // both filled, create new user
     var userData = {
       email: req.body.email,
@@ -37,13 +37,16 @@ router.post('/', function (req, res, next) {
         res.redirect('/cave');
       }
     });
-
-	} else if (req.body.existingEmail && req.body.existingPassword) {
-    User.authenticate(req.body.existingEmail, req.body.existingPassword, function (error, user) {
-      if (error || !user) {
-        var err = new Error('Account not found.');
-        err.status = 401;
-        return next(err);
+  }
+});
+//POST for logining in
+router.post('/userLogin', function (req, res, next){
+	if (req.body.email && req.body.password) {
+    User.auth(req.body.email, req.body.password, function (error, user) {
+      if (error) {
+        //var err = new Error('Account not found.');
+        //err.status = 401;
+        return next(error);
       } else {
         req.session.userId = user.email;
         res.redirect('/cave');
@@ -54,7 +57,7 @@ router.post('/', function (req, res, next) {
     err.status = 400;
     return next(err);
   }
-})
+});
 
 // GET route after registering
 router.get('/profile', function (req, res, next) {

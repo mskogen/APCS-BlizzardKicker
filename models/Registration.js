@@ -53,77 +53,45 @@ bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
 
 });
 
+//compare password entered to hashed password
 UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);
     });
 };
-/*
-//authenticate input against database
-UserSchema.statics.authenticate = function (email, password, callback) {
-  User.findOne({ email: email })
-    .exec(function (err, user) {
-      if (err) {
-        return callback(err)
-      } else if (!user) {
-        var err = new Error('User not found.');
-        err.status = 401;
-        return callback(err);
-      }
-      bcrypt.compare(password, user.password, function (err, result) {
-        if (result === true) {
-          return callback(null, user);
-        } else {
-          return callback();
-        }
-      })
-    });
-}
-*/
-//authenticate input against database
-UserSchema.statics.authenticate = function (email, password, callback) {
-  User.findOne({ email: email, password:password })
-    .exec(function (err, user) {
-      if (err) {
-        return callback(err)
-      } else if (!user) {
-        var err = new Error('User not found.');
-        err.status = 401;
-        return callback(err);
-      }
-      return callback(null, user);
-    });
-}
 
-// authenticate input against database
-// UserSchema.statics.authenticate = function (email, password, callback) {
-//   console.log(email, password);
-//   User.findOne({ email: email, password: password})
-//     .exec(function (err, user) {
-//       if (user) {
-//         return callback(null, user);
-//       } else {
-//         var err = new Error('User not found.');
-//         err.status = 401;
-//         return callback(err, null);
-//       }
-//     });
-// }
-
-/*
-// hashing a password before saving it to the database
-UserSchema.pre('save', function (next) {
-  var user = this;
-  bcrypt.hash(user.password, 10, function (err, hash) {
-    if (err) {
-      return next(err);
+//Authenticate valid login
+UserSchema.statics.auth = function(email, password, cb){
+  //find user entered
+  User.findOne({email: email}, function(err, user){
+    //send any errors
+    if (err) return cb(err);
+    //if there's no user tell em
+    else if (!user){
+      var err = new Error('User not found.');
+      err.status = 401;
+      return cb(err);
     }
-    user.password = hash;
-    next();
-  })
-});
-*/
+
+    //Authenticate password if the user exits
+    user.comparePassword(password, function(err, isMatch){
+      //toss an error
+      if (err) throw err;
+      //if there's no match they entered the wrong password
+      else if(!isMatch){
+        var err = new Error('Invalid Password');
+        err.status = 401;
+        return cb(err);
+      }
+      //Username and password are valid
+      else{
+        return cb(null, user);
+      }
+    });
+  });
+}
+
 
 var User = mongoose.model('User', UserSchema);
 module.exports = User;
