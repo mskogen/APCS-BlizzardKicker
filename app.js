@@ -14,7 +14,7 @@ const datapull = require('./routes/datapull');
 const viewData = require('./routes/viewData');
 const viewSkiData = require('./routes/viewSkiData');
 const learn_more = require('./routes/learn_more');
-//const login = require('./routes/login');
+const login = require('./routes/login');
 
 
 
@@ -44,8 +44,7 @@ app.use(session ({
   })
 }));
 
-//app.use('/login', login);
-
+app.use('/login', login);
 app.use('/cave', cave);
 app.use('/register', reg);
 app.use('/userPrefs', prefs);

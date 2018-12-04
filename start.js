@@ -18,7 +18,7 @@ app.use(function (err, req, res, next) {
 });
 
 
-mongoose.connect(process.env.DATABASE, { useMongoClient: true });
+mongoose.connect(process.env.DATABASE);
 mongoose.Promise = global.Promise;
 mongoose.connection
   .on('connected', () => {

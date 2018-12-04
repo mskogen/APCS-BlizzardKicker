@@ -69,7 +69,7 @@ UserSchema.statics.auth = function(email, password, cb){
     if (err) return cb(err);
     //if there's no user tell em
     else if (!user){
-      var err = new Error('User not found.');
+      var err = new Error('User not found');
       err.status = 401;
       return cb(err);
     }
@@ -80,7 +80,7 @@ UserSchema.statics.auth = function(email, password, cb){
       if (err) throw err;
       //if there's no match they entered the wrong password
       else if(!isMatch){
-        var err = new Error('Invalid Password');
+        var err = new Error('Incorrect Password');
         err.status = 401;
         return cb(err);
       }

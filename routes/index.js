@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose'); //mongodb databases
 const router = express.Router();
+const url = require('url');
 const User = require('../models/Registration');
 // const Registration = mongoose.model('Registration'); //uses registration database
 
@@ -44,9 +45,12 @@ router.post('/userLogin', function (req, res, next){
 	if (req.body.email && req.body.password) {
     User.auth(req.body.email, req.body.password, function (error, user) {
       if (error) {
-        //var err = new Error('Account not found.');
-        //err.status = 401;
-        return next(error);
+        res.redirect(url.format({
+          pathname: '/login',
+          query:{
+            "err":error.message
+          }
+        }));
       } else {
         req.session.userId = user.email;
         res.redirect('/cave');

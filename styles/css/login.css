@@ -1,0 +1,28 @@
+.main-content{
+  font-size: 200%;
+}
+
+.main-content .btn{
+  margin:10px;
+  margin-top: 0px;
+}
+
+
+#loginModal,#registerModal{
+  color:black;
+}
+
+.form-body{
+	padding: 1rem;
+}
+
+.form-body input{
+
+}
+.loginRow{
+	margin-top: 2rem;
+}
+
+#errorMessage{
+	color:red;
+}
