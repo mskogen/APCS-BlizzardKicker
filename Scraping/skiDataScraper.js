@@ -1,6 +1,8 @@
 //Data Scraper to take info from onthesnow
 const rp = require('request-promise');
 const $ = require('cheerio');
+const mongoose = require('mongoose'); // use mongo database
+var Resort = require('../models/Resorts.js') // route to mongoDB schema
 
 const skiData = function(url) {
 	return rp(url)
@@ -37,7 +39,7 @@ const skiData = function(url) {
 			//historical and predicted are added using dateList
 			snowfall: {
 				today: $('._report_content .today .bluePill', html).text(),
-				
+
 				historical: {
 				},
 				predicted: {
@@ -47,6 +49,17 @@ const skiData = function(url) {
 	  	//seperates the last 3 from the group because they're historical
 		skiInfo.snowfall.historical=dateList.slice(0,dateList.length-3);
 		skiInfo.snowfall.predicted=dateList.slice(-3);
+		var resort = new Resort (
+			{
+				_id: 1,
+				resort_name: skiInfo.resort,
+				time_stamp: new Date(),
+				// newsnow_in: skiInfo.snowfall.today.historical,
+				snow_conition: skiInfo.condition.upper.condition
+			}
+		);
+		resort.save()
+		console.log(resort);
 		return skiInfo;
 	})
 	.catch(function(err) {

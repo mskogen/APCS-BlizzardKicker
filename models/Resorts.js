@@ -10,9 +10,6 @@ const dataCacheSchema = new mongoose.Schema({
   time_stamp: {
     type: Date,
   },
-  resort_id: {
-    type: Number,
-  },
   resort_name: {
     type: String,
   },
@@ -51,4 +48,4 @@ const dataCacheSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('DataCacheAPI', dataCacheSchema);
+module.exports = mongoose.model('Resorts', dataCacheSchema);
