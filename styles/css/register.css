@@ -36,9 +36,18 @@
 .invalid{
 	color:red;
 }
+.invalid:before{
+	color:red;
+	content: "✖";
+}
 .valid{
 	color:green;
 }
+
+.valid:before{
+	content: "✔";
+}
+
 #passValid p{
 	margin: 1px;
 }
