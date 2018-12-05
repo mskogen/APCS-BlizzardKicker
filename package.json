@@ -32,6 +32,7 @@
     "http-auth": "^3.2.3",
     "jquery": "^3.3.1",
     "mongoose": "^5.3.14",
+    "mongoose-unique-validator": "^2.0.2",
     "popper.js": "^1.14.4",
     "pug": "^2.0.3",
     "react": "^16.6.3",
