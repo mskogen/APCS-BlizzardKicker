@@ -26,3 +26,19 @@
 #errorMessage{
 	color:red;
 }
+
+#passValid{
+	display: none;
+    background: #bfe1f9;
+    /* padding: 1px; */
+    border-radius: 6px;
+}
+.invalid{
+	color:red;
+}
+.valid{
+	color:green;
+}
+#passValid p{
+	margin: 1px;
+}

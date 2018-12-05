@@ -10,10 +10,12 @@ block content
     table
       tr
       th Email
+      th Username
       th Password
       each registration in registrations
         tr
           td= registration.email
+          td= registration.username
           td= registration.password
   else
     p No registrations yet :(
