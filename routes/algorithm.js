@@ -9,14 +9,16 @@ var currentUser = 'Not found';
 
 const router = express.Router();
 
-// function logOut() {
-// req.session.destroy();
-// return res.redirect('/');
-// }
-
 router.get('/', (req, res) => {
 	currentUser = req.session.userId;
 	console.log('from cave.js', currentUser);
-	res.render('cave', {currentUser});
+
+
+
+
+
+
+
+  res.render('cave', {reccomendation});
 });
 module.exports = router;
