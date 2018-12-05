@@ -1,4 +1,5 @@
 const express = require('express');
+var cookieParser = require('cookie-parser');
 const path = require('path');
 const bodyParser = require('body-parser');
 var mongoose = require('mongoose'); // needed here in addition to start.js
