@@ -69,9 +69,11 @@ block content
       // actual main page
       #centerPage
         #introContent
-          | Welcome to BlizzardKicker! 
+          |  
           block content
-            p currentUser
+              table
+                th Welcome to BlizzardKicker,
+                    td= currentUser
           button(onclick='logOut()') Log Out
           br
           |       According to our calculations, you will receive maximum shred
