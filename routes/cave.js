@@ -11,7 +11,16 @@ var currentUser = 'Not found';
 // global
 const router = express.Router();
 var userResorts = [];
-var data = {currentUser: 'currentUser', bestChoice:'Make sure you have saved some resorts to your profile!'};
+var matchedResorts = [];
+var data = {
+	currentUser: 'currentUser',
+	bestChoice:'Make sure you have saved some resorts to your profile!'};
+
+function matchedResort(name, condition, snowfall) {
+    this.name = name;
+    this.condition = condition;
+    this.snowfall = snowfall;
+	}
 
 router.get('/', (req, res) => {
 	Resort.updateResort("Loveland")
@@ -27,9 +36,51 @@ router.get('/', (req, res) => {
 	res.render('cave', {data});
 });
 
+/* fancy version that doesn't get past step 5
+router.post('/alg', (req, res) => {
+	console.log('step 1..!');
+	currentUser = req.session.userId;
+	return User.findOne({email: currentUser}).exec()
+	.then(function(user){
+		//is it real?
+		if(user){
+			console.log('step 2', user);
+			for (var i=0; i<user.resort_id_list.length; i++) {
+				var oneResortObj = new matchedResort(user.resort_id_list[i], 'none', 0);
+				console.log('step 3 inside the for loop', oneResortObj);
+				userResorts.push(oneResortObj);
+			}
+		} else {
+			return Promise.reject('user does not exist');
+		}
+	}).then(function(matchedResort, err){ //this is thening pullResortInfo()
+		for (var j=0; j<userResorts.length; j++) {
+			console.log('step 4', userResorts[j]);
+			return Resort.findOne({resort_name: userResorts[j].name}).exec()
+			.then(function(resort) {
+				if (resort) {
+					console.log(resort.snowfall.today);
+					userResorts[j].snowfall = resort.snowfall.today;
+					console.log('step 5', userResorts[j]);
+				} else {
+					return Promise.reject('resort does not exist');
+				}
+			})
+		}
+	})
+	.then(function(resort, err) {
+			if (resort) {
+				res.render('cave', {data});
+			}
+});
+*/
 
+
+
+/* Prints to console but not to pug! */
 router.post('/alg', (req, res) => {
 	currentUser = req.session.userId;
+	data.currentUser = currentUser
 	var userResorts = [];
 		User.findOne({email: currentUser}).exec(function (err, user) {
 		// console.log(user.resort_id_list.length);
@@ -53,9 +104,10 @@ router.post('/alg', (req, res) => {
 			var bestChoice = userResorts[0].name;
 			console.log('from algo', bestChoice);
 			data.bestChoice = bestChoice;
-			res.redirect('/cave', {data});
+			return res.render('/cave', {data});
 		},1000);
  });
+
 
 // GET for logout logout
 router.get('/cave/logout', function (req, res, next) {
