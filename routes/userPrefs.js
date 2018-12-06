@@ -38,7 +38,9 @@ router.post('/', function (req, res, next){
 		currentUser = req.session.userId;
 			User.replaceOne(
 				 { email: currentUser },
-				 { preferred_snowtype: snowConditionsRange }
+				 { preferred_snowType: snowConditionsRange }, //string
+				 { preferred_travelTime: trafficRange }, //boolean
+				 { preferred_temperature: weatherRange } //string
 			)
     };
 });

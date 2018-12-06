@@ -25,17 +25,20 @@ var UserSchema = new mongoose.Schema({
     required: true,
   },
   resort_id_list: { // keep as list for now - can always return string name
-    type: [Number],
+    type: [String],
   },
   skill_level: {
     type: Number, // scale 1-10?
   },
   preferred_temperature: {
-    type: Number, // also a number.. calc as num degrees off from ideal
+    type: String, // string (cold, hot, or n/a)
   },
-  preferred_snowtype: {
-    type: String, // string must be from a set only. Could turn string into list of ints?
-  }
+  preferred_snowType: {
+    type: String, // string (whatever options there are from the api)
+  },
+  preferred_travelTime: {
+    type: Boolean, // Boolean, is travel time an issue/desire?
+  },
 });
 
 UserSchema.plugin(uniqueValidator);
