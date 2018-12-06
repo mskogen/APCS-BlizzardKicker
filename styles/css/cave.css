@@ -47,6 +47,11 @@ max-height:200px;
 
 .displayRec #mtnName {
 font-size:40px;
+margin-left: 40px;
+}
+
+.displayRec #mtnLocation {
+margin-left: 40px;
 }
 
 #map {
