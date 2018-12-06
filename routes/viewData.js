@@ -2,7 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose'); //mongodb databases
 
-const User = require('../models/Registration');
+const User = require('../models/users');
 
 const router = express.Router();
 

@@ -3,8 +3,8 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 const mongoose = require('mongoose'); //mongodb databases
 const skiData= require('../Scraping/skiDataScraper.js')
-const User = require('../models/Registration');
-const Resort = require('../models/Resorts');
+const User = require('../models/users');
+const Resort = require('../models/resorts');
 var currentUser = 'Not found';
 // var Promise = require('rsvp').Promise;
 
@@ -47,7 +47,7 @@ router.get('/', (req, res) => {
 	// console.log('from cave.js', currentUser);
 	res.render('cave', {currentUser});
 });
-
+/*
 router.post('/alg', (req, res) => {
 	currentUser = req.session.userId;
 	var userResorts = [];
@@ -77,7 +77,7 @@ router.post('/alg', (req, res) => {
 
 
 });
-
+*/
 // GET for logout logout
 router.get('/cave/logout', function (req, res, next) {
   if (req.session) {

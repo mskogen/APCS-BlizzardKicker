@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose'); //mongodb databases
 const skiData= require('../Scraping/skiDataScraper.js')
 
-const User = require('../models/Registration');
+const User = require('../models/users');
 
 const router = express.Router();
 

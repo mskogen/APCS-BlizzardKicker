@@ -23,7 +23,7 @@ const mongoose = require('mongoose'); // use mongo database
 const router = express.Router();
 
 router.get('/', function (req, res) { // upp data upon get request
-    var use = require('../models/Resorts.js') // route to mongoDB schema
+    var use = require('../models/resorts.js') // route to mongoDB schema
     const DataCacheAPI = mongoose.model('Resorts'); // use DataCacheAPI schema
     var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest; // include API request pulls
 

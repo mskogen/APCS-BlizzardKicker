@@ -3,8 +3,8 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 const mongoose = require('mongoose'); //mongodb databases
 
-const User = require('../models/Registration');
-const Resort = require('../models/Resorts');
+const User = require('../models/users');
+const Resort = require('../models/resorts');
 
 // global
 var currentUser = 'Not found';

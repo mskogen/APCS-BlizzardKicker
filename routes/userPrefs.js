@@ -30,7 +30,7 @@
 const express = require('express');
 const mongoose = require('mongoose'); //mongodb databases
 const router = express.Router();
-const User = require('../models/Registration');
+const User = require('../models/users');
 const url = require('url');
 const { body, validationResult } = require('express-validator/check'); //checks inputs for validity
 const bodyParser = require('body-parser');
