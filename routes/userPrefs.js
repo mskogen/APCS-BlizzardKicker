@@ -32,8 +32,15 @@ const mongoose = require('mongoose'); //mongodb databases
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-	res.render('prefs');
+//POST for updating
+router.post('/', function (req, res, next){
+	if (req) {
+		currentUser = req.session.userId;
+			User.replaceOne(
+				 { email: currentUser },
+				 { preferred_snowtype: snowConditionsRange }
+			);
+  });
 });
 
 module.exports = router;
