@@ -5,8 +5,6 @@ const $ = require('cheerio');
 const skiData = function(url) {
   return rp(url)
   .then(function(html) {
-    
-
     var skiInfo= {
       resort: $('title', html).text().split(" ",$('title', html).text().split(" ").length-4).join(" "),
 
@@ -61,7 +59,6 @@ const skiData = function(url) {
     return skiInfo;
   })
   .catch(function(err) {
-    //handle error
   });
 };
 
