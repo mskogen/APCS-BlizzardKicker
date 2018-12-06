@@ -34,33 +34,6 @@ const dataCacheSchema = new mongoose.Schema({
     open: Number,
     total: Number,
   },
-<<<<<<< HEAD
-  current_temperature: {
-    type: Number,
-  },
-  snow_condition: {
-    type: String,
-  },
-  num_expert_runs: {
-    type: Number,
-  },
-  num_intermediate_runs: {
-    type: Number,
-  },
-  num_beginner_runs: {
-    type: Number,
-  },
-  new_snow_24h: {
-    type: Number,
-  },
-  new_snow_48h: {
-    type: Number,
-  },
-  new_snow_72h: {
-    type: Number,
-  },
-  snow_condition: {
-    type: String,
   lifts:{
     open: Number,
     total: Number,

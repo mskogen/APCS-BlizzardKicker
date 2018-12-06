@@ -38,10 +38,10 @@ router.post('/', function (req, res, next){
 		currentUser = req.session.userId;
 			User.replaceOne(
 				 { email: currentUser },
-				 { pass_held: passHeld }, //string
-				 { preferred_snowType: snowConditionsRange }, //string
-				 { preferred_travelTime: trafficRange }, //boolean
-				 { preferred_temperature: weatherRange } //string
+				 { pass_held: req.body.passHeld , //string
+				 	preferred_snowType: req.body.snowConditionsRange, //string
+				 	preferred_travelTime: req.body.trafficRange, //boolean
+				 	preferred_temperature: req.body.weatherRange } //string
 			)
     };
 });
