@@ -8,9 +8,10 @@ const Resort = require('../models/resorts');
 var currentUser = 'Not found';
 // var Promise = require('rsvp').Promise;
 
+// global
 const router = express.Router();
-
-var data = {currentUser: currentUser, bestChoice:'Make sure you have saved some resorts to your profile!'};
+var userResorts = [];
+var data = {currentUser: 'currentUser', bestChoice:'Make sure you have saved some resorts to your profile!'};
 
 router.get('/', (req, res) => {
 	skiData("https://www.onthesnow.com/colorado/loveland/skireport.html").then((skiInfo) => {
@@ -37,46 +38,12 @@ router.get('/', (req, res) => {
 	}).catch(() => {res.send('Sorry! Something went wrong.');})
 	currentUser = req.session.userId;
 	data.currentUser = currentUser;
-	// console.log('from cave.js', currentUser);
+	console.log('from cave.js', currentUser);
 	res.render('cave', {data});
 });
 
-// router.get('/cave/alg', (req, res) => {
-// var userResorts = [];
-// var atLeastSomePrefs = false;
-// 	User.findOne({email: currentUser}).exec(function (err, user) {
-// 	// console.log(user.resort_id_list.length);
-// 		for (var i=0; i<user.resort_id_list.length; i++) {
-// 			var resortObject = {name:"", condition:"", snowfall: 0};
-// 			resortObject.name = user.resort_id_list[i];
-// 			atLeastSomePrefs = true;
-// 			// userResorts.push(resortObject.name);
-// 			// if (!atLeastSomePrefs) {
-// 			// 	res.render('cave', {data});
-// 			// }
-// 			Resort.findOne({resort_name: resortObject.name}).exec(function(err,resort) {
-// 				if (resort.resort_name == resortObject.name) {
-// 					resortObject.condition = resort.snow_condition;
-// 					resortObject.snowfall = resort.newsnow_in;
-// 					userResorts.push(resortObject);
-// 				}
-// 			});
-// 		}
-// 	});
-// 	setTimeout(function(){
-// 		// return userResorts object with highest resortObject.newsnow_in;
-// 		userResorts.sort(function(a, b){return b.snowfall - a.snowfall})
-// 		// console.log(userResorts);
-// 		if (userResorts.length) {
-// 			var bestChoice = userResorts[0].name;
-// 			data.bestChoice = bestChoice;
-// 			console.log('from algo', data.bestChoice);
-// 		}
-// 		// res.render('cave', bestChoice);
-// 	},1000);
-// res.render('cave', {data});
 
-router.get('/cave/alg', function (req, res) {
+router.post('/alg', (req, res) => {
 	currentUser = req.session.userId;
 	var userResorts = [];
 		User.findOne({email: currentUser}).exec(function (err, user) {
@@ -96,16 +63,14 @@ router.get('/cave/alg', function (req, res) {
 		});
 		setTimeout(function(){
 			// return userResorts object with highest resortObject.newsnow_in;
-			userResorts.sort(function(a, b){return b.snowfall - a.snowfall});
-			if (userResorts.length) {
-				console.log(userResorts);
-				var bestChoice = userResorts[0].name;
-				data.bestChoice = bestChoice;
-				console.log('from algo', data.bestChoice);
-			}
-			res.render('cave', {data});
-		}, 1000);
-});
+			userResorts.sort(function(a, b){return b.snowfall - a.snowfall})
+			console.log(userResorts);
+			var bestChoice = userResorts[0].name;
+			console.log('from algo', bestChoice);
+			data.bestChoice = bestChoice;
+			res.redirect('/cave', {data});
+		},1000);
+ });
 
 // GET for logout logout
 router.get('/cave/logout', function (req, res, next) {
@@ -121,19 +86,6 @@ router.get('/cave/logout', function (req, res, next) {
     });
   }
 });
-module.exports = router;
 
-// then(function(db) {
-// 	return new Promise(function(resolve, reject) {
-// 		var collection = db.collection('col1');
-//
-// 		collection.find().toArray(function(err, items) {
-// 			if (err) {
-// 				reject(err);
-// 			} else {
-// 				console.log(items);
-// 				resolve(items);
-// 			}
-// 		});
-// 	});
-// });
+
+module.exports = router;
