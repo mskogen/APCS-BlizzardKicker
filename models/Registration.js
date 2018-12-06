@@ -2,7 +2,7 @@
 // combine usernames and preferences into single schema for ease
 
 var mongoose = require('mongoose');
-    
+
 var bcrypt = require('bcrypt'),
     SALT_WORK_FACTOR = 10;
 
