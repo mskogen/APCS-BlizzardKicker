@@ -79,10 +79,10 @@ block content
           table
             th Welcome to BlizzardKicker,
                 td= data.currentUser
-          form(action="/cave/logout" method="post")
+          form(action="/cave/logout" method="get")
             button.btn.btn-warning(type="submit") Log Me Out
           br
-          form(action="/cave/alg" method="post")
+          form(action="/cave/alg" method="get")
             button.btn.btn-warning(type="submit") My Preferences Are Up To Date.. Show me the Gnar!
           br
           //- form#algorithm(action='cave/alg', method='POST')
