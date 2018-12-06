@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 			time_stamp: new Date(),
 			condition: skiInfo.condition
 			// newsnow_in: skiInfo.snowfall.today[0],
-			// snow_conition: skiInfo.condition.upper.condition
+			// snow_condition: skiInfo.condition.upper.condition
 		}
 		console.log(skiData);
 		try {

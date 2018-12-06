@@ -55,7 +55,7 @@ const skiData = function(url) {
     //    resort_name: skiInfo.resort,
     //    time_stamp: new Date(),
     //    newsnow_in: skiInfo.snowfall.today[0],
-    //    snow_conition: skiInfo.condition.upper.condition
+    //    snow_condition: skiInfo.condition.upper.condition
     //  }
     // );
     // resort.save()

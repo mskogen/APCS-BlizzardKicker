@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 			resortObject.resort = user.resort_id_list[i];
 
 			Resort.findOne({resort_name: user.resort_id_list[i]}).then(function (resort) {
-				resortObject.condition = resort.snow_conition;
+				resortObject.condition = resort.snow_condition;
 				resortObject.snowfall = resort.newsnow_in;
 			});
 			userResorts.push();

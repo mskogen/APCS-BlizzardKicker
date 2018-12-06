@@ -56,7 +56,7 @@ router.get('/', function (req, res) { // upp data upon get request
     //                                     newsnow_in: data_object.newsnow_in,
     //                                     // percent_terrain_open: data_object.ADDME,
     //                                     // current_temperature: data_object.ADDME,
-    //                                     // snow_conition: data_object.ADDME,
+    //                                     // snow_condition: data_object.ADDME,
     //                                     // num_expert_runs: data_object.ADDME,
     //                                     // num_intermediate_runs: data_object.ADDME,
     //                                     // num_beginner_runs: data_object.ADDME,
@@ -64,7 +64,7 @@ router.get('/', function (req, res) { // upp data upon get request
     //                                     // new_snow_48h: data_object.ADDME,
     //                                     // new_snow_72h: data_object.ADDME,
     //                                     // new_snow_24h: data_object.ADDME,
-    //                                     // snow_conition: data_object.ADDME,})
+    //                                     // snow_condition: data_object.ADDME,})
     //     resort.save()
     //   }
     // }

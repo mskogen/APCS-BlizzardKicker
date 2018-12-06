@@ -33,7 +33,7 @@ const dataCacheSchema = new mongoose.Schema({
   current_temperature: {
     type: Number,
   },
-  snow_conition: {
+  snow_condition: {
     type: String,
   },
   num_expert_runs: {
