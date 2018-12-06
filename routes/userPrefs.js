@@ -1,4 +1,4 @@
-// Author: Kamiar Coffey
+// Author: Kamiar Coffey & Matthew Skogen
 // script to determine if a new API pull is needed
 
 // Takes as input - currentl user prefs - time of last pull from API - use mongoDB dataCache
@@ -39,8 +39,8 @@ router.post('/', function (req, res, next){
 			User.replaceOne(
 				 { email: currentUser },
 				 { preferred_snowtype: snowConditionsRange }
-			);
-  });
+			)
+    };
 });
 
 module.exports = router;
