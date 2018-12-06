@@ -34,8 +34,11 @@ const User = require('../models/users');
 const url = require('url');
 const { body, validationResult } = require('express-validator/check'); //checks inputs for validity
 const bodyParser = require('body-parser');
+const session = require('express-session');
 
-
+router.get('/', function(req, res){
+	res.render('prefs');
+});
 //POST for updating
 router.post('/', function (req, res, next){
 	if (req) {

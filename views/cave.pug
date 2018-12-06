@@ -76,10 +76,9 @@ block content
       #centerPage
         #introContent
           |  
-          block content
-              table
-                th Welcome to BlizzardKicker,
-                    td= currentUser
+          table
+            th Welcome to BlizzardKicker,
+                td= currentUser
           form(action="/cave/logout" method="post")
             button.btn.btn-warning(type="submit") Alg
           form(action="/cave/alg" method="post")

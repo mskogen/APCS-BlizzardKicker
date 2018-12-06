@@ -27,12 +27,10 @@ router.get('/', (req, res) => {
 			snowfall: skiInfo.snowfall,
 			runs: skiInfo.runs,
 			lifts: skiInfo.lifts,
-			// newsnow_in: skiInfo.snowfall.today[0],
-			// snow_condition: skiInfo.condition.upper.condition
 		}
 		// console.log(skiData);
 		try {
-			Resort.create(skiData,function(err, skiDat){
+			Resort.updateOne({resort_name: skiData.resort_name},skiData,{upsert: true},function(err, skiDat){
 				if(err){
 					console.log(err);
 				}

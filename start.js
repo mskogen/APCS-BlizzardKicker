@@ -1,8 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 require('./models/users');
-require('./models/resorts');
-const Info = require('./models/resortInfo');
+const resorts=require('./models/resorts');
 const app = require('./app');
 
 // catch 404 and forward to error handler
@@ -25,7 +24,7 @@ mongoose.Promise = global.Promise;
 mongoose.connection
   .on('connected', () => {
     console.log(`Mongoose connection open on ${process.env.DATABASE}`);
-    Info.loadStartData();
+    resorts.loadStartData();
 
   })
   .on('error', (err) => {

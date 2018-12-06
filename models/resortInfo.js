@@ -37,7 +37,8 @@ resortInfo.statics.loadStartData = function(){
       {name: "Ski Granby Ranch", link: "/colorado/ski-granby-ranch/", pass: []},
       {name: "Silverton Mountain", link: "/colorado/silverton-mountain/", pass: []},
     ]
-    if (count==0) {
+    console.log(count);
+    if (count<skiInfo.length) {
       Info.insertMany(skiInfo);
     }
   });
