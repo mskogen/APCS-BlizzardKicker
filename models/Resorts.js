@@ -12,50 +12,31 @@ const dataCacheSchema = new mongoose.Schema({
   },
   condition: {
     upper: {
-      snow: String,
+      snow: Number,
       condition: String,
     },
     middle: {
-      snow: String,
+      snow: Number,
       condition: String,
     },
     lower: {
-      snow: String,
+      snow: Number,
       condition: String,
     }
   },
-  newsnow_in: {
-    type: Number,
+  //snowfall is arrays of date snowfall pairs [date, snowfall]
+  snowfall: {
+    today: Number,
+    historical: [[mongoose.Mixed]],
+    predicted: [[mongoose.Mixed]],
   },
-  percent_terrain_open: {
-    type: Number,
+  runs:{
+    open: Number,
+    total: Number,
   },
-  current_temperature: {
-    type: Number,
-  },
-  snow_conition: {
-    type: String,
-  },
-  num_expert_runs: {
-    type: Number,
-  },
-  num_intermediate_runs: {
-    type: Number,
-  },
-  num_beginner_runs: {
-    type: Number,
-  },
-  new_snow_24h: {
-    type: Number,
-  },
-  new_snow_48h: {
-    type: Number,
-  },
-  new_snow_72h: {
-    type: Number,
-  },
-  snow_condition: {
-    type: String,
+  lifts:{
+    open: Number,
+    total: Number,
   },
 });
 

@@ -21,7 +21,11 @@ router.get('/', (req, res) => {
 	skiData("https://www.onthesnow.com/colorado/loveland/skireport.html").then((skiInfo) => {
 		var skiData ={ 
 			time_stamp: new Date(),
-			condition: skiInfo.condition
+			resort_name: skiInfo.resort,
+			condition: skiInfo.condition,
+			snowfall: skiInfo.snowfall,
+			runs: skiInfo.runs,
+			lifts: skiInfo.lifts,
 			// newsnow_in: skiInfo.snowfall.today[0],
 			// snow_conition: skiInfo.condition.upper.condition
 		}
