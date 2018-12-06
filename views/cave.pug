@@ -79,7 +79,10 @@ block content
               table
                 th Welcome to BlizzardKicker,
                     td= currentUser
-          button(onclick='logOut()') Log Out
+          form(action="/cave/logout" method="post")
+            button.btn.btn-warning(type="submit") Log Out
+          form(action="/cave/alg" method="post")
+            button.btn.btn-warning(type="submit") Alg
           br
           |       According to our calculations, you will receive maximum shred
           |       potential at:
