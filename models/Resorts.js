@@ -4,9 +4,6 @@
 const mongoose = require('mongoose');
 
 const dataCacheSchema = new mongoose.Schema({
-// Do NOT store the entire JSON object
-  _id: Number, // _id is a pre-defined Mongo field that MUST be a unque key.
-  // Type cast it as a number rather than defaut BSON
   time_stamp: {
     type: Date,
   },
@@ -48,4 +45,5 @@ const dataCacheSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Resorts', dataCacheSchema);
+var Res = mongoose.model('Resorts', dataCacheSchema);
+module.exports = Res;

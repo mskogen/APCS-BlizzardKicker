@@ -1,6 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 require('./models/Registration');
+require('./models/Resorts');
 const app = require('./app');
 
 // catch 404 and forward to error handler
