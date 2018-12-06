@@ -10,6 +10,20 @@ const dataCacheSchema = new mongoose.Schema({
   resort_name: {
     type: String,
   },
+  condition: {
+    upper: {
+      snow: String,
+      condition: String,
+    },
+    middle: {
+      snow: String,
+      condition: String,
+    },
+    lower: {
+      snow: String,
+      condition: String,
+    }
+  },
   newsnow_in: {
     type: Number,
   },
