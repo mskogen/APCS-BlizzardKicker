@@ -37,7 +37,6 @@ const bodyParser = require('body-parser');
 
 
 //POST for updating
-<<<<<<< Updated upstream
 router.post('/', function (req, res, next){
 	if (req) {
 		currentUser = req.session.userId;
@@ -50,16 +49,5 @@ router.post('/', function (req, res, next){
 			)
     };
 });
-=======
-// router.post('/', function (req, res, next){
-// 	if (req) {
-// 	// 	currentUser = req.session.userId;
-// 	// 		User.replaceOne(
-// 	// 			 { email: currentUser },
-// 	// 			 { preferred_snowtype: snowConditionsRange }
-// 	// 		);
-//   // });
-// });
->>>>>>> Stashed changes
 
 module.exports = router;

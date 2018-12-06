@@ -19,20 +19,9 @@ router.get('/', (req, res) => {
 	// fill list of resorts user has access to
 	User.findOne({email: currentUser}).then(function (user) {
 		for (var i=0; i<user.resort_id_list.length; i++) {
-<<<<<<< Updated upstream
-			var resortObject = new Object();
-			resortObject.resort = user.resort_id_list[i];
-
-			Resort.findOne({resort_name: user.resort_id_list[i]}).then(function (resort) {
-				resortObject.condition = resort.snow_condition;
-				resortObject.snowfall = resort.newsnow_in;
-			});
-			userResorts.push();
-=======
 			var resortObject = {name:"", contition:"", snowfall: 0};
 			resortObject.name = user.resort_id_list[i];
 			console.log(resortObject);
->>>>>>> Stashed changes
 		}
 	});
 }

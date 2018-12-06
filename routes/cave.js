@@ -20,12 +20,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
 
 	skiData("https://www.onthesnow.com/colorado/loveland/skireport.html").then((skiInfo) => {
-<<<<<<< Updated upstream
-		var skiData ={ 
-=======
-		// console.log("Got the skiData\n");
 		var skiData ={
->>>>>>> Stashed changes
 			time_stamp: new Date(),
 			resort_name: skiInfo.resort,
 			condition: skiInfo.condition,
@@ -37,10 +32,6 @@ router.get('/', (req, res) => {
 		}
 		// console.log(skiData);
 		try {
-<<<<<<< Updated upstream
-=======
-			// console.log("We replacing\n");
->>>>>>> Stashed changes
 			Resort.create(skiData,function(err, skiDat){
 				if(err){
 					console.log(err);
