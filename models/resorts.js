@@ -90,10 +90,17 @@ resortInfo.methods.pullSkiInfo = function(){
   });
 }
 
-
-//update the resort if it hasn't been within a given time
-//---Important--- returns promise
+/*
+desc: the resort if it hasn't been within a given time
+params: 
+  String resort_name - name of a resort, 
+  [Number time - minutes since last update. Default: 30]
+ret: Promise 
+  - Resolve: String mess - message to console,
+  - Reject: String err - error message
+*/
 resortInfo.statics.updateResort = function(resort_name, time){
+  if(!time) time=30;
   //find the resort
   return Res.findOne({resort_name: resort_name}).exec()
   .then(function(resort){

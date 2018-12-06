@@ -14,28 +14,13 @@ var userResorts = [];
 var data = {currentUser: 'currentUser', bestChoice:'Make sure you have saved some resorts to your profile!'};
 
 router.get('/', (req, res) => {
-	skiData("https://www.onthesnow.com/colorado/loveland/skireport.html").then((skiInfo) => {
-		var skiData ={
-			time_stamp: new Date(),
-			resort_name: skiInfo.resort,
-			condition: skiInfo.condition,
-			snowfall: skiInfo.snowfall,
-			runs: skiInfo.runs,
-			lifts: skiInfo.lifts,
-		}
-		// console.log(skiData);
-		try {
-			Resort.updateOne({resort_name: skiData.resort_name},skiData,{upsert: true},function(err, skiDat){
-				if(err){
-					console.log(err);
-				}
-				// else console.log("created");
-			});
-		} catch (error){
-			console.log(error);
-		}
-
-	}).catch(() => {res.send('Sorry! Something went wrong.');})
+	Resort.updateResort("Loveland")
+	.then((mess)=>{
+		console.log(mess);
+	})
+	.catch((err)=>{
+		console.log(err);
+	})
 	currentUser = req.session.userId;
 	data.currentUser = currentUser;
 	console.log('from cave.js', currentUser);
