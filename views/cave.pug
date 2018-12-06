@@ -8,20 +8,20 @@ block append head
   script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
   // script that is supposed to expand/collapse the sidebar
   script.
-    $(document).ready(function () {
-    $("#sidebar").mCustomScrollbar({
-    theme: "minimal"
-    });
-    $('#sidebarCollapse').on('click', function () {
-    // open or close navbar
-    $('#sidebar').toggleClass('active');
-    // close dropdowns
-    $('.collapse.in').toggleClass('in');
-    // and also adjust aria-expanded attributes we use for the open/closed arrows
-    // in our CSS
-    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-    });
-    });
+      $(document).ready(function () {
+      $("#sidebar").mCustomScrollbar({
+      theme: "minimal"
+      });
+      $('#sidebarCollapse').on('click', function () {
+      // open or close navbar
+      $('#sidebar').toggleClass('active');
+      // close dropdowns
+      $('.collapse.in').toggleClass('in');
+      // and also adjust aria-expanded attributes we use for the open/closed arrows
+      // in our CSS
+      $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+      });
+      });
     
 block vars
   - var currentPage = "cave"
@@ -37,7 +37,7 @@ block content
         ul.list-unstyled.components
           li.active
             .input-group
-              input.form-control(type='text', aria-label='Text input with dropdown button')
+              // input.form-control(type='text', aria-label='Text input with dropdown button')
               .input-group-append
                 button.btn.btn-outline-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Pass Held
                 .dropdown-menu
