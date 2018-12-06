@@ -1,4 +1,4 @@
-// Author: Kamiar Coffey
+// Author: Kamiar Coffey & Matthew Skogen
 // script to determine if a new API pull is needed
 
 // Takes as input - currentl user prefs - time of last pull from API - use mongoDB dataCache
@@ -29,8 +29,12 @@
 
 const express = require('express');
 const mongoose = require('mongoose'); //mongodb databases
-
 const router = express.Router();
+const User = require('../models/Registration');
+const url = require('url');
+const { body, validationResult } = require('express-validator/check'); //checks inputs for validity
+const bodyParser = require('body-parser');
+
 
 //POST for updating
 router.post('/', function (req, res, next){
@@ -38,9 +42,12 @@ router.post('/', function (req, res, next){
 		currentUser = req.session.userId;
 			User.replaceOne(
 				 { email: currentUser },
-				 { preferred_snowtype: snowConditionsRange }
-			);
-  });
+				 { pass_held: req.body.passHeld , //string
+				 	preferred_snowType: req.body.snowConditionsRange, //string
+				 	preferred_travelTime: req.body.trafficRange, //boolean
+				 	preferred_temperature: req.body.weatherRange } //string
+			)
+    };
 });
 
 module.exports = router;

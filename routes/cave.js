@@ -19,15 +19,18 @@ const router = express.Router();
 router.get('/', (req, res) => {
 
 	skiData("https://www.onthesnow.com/colorado/loveland/skireport.html").then((skiInfo) => {
-		console.log("Got the skiData\n");
 		var skiData ={ 
 			time_stamp: new Date(),
-			newsnow_in: skiInfo.snowfall.today[0],
-			snow_conition: skiInfo.condition.upper.condition
+			resort_name: skiInfo.resort,
+			condition: skiInfo.condition,
+			snowfall: skiInfo.snowfall,
+			runs: skiInfo.runs,
+			lifts: skiInfo.lifts,
+			// newsnow_in: skiInfo.snowfall.today[0],
+			// snow_condition: skiInfo.condition.upper.condition
 		}
 		console.log(skiData);
 		try {
-			console.log("We replacing\n");
 			Resort.create(skiData,function(err, skiDat){
 				if(err){
 					console.log(err);
