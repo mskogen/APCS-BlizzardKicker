@@ -50,17 +50,6 @@ const skiData = function(url) {
 		skiInfo.snowfall.historical=dateList.slice(0,dateList.length-3);
 		skiInfo.snowfall.predicted=dateList.slice(-3);
 
-		try {
-		   Resort.replaceOne(
-		      { resort_name: skiInfo.resort },
-		      { time_stamp: new Date(),
-						newsnow_in: skiInfo.snowfall.today[0],
-						snow_conition: skiInfo.condition.upper.condition }
-		   );
-		} catch (error){
-		   console.log(error);
-		}
-
 		// var resort = new Resort (
 		// 	{
 		// 		resort_name: skiInfo.resort,
