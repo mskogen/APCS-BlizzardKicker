@@ -35,15 +35,15 @@ block content
       nav#sidebar
         .sidebar-header
           h3 Customize Your Stoke
-        input#passHeld.form-group(name='passHeld')
-          label(for='pref1') Pass Held:
-          select#pref1.form-control
+        .form-group
+          label(for='passHeld') Pass Held:
+          select#passHeld.form-control(name='passHeld')
             option None
             option Ikon Pass
             option Epic Local Pass
-        input#snowConditionsRange.form-group(name='snowConditionsRange')
-          label(for='pref2') Snow Surface Type:
-          select#pref2.form-control
+        .form-group
+          label(for='snowConditionsRange') Snow Surface Type:
+          select#snowConditionsRange.form-control(name='snowConditionsRange')
             option Powder
             option Packed Powder
             option Machine Made
@@ -53,14 +53,14 @@ block content
             option Corn
             option Variable
             option Wet
-        input#trafficRange.form-group(name='trafficRange')
-          label(for='pref3') Arrival Time:
-          select#pref3.form-control
+        .form-group
+          label(for='trafficRange') Arrival Time:
+          select#trafficRange.form-control(name='trafficRange')
             option ASAP
             option No Rush
-        input#weatherRange.form-group(name='weatherRange')
-          label(for='pref4') Preferred Weather:
-          select#pref4.form-control
+        .form-group
+          label(for='weatherRange') Preferred Weather:
+          select#weatherRange.form-control(name='weatherRange')
             option No Preference
             option Cold
             option Hot
