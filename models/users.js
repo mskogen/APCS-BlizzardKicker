@@ -92,6 +92,7 @@ UserSchema.statics.auth = function(email, password, cb){
 
     //Authenticate password if the user exits
     user.comparePassword(password, function(err, isMatch){
+      
       //toss an error
       if (err) throw err;
       //if there's no match they entered the wrong password

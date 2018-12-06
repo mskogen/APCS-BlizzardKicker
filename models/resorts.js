@@ -40,5 +40,5 @@ const dataCacheSchema = new mongoose.Schema({
   },
 });
 
-var Res = mongoose.model('Resorts', dataCacheSchema);
+var Res = mongoose.model('resorts', dataCacheSchema);
 module.exports = Res;
