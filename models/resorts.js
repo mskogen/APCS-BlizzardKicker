@@ -38,6 +38,7 @@ const resortInfo = new mongoose.Schema({
   },
   url: String,
   pass: [String],
+  image: String,
 },{timestamps: true});
 
 resortInfo.statics.loadStartData = function(){
@@ -67,7 +68,8 @@ resortInfo.statics.loadStartData = function(){
       {resort_name: "Wolf Creek Ski Area", url: "/colorado/wolf-creek-ski-area/", pass: []},
       {resort_name: "Cooper", url: "/colorado/ski-cooper/", pass: []}
     ]
-    if (count<skiInfo.length) {
+    if (count!=skiInfo.length) {
+      Res.collection.drop();
       Res.insertMany(skiInfo);
     }
   });
@@ -107,8 +109,8 @@ resortInfo.statics.updateResort = function(resort_name, time){
     //is it real?
     if(resort){
       var updateTime = time; //number of minutes until next update
-      //update if it's been long enough
-      if((Date.now()-resort.updatedAt)/60000 >= updateTime){
+      //update if it's been long enough or it doesn't have conditions
+      if((Date.now()-resort.updatedAt)/60000 >= updateTime || (Object.keys(resort.condition.upper).length === 0 && resort.condition.upper.constructor === Object)){
         //pull the info and return skiInfo promise
         return resort.pullSkiInfo();
       }else{

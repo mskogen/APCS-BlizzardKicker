@@ -19,7 +19,7 @@ block sidebar
       form(action='/cave/cavePrefs' method="POST")
         label Pass Held:
         select.form-control(name='pass_held')
-          option None
+          //option None
           option(value="Ikon") Ikon Pass
           option(value="Epic") Epic Local Pass
         label Snow Surface Type:
@@ -59,7 +59,7 @@ block content
           span Customize your stoke 
         .clearfix
         br
-        form(action="/cave/alg" method="post")
+        form(action="/cave/alg" method="get")
           button.btn.btn-warning(type="submit") My Preferences Are Up To Date.. Show me the Gnar!
         br
         table
@@ -68,16 +68,16 @@ block content
         br
         br
     #mtnRecommendation.row
-      .col
-        #copperMountain.displayRec
-          img(src='https://media.glassdoor.com/sqll/345206/copper-mountain-squarelogo-1481645745154.png', alt='Copper Mountain')
-          span#mtnName Copper Mountain
-          span#mtnLocation Frisco, CO
-          span#mtnTemperature
-          span#mtnSkyStatus
-          span#mtnJourneyTime
-          span#mtnCoordinates(style='display: none;') 39.503467, -106.142187
-        #winterPark.displayRec
+        .col-3.disCol
+          #copperMountain.displayRe
+            img(src='https://media.glassdoor.com/sqll/345206/copper-mountain-squarelogo-1481645745154.png', alt='Copper Mountain')
+            span#mtnName Copper Mountain
+            span#mtnLocation Frisco, CO
+            span#mtnTemperature
+            span#mtnSkyStatus
+            span#mtnJourneyTime
+            span#mtnCoordinates(style='display: none;') 39.503467, -106.142187
+        #winterPark.displayRec.col-3
           img(src='https://www.skyhinews.com/wp-content/uploads/2018/09/winter-park-resort-rentals-260-738.jpg', alt='Winter Park')
           span#mtnName Winter Park
           span#mtnLocation Winter Park, CO
@@ -85,7 +85,7 @@ block content
           span#mtnSkyStatus
           span#mtnJourneyTime
           span#mtnCoordinates(style='display: none;') 39.888026, -105.762063
-        #eldoraMountain.displayRec
+        #eldoraMountain.displayRec.col-3
           img(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrqO-pzZ3Sy2cpR9IURDz_ZvP5bYCzPZi2fN5KE4tu9HqRNZeq', alt='Eldora Mountain')
           span#mtnName Eldora Mountain Resort
           span#mtnLocation Nederland, CO
@@ -93,7 +93,7 @@ block content
           span#mtnSkyStatus
           span#mtnJourneyTime
           span#mtnCoordinates(style='display: none;') 39.937904, -105.583854
-        #keystoneResort.displayRec
+        #keystoneResort.displayRec.col-3
           img(src='https://slopeskishop.com/wp-content/uploads/2018/10/keystone-logo.png', alt='Keystone Resort')
           span#mtnName Keystone Resort
           span#mtnLocation Keystone, CO
@@ -101,7 +101,7 @@ block content
           span#mtnSkyStatus
           span#mtnJourneyTime
           span#mtnCoordinates(style='display: none;') 39.605381, -105.954722
-        #arapahoeBasin.displayRec
+        #arapahoeBasin.displayRec.col-3
           img(src='https://artbymike.files.wordpress.com/2010/09/abasin-logo-under-construction.jpg', alt='Keystone Resort')
           span#mtnName Arapahoe Basin
           span#mtnLocation Keystone, CO
@@ -109,7 +109,7 @@ block content
           span#mtnSkyStatus
           span#mtnJourneyTime
           span#mtnCoordinates(style='display: none;') 39.642733, -105.872157
-        #breckenridgeResort.displayRec
+        #breckenridgeResort.displayRec.col-3
           img(src='https://everythingsummit.com/sites/default/files/styles/medium/public/business/968/logo/breck_logo_9-14.jpg?itok=aaXdM_MC')
           span#mtnName Breckenridge Resort
           span#mtnLocation Breckenridge, CO

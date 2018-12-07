@@ -24,22 +24,22 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  resort_names: { // keep as list for now - can always return string name
+  resorts: { // keep as list for now - can always return string name
     type: [String],
   },
   skill_level: {
     type: Number, // scale 1-10?
   },
   preferred_temperature: {
-    type: String, // string (cold, hot, or n/a)
+    type: String, // string (cold, hot, or n/a) //filled
   },
   preferred_snowType: {
-    type: String, // string (whatever options there are from the api)
+    type: String, // string (whatever options there are from the api) //filled
   },
   preferred_travelTime: {
-    type: String, // string, is travel time an issue/desire?
+    type: String, // string, is travel time an issue/desire? //filled
   },
-  pass: {
+  pass: { //filled
     type: [String],
   }
 });
@@ -107,6 +107,36 @@ UserSchema.statics.auth = function(email, password, cb){
       }
     });
   });
+}
+
+//load resorts into users
+UserSchema.methods.loadResorts = function(){
+  this.resorts=[];
+  var ikonPass = ['Loveland','Steamboat','Eldora Mountain Resort','Copper Mountain Resort','Aspen / Snowmass','Winter Park Resort']; 
+  var epicPass = ['Arapahoe Basin Ski Area','Vail','Breckenridge','Telluride','Arapahoe Basin Ski Area','Crested Butte Mountain Resort','Beaver Creek','Keystone']; 
+  if(this.pass){  
+      this.pass.forEach((pass)=>{
+        if(pass=="Epic"){
+          this.resorts=this.resorts.concat(epicPass);
+        }else if(pass=="Ikon"){
+          this.resorts=this.resorts.concat(ikonPass);
+        }
+    });
+  }
+}
+
+//update user's resort list
+UserSchema.statics.updateResortList = function(email){
+  User.findOne({email: email}).exec()
+  .then((user)=>{
+    user.loadResorts();
+    return User.updateOne({email:email}, user).exec()
+  })
+  .then((info)=>{
+    console.log(info);
+  }).catch((err)=>{
+    console.log(err);
+  })
 }
 
 

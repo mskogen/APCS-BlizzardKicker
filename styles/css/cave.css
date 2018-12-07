@@ -29,3 +29,14 @@ input, h6 {
 padding-top:10px;
 }
 
+.displayRec{
+	background: white;
+	border: 1px solid black;
+}
+
+
+.disCol{
+	background: white;
+	border: 1px solid black;
+}
+

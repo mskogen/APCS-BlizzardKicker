@@ -40,55 +40,62 @@ router.get('/', (req, res) => {
 });
 
 /* fancy version that doesn't get past step 5 */
-router.post('/alg', (req, res) => {
-	console.log('step 1..!');
+router.get('/alg', (req, res) => {
 	currentUser = req.session.userId;
 	return User.findOne({email: currentUser}).exec()
-	.then(function(user){
-		//is it real?
-		if(user){
-			console.log('step 2', user);
-			for (var i=0; i<user.resort_names.length; i++) {
-				var oneResortObj = new matchedResort(user.resort_names[i], 'none', 0);
-				console.log('step 3 inside the for loop', oneResortObj);
-				userResorts.push(oneResortObj);
-			}
-		} else {
-			return Promise.reject('user does not exist');
-		}
-	}).then(function(matchedResort, err){ //this is thening pullResortInfo()
-		for (var j=0; j<userResorts.length; j++) {
-			console.log('step 4', userResorts[j]);
-			return Resort.findOne({resort_name: userResorts[j].name}).exec()
-			.then(function(resort) {
-				if (resort) {
-					console.log('here:', resort.snowfall.today);
-					userResorts[j].snowfall = resort.snowfall.today;
-					console.log('step 5', userResorts[j]);
-					matchedResorts.push(userResorts[j]);
-				} else {
-					return Promise.reject('resort does not exist');
-				}
-			})
-		}
+	.then((user)=>{
+		user.resorts.forEach((resort)=>{
+			Resort.updateResort(resort)
+			.then((mess)=>{
+				console.log(mess);
+			});
+		})
 	})
-	.then(function(push, err) {
-		// matchedResorts.sort(function(a, b){return b.snowfall - a.snowfall})
-		data.bestChoice = matchedResorts[0].name;
-		// data.bestChoice = userResorts[0].name
-		res.render('cave', {data});
-	});
+	// .then(res.redirect('/cave'));
+	// .then(function(user){
+	// 	//is it real?
+	// 	if(user){
+	// 		console.log('step 2', user);
+	// 		for (var i=0; i<user.resort_names.length; i++) {
+	// 			var oneResortObj = new matchedResort(user.resort_names[i], 'none', 0);
+	// 			console.log('step 3 inside the for loop', oneResortObj);
+	// 			userResorts.push(oneResortObj);
+	// 		}
+	// 	} else {
+	// 		return Promise.reject('user does not exist');
+	// 	}
+	// }).then(function(matchedResort, err){ //this is thening pullResortInfo()
+	// 	for (var j=0; j<userResorts.length; j++) {
+	// 		console.log('step 4', userResorts[j]);
+	// 		return Resort.findOne({resort_name: userResorts[j].name}).exec()
+	// 		.then(function(resort) {
+	// 			if (resort) {
+	// 				console.log('here:', resort.snowfall.today);
+	// 				userResorts[j].snowfall = resort.snowfall.today;
+	// 				console.log('step 5', userResorts[j]);
+	// 				matchedResorts.push(userResorts[j]);
+	// 			} else {
+	// 				return Promise.reject('resort does not exist');
+	// 			}
+	// 		})
+	// 	}
+	// })
+	// .then(function(push, err) {
+	// 	// matchedResorts.sort(function(a, b){return b.snowfall - a.snowfall})
+	// 	data.bestChoice = matchedResorts[0].name;
+	// 	// data.bestChoice = userResorts[0].name
+	// 	res.render('cave', {data});
+	// });
 });
 
-router.get('/alg', (req, res) => {
-		res.render('cave', {data});
-});
+// router.get('/alg', (req, res) => {
+// 		res.render('cave', {data});
+// });
 
 
 router.post('/cavePrefs', function (req, res, next){
 	if (req) {
 		currentUser = req.session.userId;
-		console.log(req.body)
 		User.updateOne({ email: currentUser },
 			{ pass: [req.body.pass_held], //string
 			 preferred_snowType: req.body.preferred_snowType, //string
@@ -97,11 +104,13 @@ router.post('/cavePrefs', function (req, res, next){
 			} //string
 			,{upsert:true})
 		.then(function(out){
+			User.updateResortList(currentUser);
 			console.log("Success");
-			console.log(out);})
+			//console.log(out);
+		})
 		.catch(function(err){
 			console.log("Error");
-			console.log(err);
+			//console.log(err);
 		});
     };
     res.redirect('/cave');
