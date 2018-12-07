@@ -59,8 +59,8 @@ router.get('/', (req, res) => {
 // 		}
 // 		// res.render('cave', bestChoice);
 // 	},1000);
-// res.render('cave', {data});
-
+//   res.render('cave', {data});
+// });
 router.get('/cave/alg', function (req, res) {
 	currentUser = req.session.userId;
 	var userResorts = [];

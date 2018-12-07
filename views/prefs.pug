@@ -8,10 +8,31 @@ block content
     .col-md-5.align-self-center
       form.form-container.form-signin(action='login' method='POST')
         .form-body
-          h1.mb-3.font-weight-normal Login
-          label(for='inputEmail') Email address
-          input#inputEmail.form-control.mb-3(name='email', type='email', placeholder='Email address', required='', autofocus='')
+          h1.mb-3.font-weight-normal Change your prefs
+          .dropdown
+            button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+              | Select Passes
+            .dropdown-menu(aria-labelledby='dropdownMenuButton')
+              button.dropdown-item(type='button' onClick="checkToggler(this, '#ikonCheck')") Ikon Pass
+              button.dropdown-item(type='button' onClick="checkToggler(this, '#epicCheck')") Epic Pass
+          //- Hidden area for check boxes
+          #hiddenform(hidden)
+            input#ikonCheck(type="checkbox" unchecked autocomplete="off")
+            input#epicCheck(type="checkbox" unchecked autocomplete="off")
           label(for='inputPassword') Password
           input#inputPassword.form-control.mb-3(name='password', type='password', placeholder='Password', required='')
           p#errorMessage= error
           button.btn.btn-primary(type='submit') Login
+
+block scripts
+  script.
+    //-toggles the view and the checked functionallity
+    var checkToggler = function(currentButton,target){
+      $(target).prop('checked', function(i,val){
+        return !val
+      }); 
+      $(currentButton).toggleClass('active'); 
+      $(document).on('click', '.dropdown-menu', function (e) {
+        e.stopPropagation();
+      });
+    }

@@ -44,11 +44,12 @@ router.post('/', function (req, res, next){
 	if (req) {
 		currentUser = req.session.userId;
 			User.replaceOne(
-				 { email: currentUser },
-				 { pass_held: req.body.passHeld , //string
-				 	preferred_snowType: req.body.snowConditionsRange, //string
-				 	preferred_travelTime: req.body.trafficRange, //boolean
-				 	preferred_temperature: req.body.weatherRange } //string
+				{ email: currentUser },
+				{ pass_held: req.body.pass , //string
+				 	// preferred_snowType: req.body.snowConditionsRange, //string
+				 	// preferred_travelTime: req.body.trafficRange, //boolean
+				 	// preferred_temperature: req.body.weatherRange 
+				} //string
 			)
     };
 });
