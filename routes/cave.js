@@ -93,9 +93,9 @@ router.get('/alg', (req, res) => {
 // POST to update prefrences
 router.post('/cavePrefs', (req, res) => {
 	 currentUser = { email: req.session.userId};
-	 var localPrefTravel = false;
+	 var localPrefTravel = true;
 	 if (req.body.preferred_travelTime == 'No Rush') {
-		 localPrefTravel = true;
+		 localPrefTravel = false;
 	 }
 	 var userResortsWithPass = [];
 	 if (req.session.pass_held = 'Ikon Pass') {
