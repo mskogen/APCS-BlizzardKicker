@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
 	data={currentUser:null};
 	if(currentUser = req.session.userId){
 		data.currentUser = currentUser;
-		
+
 	}
 	res.render('cave', {data});
 });
@@ -85,33 +85,26 @@ router.get('/alg', (req, res) => {
 });
 
 
-// POST to update prefrences
-router.post('/cavePrefs', (req, res) => {
-	 currentUser = { email: req.session.userId};
-	 var localPrefTravel = true;
-	 if (req.body.preferred_travelTime == 'No Rush') {
-		 localPrefTravel = false;
-	 }
-	 var userResortsWithPass = [];
-	 if (req.session.pass_held = 'Ikon Pass') {
-
-		 userResortsWithPass.push(ikonPass);
-	 } else if (req.session.pass_held = 'Epic Local Pass') {
-		 userResortsWithPass.push(epicPass);
-	 }
-	 updatedData = { $set: {
-		 											preferred_snowType: req.body.preferred_snowType},
-													preferred_travelTime: localPrefTravel,
-									  			preferred_temperature: req.body.preferred_temperature, };
-	 User.findOneAndUpdate(currentUser, updatedData, { upsert: true })
-	 .then(function (err, result) {
-       if (err) {
-       console.log('an error occured', err);
-     } else {
-      console.log("Data Updated");
-      return res.render('cave');
-  	}
-	});
+router.post('/cavePrefs', function (req, res, next){
+	if (req) {
+		currentUser = req.session.userId;
+		console.log(req.body)
+		User.updateOne({ email: currentUser },
+			{ pass: [req.body.pass_held], //string
+			 preferred_snowType: req.body.preferred_snowType, //string
+			 preferred_travelTime: req.body.preferred_travelTime, //string
+			 preferred_temperature: req.body.preferred_temperature //string
+			} //string
+			,{upsert:true})
+		.then(function(out){
+			console.log("Success");
+			console.log(out);})
+		.catch(function(err){
+			console.log("Error");
+			console.log(err);
+		});
+    };
+    res.redirect('/cave');
 });
 
 // GET for logout

@@ -20,28 +20,28 @@ block sidebar
         label Pass Held:
         select.form-control(name='pass_held')
           option None
-          option Ikon Pass
-          option Epic Local Pass
+          option(value="Ikon") Ikon Pass
+          option(value="Epic") Epic Local Pass
         label Snow Surface Type:
         select.form-control(name='preferred_snowType')
-          option Powder
-          option Packed Powder
-          option Machine Made
-          option Machine Groomed
-          option Hard Packed
-          option Spring
-          option Corn
-          option Variable
-          option Wet
+          option(value="Powder") Powder 
+          option(value="Packed Powder") Packed Powder 
+          option(value="Machine Made") Machine Made 
+          option(value="Machine Groomed") Machine Groomed 
+          option(value="Hard Packed") Hard Packed 
+          option(value="Spring") Spring 
+          option(value="Corn") Corn 
+          option(value="Variable") Variable 
+          option(value="Wet") Wet 
         label Arrival Time:
         select.form-control(name='preferred_travelTime')
-          option ASAP
-          option No Rush
+          option(value="ASAP") ASAP
+          option(value="No Rush") No Rush
         label Preferred Weather:
         select.form-control(name='preferred_temperature')
-          option No Preference
-          option Cold
-          option Hot
+          option(value="No Preference") No Preference
+          option(value="Cold") Cold
+          option(value="Hot") Hot
         br
         button.btn.btn-warning(type="submit") Save
 

@@ -37,7 +37,7 @@ var UserSchema = new mongoose.Schema({
     type: String, // string (whatever options there are from the api)
   },
   preferred_travelTime: {
-    type: Boolean, // string, is travel time an issue/desire?
+    type: String, // string, is travel time an issue/desire?
   },
   pass: {
     type: [String],
