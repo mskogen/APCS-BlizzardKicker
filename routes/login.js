@@ -26,6 +26,7 @@ router.post('/', function (req, res, next){
         }));
       } else {
         req.session.userId = user.email;
+        req.session.userName = user.username;
         res.redirect('/cave');
       }
     });

@@ -17,8 +17,12 @@ var data = {
 	currentUser: 'currentUser',
 	bestChoice:'Make sure you have saved some resorts to your profile!'};
 
-var ikonPass = ['Loveland']; // look this up from resorts.js
-var epicPass = ['Arapahoe Basin Ski Area']; // look this up from resorts.js
+// look this up from resorts.js
+var ikonPass = ['Loveland','Steamboat','Eldora Mountain Resort','Copper Mountain Resort',
+				'Aspen / Snowmass','Winter Park Resort']; 
+// look this up from resorts.js
+var epicPass = ['Arapahoe Basin Ski Area','Vail','Breckenridge','Telluride','Arapahoe Basin Ski Area',
+				'Crested Butte Mountain Resort','Beaver Creek','Keystone']; 
 
 function matchedResort(name, condition, snowfall) {
     this.name = name;
@@ -84,12 +88,13 @@ router.get('/alg', (req, res) => {
 // POST to update prefrences
 router.post('/cavePrefs', (req, res) => {
 	 currentUser = { email: req.session.userId};
-	 var localPrefTravel = false;
+	 var localPrefTravel = true;
 	 if (req.body.preferred_travelTime == 'No Rush') {
-		 localPrefTravel = true;
+		 localPrefTravel = false;
 	 }
 	 var userResortsWithPass = [];
 	 if (req.session.pass_held = 'Ikon Pass') {
+
 		 userResortsWithPass.push(ikonPass);
 	 } else if (req.session.pass_held = 'Epic Local Pass') {
 		 userResortsWithPass.push(epicPass);
