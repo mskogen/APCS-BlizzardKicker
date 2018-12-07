@@ -5,15 +5,11 @@ block append head
 block content
   //highlight the current page
 
-  .row.justify-content-center.h-75
-    .col-md-auto.align-self-center.main-content
-      .row.justify-content-center
-        h1 Blizzard Kicker
-      .row.justify-content-center
-        p Welcome to Blizzard Kicker
-      .row.justify-content-center
-        a.btn.btn-lg.btn-secondary(href="/register") Register
-        button.btn.btn-lg.btn-primary(type="button" data-toggle="modal" data-target="#loginModal") Login
+  .col.main-content
+    h1.justify-content-center Blizzard Kicker
+    p Welcome to Blizzard Kicker
+    a.btn.btn-lg.btn-secondary(href="/register") Register
+    button.btn.btn-lg.btn-primary(type="button" data-toggle="modal" data-target="#loginModal") Login
 
   //login popup        
   #loginModal.modal.fade(tabindex='-2', role='dialog', aria-labelledby='loginModal', aria-hidden='true')

@@ -1,5 +1,5 @@
 //-Author: Matthew Skogen
-extends ../layouts/layoutCave
+extends ../layouts/layout
 block append head
   // Our Custom CSS
   link(rel='stylesheet', href='css/cave.css')
@@ -12,37 +12,38 @@ block vars
 
 block sidebar
   // Sidebar
-  nav#sidebar.w-100.h-100.p-2
-    .sidebar-header
-      h3 Customize Your Stoke
-    form(action='/cave/cavePrefs' method="POST")
-      label Pass Held:
-      select.form-control(name='pass_held')
-        option None
-        option Ikon Pass
-        option Epic Local Pass
-      label Snow Surface Type:
-      select.form-control(name='preferred_snowType')
-        option Powder
-        option Packed Powder
-        option Machine Made
-        option Machine Groomed
-        option Hard Packed
-        option Spring
-        option Corn
-        option Variable
-        option Wet
-      label Arrival Time:
-      select.form-control(name='preferred_travelTime')
-        option ASAP
-        option No Rush
-      label Preferred Weather:
-      select.form-control(name='preferred_temperature')
-        option No Preference
-        option Cold
-        option Hot
-      br
-      button.btn.btn-warning(type="submit") Save
+  .col-2#sidebarRow
+    nav#sidebar.w-100.h-100.p-2
+      .sidebar-header
+        h3 Customize Your Stoke
+      form(action='/cave/cavePrefs' method="POST")
+        label Pass Held:
+        select.form-control(name='pass_held')
+          option None
+          option Ikon Pass
+          option Epic Local Pass
+        label Snow Surface Type:
+        select.form-control(name='preferred_snowType')
+          option Powder
+          option Packed Powder
+          option Machine Made
+          option Machine Groomed
+          option Hard Packed
+          option Spring
+          option Corn
+          option Variable
+          option Wet
+        label Arrival Time:
+        select.form-control(name='preferred_travelTime')
+          option ASAP
+          option No Rush
+        label Preferred Weather:
+        select.form-control(name='preferred_temperature')
+          option No Preference
+          option Cold
+          option Hot
+        br
+        button.btn.btn-warning(type="submit") Save
 
 
 

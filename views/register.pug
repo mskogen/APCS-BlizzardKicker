@@ -5,82 +5,81 @@ block vars
   - var currentPage = "register"
 block content
   //highlight current
-  .row.justify-content-center.loginRow
-    .col-md-5.align-self-center
-      form.form-container.form-signin(action='/register' method='POST')
-        .form-body
-          h1.mb-3.font-weight-normal Register
-          label(for='inputEmail') Email address
-          input#inputEmail.form-control.mb-3(name='email'
-            type='email'
-            placeholder='Email address'
-            required
-            autofocus='')
+  .col-md-5.mx-auto.mt-5
+    form.form-container.form-signin(action='/register' method='POST')
+      .form-body
+        h1.mb-3.font-weight-normal Register
+        label(for='inputEmail') Email address
+        input#inputEmail.form-control.mb-3(name='email'
+          type='email'
+          placeholder='Email address'
+          required
+          autofocus='')
 
-          label(for='inputUser') Username
-          input#inputUser.form-control.mb-3(name='username'
-            type='text'
-            placeholder='Username'
-            required
-            )
-          //- single lowercase, single uppercase, single digit, single symbol, at least 8 long
-          -var passPatern= '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!-\/:-@[-`~])\\S{8,}'
-          
-          label(for='inputPassword') Password
-          input#inputPassword.pass.form-control.mb-3(name='password'
-            type='password'
-            placeholder='Password'
-            required
-            pattern= passPatern
-            )
+        label(for='inputUser') Username
+        input#inputUser.form-control.mb-3(name='username'
+          type='text'
+          placeholder='Username'
+          required
+          )
+        //- single lowercase, single uppercase, single digit, single symbol, at least 8 long
+        -var passPatern= '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!-\/:-@[-`~])\\S{8,}'
+        
+        label(for='inputPassword') Password
+        input#inputPassword.pass.form-control.mb-3(name='password'
+          type='password'
+          placeholder='Password'
+          required
+          pattern= passPatern
+          )
 
-          label(for='confirmPass') Confirm Password
-          input#confirmPass.pass.form-control.mb-3(name='confirm'
-            type='password'
-            placeholder='Confirm Password'
-            required
-            title="Passwords do not match"
-            )
-          //password validation div. Only shown if password is active
-          #passValid.p-2
-            h3 Password must contain the following
-            p.invalid#letter
-              | at least one 
-              strong lowercase 
-              |letter
-            p.invalid#cap
-              | at least one 
-              strong capital 
-              |letter
-            p.invalid#symb
-              | at least one 
-              strong symbol
-            p.invalid#num
-              | at least one 
-              strong number
-            p.invalid#char
-              | at least one 
-              strong 8 characters
-            p.invalid#match
-              | passwords 
-              strong match
-          //- Based on error code passed change error message
-          -var error = ''
-          case errCode
-            when '0'
-              - error = "Sorry, the username " + username +" is already taken"
-            when '1'
-              - error = "Sorry, that email is already taken"
-            when '2'
-              - error = "Unknown Error"
-            default
-              - break
-          //- if there's an error, tell them
-          if errCode
-            .row.justify-content-center
-              p.m-1#errorMessage= error
-              a.btn.btn-danger.btn-sm.ml-1#error(href='/login') Log in?
-          button.btn.btn-primary#subButton(type='submit') Register
+        label(for='confirmPass') Confirm Password
+        input#confirmPass.pass.form-control.mb-3(name='confirm'
+          type='password'
+          placeholder='Confirm Password'
+          required
+          title="Passwords do not match"
+          )
+        //password validation div. Only shown if password is active
+        #passValid.p-2
+          h3 Password must contain the following
+          p.invalid#letter
+            | at least one 
+            strong lowercase 
+            |letter
+          p.invalid#cap
+            | at least one 
+            strong capital 
+            |letter
+          p.invalid#symb
+            | at least one 
+            strong symbol
+          p.invalid#num
+            | at least one 
+            strong number
+          p.invalid#char
+            | at least one 
+            strong 8 characters
+          p.invalid#match
+            | passwords 
+            strong match
+        //- Based on error code passed change error message
+        -var error = ''
+        case errCode
+          when '0'
+            - error = "Sorry, the username " + username +" is already taken"
+          when '1'
+            - error = "Sorry, that email is already taken"
+          when '2'
+            - error = "Unknown Error"
+          default
+            - break
+        //- if there's an error, tell them
+        if errCode
+          .row.justify-content-center
+            p.m-1#errorMessage= error
+            a.btn.btn-danger.btn-sm.ml-1#error(href='/login') Log in?
+        button.btn.btn-primary#subButton(type='submit') Register
 
 
 block scripts

@@ -4,14 +4,13 @@ block append head
 block vars
   - var currentPage = "login"
 block content
-  .row.justify-content-center.loginRow
-    .col-md-5.align-self-center
-      form.form-container.form-signin(action='login' method='POST')
-        .form-body
-          h1.mb-3.font-weight-normal Login
-          label(for='inputEmail') Email address
-          input#inputEmail.form-control.mb-3(name='email', type='email', placeholder='Email address', required='', autofocus='')
-          label(for='inputPassword') Password
-          input#inputPassword.form-control.mb-3(name='password', type='password', placeholder='Password', required='')
-          p#errorMessage= error
-          button.btn.btn-primary(type='submit') Login
+  .col-md-5.mt-5.mx-auto
+    form.form-container.form-signin(action='login' method='POST')
+      .form-body
+        h1.mb-3.font-weight-normal Login
+        label(for='inputEmail') Email address
+        input#inputEmail.form-control.mb-3(name='email', type='email', placeholder='Email address', required='', autofocus='')
+        label(for='inputPassword') Password
+        input#inputPassword.form-control.mb-3(name='password', type='password', placeholder='Password', required='')
+        p#errorMessage= error
+        button.btn.btn-primary(type='submit') Login

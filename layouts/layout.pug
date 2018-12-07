@@ -15,9 +15,9 @@ block head
 block vars
 
 .container-fluid
-  header
-    .row.justify-content-center
-      .col
+  .row.justify-content-center
+    .col
+      header
         nav.navbar.navbar-expand-lg.navbar-light
           a.navbar-brand(href="/") Blizzardkicker
           //Makes the menu collapsable
@@ -46,10 +46,9 @@ block vars
               span.navbar-text Please Log In
               script.
                 document.getElementById('#{currentPage}').classList.add('active')
-            
-
-
-  block content
+  .row.h-100.col-100         
+    block sidebar
+    block content
 
         
 //
