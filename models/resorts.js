@@ -44,28 +44,28 @@ resortInfo.statics.loadStartData = function(){
   Res.countDocuments({}, function(err, count){
     var skiInfo=[
       {resort_name: "Steamboat", url: "/colorado/steamboat/", pass: ["Ikon"]},
-      {resort_name: "Wolf Creek Ski Area", url: "/colorado/wolf-creek-ski-area/", pass: []},
-      {resort_name: "Cooper", url: "/colorado/ski-cooper/", pass: []},
-      {resort_name: "Vail", url: "/colorado/vail/", pass: ["Epic"]},
+      {resort_name: "Eldora Mountain Resort", url: "/colorado/eldora-mountain-resort/", pass: ["Ikon"]},
+      {resort_name: "Copper Mountain Resort", url: "/colorado/copper-mountain-resort/", pass: ["Ikon"]},
       {resort_name: "Aspen / Snowmass", url: "/colorado/aspen-snowmass/", pass: ["Ikon"]},
+      {resort_name: "Winter Park Resort", url: "/colorado/winter-park-resort/", pass: ["Ikon"]},
+      {resort_name: "Vail", url: "/colorado/vail/", pass: ["Epic"]},
       {resort_name: "Breckenridge", url: "/colorado/breckenridge/", pass: ["Epic"]},
       {resort_name: "Telluride", url: "/colorado/telluride/", pass: ["Epic"]},
-      {resort_name: "Winter Park Resort", url: "/colorado/winter-park-resort/", pass: ["Ikon"]},
       {resort_name: "Arapahoe Basin Ski Area", url: "/colorado/arapahoe-basin-ski-area/", pass: ["Epic"]},
-      {resort_name: "Loveland", url: "/colorado/loveland/", pass: []},
       {resort_name: "Crested Butte Mountain Resort", url: "/colorado/crested-butte-mountain-resort/", pass: ["Epic"]},
+      {resort_name: "Beaver Creek", url: "/colorado/beaver-creek/", pass: ["Epic"]},
+      {resort_name: "Keystone", url: "/colorado/keystone/", pass: ["Epic"]},
       {resort_name: "Monarch Mountain", url: "/colorado/monarch-mountain/", pass: []},
       {resort_name: "Purgatory", url: "/colorado/durango-mountain-resort/", pass: []},
-      {resort_name: "Beaver Creek", url: "/colorado/beaver-creek/", pass: ["Epic"]},
-      {resort_name: "Copper Mountain Resort", url: "/colorado/copper-mountain-resort/", pass: ["Ikon"]},
-      {resort_name: "Keystone", url: "/colorado/keystone/", pass: ["Epic"]},
-      {resort_name: "Eldora Mountain Resort", url: "/colorado/eldora-mountain-resort/", pass: ["Ikon"]},
+      {resort_name: "Loveland", url: "/colorado/loveland/", pass: []},
       {resort_name: "Howelsen Hill", url: "/colorado/howelsen-hill/", pass: []},
       {resort_name: "Sunlight Mountain Resort", url: "/colorado/sunlight-mountain-resort/", pass: []},
       {resort_name: "Echo Mountain", url: "/colorado/echo-mountain/", pass: []},
       {resort_name: "Powderhorn", url: "/colorado/powderhorn/", pass: []},
       {resort_name: "Ski Granby Ranch", url: "/colorado/ski-granby-ranch/", pass: []},
       {resort_name: "Silverton Mountain", url: "/colorado/silverton-mountain/", pass: []},
+      {resort_name: "Wolf Creek Ski Area", url: "/colorado/wolf-creek-ski-area/", pass: []},
+      {resort_name: "Cooper", url: "/colorado/ski-cooper/", pass: []}
     ]
     if (count<skiInfo.length) {
       Res.insertMany(skiInfo);
