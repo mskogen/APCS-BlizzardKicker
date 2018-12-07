@@ -1,3 +1,5 @@
+// Kamiar Coffey
+
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -15,6 +17,9 @@ var matchedResorts = [];
 var data = {
 	currentUser: 'currentUser',
 	bestChoice:'Make sure you have saved some resorts to your profile!'};
+
+var ikonPass = ['Loveland']; // look this up from resorts.js
+var epicPass = ['Arapahoe Basin Ski Area']; // look this up from resorts.js
 
 function matchedResort(name, condition, snowfall) {
     this.name = name;
@@ -108,39 +113,50 @@ router.post('/alg', (req, res) => {
 // 		},1000);
 //  });
 
- // POST to update prefrences
- router.post('/cavePrefs', (req, res) => {
+ // POST to update prefrences DEPRCTED
+// router.post('/cavePrefs', (req, res) => {
+//
+// 	currentUser = { email: req.session.userId};
+// 	updatedData = { $set: {	preferred_snowType: req.body.preferred_snowType} };
+// 	console.log('in function', updatedData);
+//
+// 	User.updateOne(currentUser, updatedData, { upsert: true })
+// 	.then(function(err, result) {
+// 	if (err) {
+// 		return err;
+// 	} else {
+// 		console.log("Data Updated");
+// 	}
+// 	});
+// });
 
-	currentUser = { email: req.session.userId};
-	updatedData = { $set: {	preferred_snowType: req.body.preferred_snowType} };
-	console.log('in function', updatedData);
-
-	User.updateOne(currentUser, updatedData, { upsert: true }, function(err, result) {
-	if (err) {
-		return err;
-	} else {
-		console.log("Data Updated");
-	}
+// POST to update prefrences
+router.post('/cavePrefs', (req, res) => {
+	 currentUser = { email: req.session.userId};
+	 var localPrefTravel = false;
+	 if (req.body.preferred_travelTime == 'No Rush') {
+		 localPrefTravel = true;
+	 }
+	 var userResortsWithPass = [];
+	 if (req.session.pass_held = 'Ikon Pass') {
+		 userResortsWithPass.push(ikonPass);
+	 } else if (req.session.pass_held = 'Epic Local Pass') {
+		 userResortsWithPass.push(epicPass);
+	 }
+	 updatedData = { $set: {
+		 											preferred_snowType: req.body.preferred_snowType},
+													preferred_travelTime: localPrefTravel,
+									  			preferred_temperature: req.body.preferred_temperature, };
+	 User.findOneAndUpdate(currentUser, updatedData, { upsert: true })
+	 .then(function (err, result) {
+       if (err) {
+       console.log('an error occured', err);
+     } else {
+      console.log("Data Updated");
+      return res.render('cave');
+  	}
 	});
 });
-
-
-// router.post('/cavePrefs', (req, res) => {
-	 // User.updateOne(
- 		//  { email: currentUser},
- 		//  { $set: {	preferred_snowType: req.body.preferred_snowType, //string
- 		// 	 // preferred_travelTime: localPrefTravel, //boolean
- 		// 	 preferred_temperature: req.body.preferred_temperature} },
- 		//  { upsert: true }
- 	// ).then(function (err, result) {
-  //      if (err) {
-  //      console.log('an error occured', err);
-  //    } else {
-  //     console.log("Data Updated");
-  //     return res.render('cave');
-  // 	}
-	// });
-// });
 
 // GET for logout
 router.get('/cave/logout', function (req, res, next) {
