@@ -17,32 +17,35 @@ block vars
 .container-fluid
   header
     .row.justify-content-center
-      nav.navbar.navbar-expand-lg.navbar-light
-        a.navbar-brand(href="/") Blizzardkicker
-        //Makes the menu collapsable
-        button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
-          span.navbar-toggler-icon
-        .collapse.navbar-collapse#navbarSupportedContent
-          ul.navbar-nav.mr-auto
-            //- li.nav-item
-            //-   a.nav-link(href="/login") Login
-            li.nav-item#login
-              a.nav-link(href="/login") Login
-            li.nav-item#register
-              a.nav-link(href="/register") Register
-            li.nav-item#cave
-              a.nav-link(href="/cave") Cave
-            li.nav-item#viewData
-              a.nav-link(href="/viewData") View Data
-            li.nav-item#viewSkiData
-              a.nav-link(href="/viewSkiData") View Ski Data
+      .col
+        nav.navbar.navbar-expand-lg.navbar-light
+          a.navbar-brand(href="/") Blizzardkicker
+          //Makes the menu collapsable
+          button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+            span.navbar-toggler-icon
+          .collapse.navbar-collapse#navbarSupportedContent
+            ul.navbar-nav.mr-auto
+              //- li.nav-item
+              //-   a.nav-link(href="/login") Login
+              li.nav-item#login
+                a.nav-link(href="/login") Login
+              li.nav-item#register
+                a.nav-link(href="/register") Register
+              li.nav-item#cave
+                a.nav-link(href="/cave") Cave
+              li.nav-item#viewData
+                a.nav-link(href="/viewData") View Data
+              li.nav-item#viewSkiData
+                a.nav-link(href="/viewSkiData") View Ski Data
             if data
-              if data.currentUser
-                li.nav-item=  data.currentUser
-                form(action="/cave/logout" method="get")
-                  button.btn.btn-warning(type="submit") Log Me Out
-            script.
-              document.getElementById('#{currentPage}').classList.add('active')
+                if data.currentUser
+                    span.navbar-text=  data.currentUser
+                    form.form-inline(action="/cave/logout" method="get")
+                      button.btn.btn-warning(type="submit") Log Me Out
+            else
+              span.navbar-text Please Log In
+              script.
+                document.getElementById('#{currentPage}').classList.add('active')
             
 
 

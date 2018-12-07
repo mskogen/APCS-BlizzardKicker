@@ -14,10 +14,12 @@ block head
 
 block vars
 .container-fluid.wrapper
+  //create a row the size of the entire page
   .row.justify-content-center.h-100.w-100
-    .col-2.h-100.pl-0.mr-2#sidebarRow
+    //sidebar sized column
+    .col-2.h-100#sidebarRow
       block sidebar
-
+    //main content
     .col.m-2.h-100
       header
         .row.justify-content-center.m-1
