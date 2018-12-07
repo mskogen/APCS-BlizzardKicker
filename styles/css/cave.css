@@ -15,8 +15,8 @@ top: 0;
 left: 0;
 height: 100vh;
 z-index: 999;
-background: #00ff00;
-color: #000;
+background: #222;
+color: #999;
 transition: all 0.3s;
 padding:10px;
 }
