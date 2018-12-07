@@ -8,9 +8,13 @@ const Info = require('../models/resorts');
 const router = express.Router();
 
 router.get('/', (req, res) => {
+	data={currentUser:null};
+	if(currentUser = req.session.userId){
+		data.currentUser = currentUser;
+	}
 	User.find()
 		.then((registrations) => {
-			res.render('viewData', {registrations})
+			res.render('viewData', {registrations,data})
 		})
 		.catch(() => {res.send('Sorry! Something went wrong.');})
 	

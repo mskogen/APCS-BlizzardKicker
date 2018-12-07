@@ -32,9 +32,9 @@ function matchedResort(name, condition, snowfall) {
 
 router.get('/', (req, res) => {
 	data={currentUser:null};
-	currentUser = req.session.userId;
-	if(currentUser){
+	if(currentUser = req.session.userId){
 		data.currentUser = currentUser;
+		
 	}
 	res.render('cave', {data});
 });
@@ -121,9 +121,9 @@ router.get('/cave/logout', function (req, res, next) {
     // delete session object
     req.session.destroy(function (err) {
       if (err) {
-        return next(err);
+        next(err);
       } else {
-        return res.render('index');
+        res.redirect('/index');
       }
     });
   }

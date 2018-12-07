@@ -18,7 +18,7 @@ block vars
   .row.justify-content-center
     .col
       header
-        nav.navbar.navbar-expand-lg.navbar-light
+        nav.navbar.navbar-expand-lg.navbar-light.mx-auto.w-75
           a.navbar-brand(href="/") Blizzardkicker
           //Makes the menu collapsable
           button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
@@ -39,13 +39,13 @@ block vars
                 a.nav-link(href="/viewSkiData") View Ski Data
             if data
                 if data.currentUser
-                    span.navbar-text=  data.currentUser
+                    span.navbar-text.m-1=  data.currentUser
                     form.form-inline(action="/cave/logout" method="get")
                       button.btn.btn-warning(type="submit") Log Me Out
+                else
+                  span.navbar-text Please Log In
             else
-              span.navbar-text Please Log In
-              script.
-                document.getElementById('#{currentPage}').classList.add('active')
+              p Hey, you editing this. Add data
   .row.h-100.col-100         
     block sidebar
     block content
@@ -66,6 +66,8 @@ script.
   function closeForm() {
   document.getElementById("myForm").style.display = "none";
   }
+script.
+  $('##{currentPage}').addClass('active'); 
 
 
 block scripts

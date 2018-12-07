@@ -12,7 +12,7 @@ block vars
 
 block sidebar
   // Sidebar
-  .col-2#sidebarRow
+  .col-2#sidebarRow.collapse
     nav#sidebar.w-100.h-100.p-2
       .sidebar-header
         h3 Customize Your Stoke
@@ -56,13 +56,8 @@ block content
       .col
         button#sidebarCollapse.btn.btn-info(type='button' data-toggle="collapse" data-target="#sidebarRow" aria-expanded="false" aria-controls="collapseExample")
           i.fas.fa-align-left
-          span Toggle Sidebar  
+          span Customize your stoke 
         .clearfix
-        p 
-          | Welcome to BlizzardKicker 
-          strong #{data.currentUser}
-        form(action="/cave/logout" method="get")
-          button.btn.btn-warning(type="submit") Log Me Out
         br
         form(action="/cave/alg" method="post")
           button.btn.btn-warning(type="submit") My Preferences Are Up To Date.. Show me the Gnar!

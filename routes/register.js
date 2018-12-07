@@ -8,7 +8,11 @@ const { body, validationResult } = require('express-validator/check'); //checks 
 const bodyParser = require('body-parser');
 
 router.get('/', (req, res) => {
-  res.render('register', {errCode:req.query.errCode, username:req.query.username});
+  data={currentUser:null};
+  if(currentUser = req.session.userId){
+    data.currentUser = currentUser;
+  }
+  res.render('register', {errCode:req.query.errCode, username:req.query.username,data});
 });
 
 router.post('/', function (req, res, next) {
@@ -46,6 +50,10 @@ router.post('/', function (req, res, next) {
       } else {
           console.log('New User: ' +user.email+' created!');
           req.session.userId = user.email;
+          data={currentUser:null};
+          if(currentUser = req.session.userId){
+            data.currentUser = currentUser;
+          }
           res.redirect('/cave');
       }
     });

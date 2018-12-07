@@ -1,29 +1,26 @@
 
 
-.wrapper {
-display: flex;
-align-self: stretch;
-}
-
 label {
 padding-top:5px;
 }
 
 #sidebarRow{
-/*-ms-flex: 0 0 230px;
-flex: 0 0 230px;*/
 background: #222;
-/*display: none;*/
 }
-/
+
+#sidebarRow .collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition-property: height, visibility;
+  transition-property: height, visibility;
+  -webkit-transition-duration: 0.35s;
+  transition-duration: 0.35s;
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+}
 
 #sidebar {
-/*width: 250px;
-position: fixed;
-top: 0;
-left: 0;
-height: 100vh;
-/*z-index: 999;*/
 background: #222;
 color: #999;
 }
@@ -31,39 +28,4 @@ color: #999;
 input, h6 {
 padding-top:10px;
 }
-/*
-#centerPage {
-margin-left:150px;
-}
 
-#introContent {
-height:20%;
-}
-
-#mtnRecommendation {
-}
-
-displayRec {
-display:none;
-}
-
-.displayRec img {
-max-width:50%;
-max-height:200px;
-}
-
-.displayRec #mtnName {
-font-size:40px;
-margin-left: 40px;
-}
-
-.displayRec #mtnLocation {
-margin-left: 40px;
-}
-
-#map {
-height:50%;
-margin-right:10px;
-width:100%;
-display:overflow;
-}*/

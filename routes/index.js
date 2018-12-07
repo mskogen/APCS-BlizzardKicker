@@ -14,7 +14,11 @@ const bodyParser = require('body-parser'); // duplicate??
 
 // GET route for reading data
 router.get('/', function (req, res, next) {
-	res.render('index');
+  data={currentUser:null};
+  if(currentUser = req.session.userId){
+    data.currentUser = currentUser;
+  }
+	res.render('index', {data});
 });
 
 //javascript for register posting to /register page
@@ -23,6 +27,10 @@ router.get('/', function (req, res, next) {
 
 // GET route after registering
 router.get('/profile', function (req, res, next) {
+  data={currentUser:null};
+  if(currentUser = req.session.userId){
+    data.currentUser = currentUser;
+  }
   User.findById(req.session.userId)
     .exec(function (error, user) {
       if (error) {
@@ -41,6 +49,10 @@ router.get('/profile', function (req, res, next) {
 
 // GET for logout logout
 router.get('/cave/logout', function (req, res, next) {
+  data={currentUser:null};
+  if(currentUser = req.session.userId){
+    data.currentUser = currentUser;
+  }
   if (req.session) {
     // delete session object
     req.session.destroy(function (err) {

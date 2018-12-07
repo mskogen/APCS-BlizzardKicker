@@ -8,9 +8,13 @@ const User = require('../models/users');
 const router = express.Router();
 
 router.get('/', (req, res) => {
+	data={currentUser:null};
+	if(currentUser = req.session.userId){
+		data.currentUser = currentUser;
+	}
 	//calling the skiData Api
 	skiData("https://www.onthesnow.com/colorado/loveland/skireport.html").then((cond) => {
-		res.render('viewSkiData', {cond});
+		res.render('viewSkiData', {cond,data});
 	}).catch(() => {res.send('Sorry! Something went wrong.');})
 });
 module.exports = router;

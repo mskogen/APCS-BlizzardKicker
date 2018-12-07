@@ -23,6 +23,10 @@ const mongoose = require('mongoose'); // use mongo database
 const router = express.Router();
 
 router.get('/', function (req, res) { // upp data upon get request
+    data={currentUser:null};
+    if(currentUser = req.session.userId){
+        data.currentUser = currentUser;
+    }
     var use = require('../models/resorts.js') // route to mongoDB schema
     const DataCacheAPI = mongoose.model('Resorts'); // use DataCacheAPI schema
     var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest; // include API request pulls
@@ -68,7 +72,7 @@ router.get('/', function (req, res) { // upp data upon get request
     //     resort.save()
     //   }
     // }
-    res.render('status_API');
+    res.render('status_API', {data});
 });
 
 module.exports = router;

@@ -10,7 +10,11 @@ const bodyParser = require('body-parser');
 
 // GET route for reading data
 router.get('/', function (req, res, next) {
-	res.render('login', {error:req.query.err});
+  data={currentUser:null};
+  if(currentUser = req.session.userId){
+    data.currentUser = currentUser;
+  }
+	res.render('login', {error:req.query.err, data});
 });
 
 //POST for logining in
@@ -27,6 +31,11 @@ router.post('/', function (req, res, next){
       } else {
         req.session.userId = user.email;
         req.session.userName = user.username;
+        
+        data={currentUser:null};
+        if(currentUser = req.session.userId){
+          data.currentUser = currentUser;
+        }
         res.redirect('/cave');
       }
     });
