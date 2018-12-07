@@ -27,16 +27,11 @@ function matchedResort(name, condition, snowfall) {
 	}
 
 router.get('/', (req, res) => {
-	// Resort.updateResort("Loveland")
-	// .then((mess)=>{
-	// 	console.log(mess);
-	// })
-	// .catch((err)=>{
-	// 	console.log(err);
-	// })
+	data={currentUser:null};
 	currentUser = req.session.userId;
-	data.currentUser = currentUser;
-	console.log('from cave.js', currentUser);
+	if(currentUser){
+		data.currentUser = currentUser;
+	}
 	res.render('cave', {data});
 });
 

@@ -1,0 +1,76 @@
+doctype html
+block head
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    // link(rel='icon', href='../../../../favicon.ico')
+    title BlizzardKicker
+    // Bootstrap core CSS
+    link(href='/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+    // Custom styles for this template
+    link(href='/css/caveLayout.css', rel='stylesheet')
+
+block vars
+.container-fluid.wrapper
+  .row.justify-content-center.h-100
+    .col-2.h-100.pl-0.mr-2#sidebarRow
+      block sidebar
+
+    .col.m-2.h-100
+      header
+        .row.justify-content-center.m-1
+            nav.navbar.navbar-expand-lg.navbar-light
+              a.navbar-brand(href="/") Blizzardkicker
+              //Makes the menu collapsable
+              button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+                span.navbar-toggler-icon
+              .collapse.navbar-collapse#navbarSupportedContent
+                ul.navbar-nav.mr-auto
+                  //- li.nav-item
+                  //-   a.nav-link(href="/login") Login
+                  li.nav-item#login
+                    a.nav-link(href="/login") Login
+                  li.nav-item#register
+                    a.nav-link(href="/register") Register
+                  li.nav-item#prefs
+                    a.nav-link(href="/userPrefs") Preferences
+                  li.nav-item#cave
+                    a.nav-link(href="/cave") Cave
+                  li.nav-item#viewData
+                    a.nav-link(href="/viewData") View Data
+                  li.nav-item#viewSkiData
+                    a.nav-link(href="/viewSkiData") View Ski Data
+
+                if data
+                  if data.currentUser
+                    li.nav-item=  data.currentUser
+                    form(action="/cave/logout" method="get")
+                      button.btn.btn-warning(type="submit") Log Me Out
+                  script.
+                    document.getElementById('#{currentPage}').classList.add('active')
+                
+
+      .row
+        block content
+
+        
+//
+  Bootstrap core JavaScript
+  ==================================================
+// Placed at the end of the document so the pages load faster
+script( src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous")
+script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous")
+script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous")
+script.
+  window.jQuery || document.write('<script src="/jquery/dist/jquery-slim.min.js"><\\\/script>')
+  function openForm() {
+  document.getElementById("myForm").style.display = "block";
+  }
+  function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+  }
+
+
+block scripts

@@ -38,6 +38,11 @@ block vars
               a.nav-link(href="/viewData") View Data
             li.nav-item#viewSkiData
               a.nav-link(href="/viewSkiData") View Ski Data
+            if data
+              if data.currentUser
+                li.nav-item=  data.currentUser
+                form(action="/cave/logout" method="get")
+                  button.btn.btn-warning(type="submit") Log Me Out
             script.
               document.getElementById('#{currentPage}').classList.add('active')
             
