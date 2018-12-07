@@ -6,23 +6,23 @@ block vars
 block content
   .row.justify-content-center.loginRow
     .col-md-5.align-self-center
-      form.form-container.form-signin(action='login' method='POST')
+      form.form-container.form-signin(action='userPrefs' method='POST')
         .form-body
           h1.mb-3.font-weight-normal Change your prefs
           .dropdown
             button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
               | Select Passes
             .dropdown-menu(aria-labelledby='dropdownMenuButton')
-              button.dropdown-item(type='button' onClick="checkToggler(this, '#ikonCheck')") Ikon Pass
-              button.dropdown-item(type='button' onClick="checkToggler(this, '#epicCheck')") Epic Pass
+              button.dropdown-item(type='button' onClick="checkToggler(this, '#ikonCheck')" ) Ikon Pass
+              button.dropdown-item(type='button' onClick="checkToggler(this, '#epicCheck')" ) Epic Pass
           //- Hidden area for check boxes
           #hiddenform(hidden)
-            input#ikonCheck(type="checkbox" unchecked autocomplete="off")
-            input#epicCheck(type="checkbox" unchecked autocomplete="off")
-          label(for='inputPassword') Password
-          input#inputPassword.form-control.mb-3(name='password', type='password', placeholder='Password', required='')
+            input#ikonCheck(type="checkbox" value="Ikon" name="pass[]")
+            input#epicCheck(type="checkbox" value="Epic" name="pass[]")
+          // label(for='inputPassword') Password
+          // input#inputPassword.form-control.mb-3(name='password', type='password', placeholder='Password', required='')
           p#errorMessage= error
-          button.btn.btn-primary(type='submit') Login
+          button.btn.btn-primary(type='submit') Submit
 
 block scripts
   script.

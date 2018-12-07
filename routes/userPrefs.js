@@ -43,15 +43,23 @@ router.get('/', function(req, res){
 router.post('/', function (req, res, next){
 	if (req) {
 		currentUser = req.session.userId;
-			User.replaceOne(
-				{ email: currentUser },
-				{ pass_held: req.body.pass , //string
-				 	// preferred_snowType: req.body.snowConditionsRange, //string
-				 	// preferred_travelTime: req.body.trafficRange, //boolean
-				 	// preferred_temperature: req.body.weatherRange 
-				} //string
-			)
+		console.log(req.body)
+		User.updateOne({ email: currentUser },
+			{ pass: req.body.pass, //string
+			 	// preferred_snowType: req.body.snowConditionsRange, //string
+			 	// preferred_travelTime: req.body.trafficRange, //boolean
+			 	// preferred_temperature: req.body.weatherRange 
+			} //string
+			,{upsert:true}
+		).then(function(out){
+			console.log("Sucsess");
+			console.log(out);
+		}).catch(function(err){
+			console.log("Error");
+			console.log(err);
+		});
     };
+    res.redirect('/userPrefs');
 });
 
 module.exports = router;
