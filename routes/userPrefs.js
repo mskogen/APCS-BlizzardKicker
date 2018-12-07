@@ -40,6 +40,7 @@ const session = require('express-session');
 // 	res.render('cave');
 // });
 //POST for updating
+
 // router.post('/', function (req, res, next){
 // 	if (req) {
 // 		currentUser = req.session.userId;
@@ -69,7 +70,28 @@ router.put('/cave/cavePrefs', (req, res) => {
     	if (err) return res.send(err)
     	res.send(result)
     }) 
-});
+
+// router.post('/', function (req, res, next){
+// 	if (req) {
+// 		currentUser = req.session.userId;
+// 		console.log(req.body)
+// 		User.updateOne({ email: currentUser },
+// 			{ pass: req.body.pass, //string
+// 			 	// preferred_snowType: req.body.snowConditionsRange, //string
+// 			 	// preferred_travelTime: req.body.trafficRange, //boolean
+// 			 	// preferred_temperature: req.body.weatherRange 
+// 			} //string
+// 			,{upsert:true}
+// 		).then(function(out){
+// 			console.log("Sucsess");
+// 			console.log(out);
+// 		}).catch(function(err){
+// 			console.log("Error");
+// 			console.log(err);
+// 		});
+//     };
+//     res.redirect('/userPrefs');
+// });
 
 // PUT to update prefrences
 // router.put('/cave/cavePrefs', function(req, res, next){

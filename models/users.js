@@ -24,7 +24,7 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  resort_id_list: { // keep as list for now - can always return string name
+  resort_names: { // keep as list for now - can always return string name
     type: [String],
   },
   skill_level: {
@@ -39,8 +39,8 @@ var UserSchema = new mongoose.Schema({
   preferred_travelTime: {
     type: String, // string, is travel time an issue/desire?
   },
-  pass_held: {
-    type: String,
+  pass: {
+    type: [String],
   }
 });
 
