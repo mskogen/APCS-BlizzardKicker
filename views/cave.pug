@@ -64,73 +64,19 @@ block content
       .col
         h3 According to our calculations, you will receive maximum shred potential at:
         ul.skiRecs
-          li.rec-item
-            span
-              p.m-auto Name: 
-              p.m-auto Snowfall 
-              p.m-auto Runs open 
-              p.ml-auto Pass
-    // #mtnRecommendation.row
-    //     .col-3.disCol
-    //       #copperMountain.displayRe
-    //         img(src='https://media.glassdoor.com/sqll/345206/copper-mountain-squarelogo-1481645745154.png', alt='Copper Mountain')
-    //         span#mtnName Copper Mountain
-    //         span#mtnLocation Frisco, CO
-    //         span#mtnTemperature
-    //         span#mtnSkyStatus
-    //         span#mtnJourneyTime
-    //         span#mtnCoordinates(style='display: none;') 39.503467, -106.142187
-    //     #winterPark.displayRec.col-3
-    //       img(src='https://www.skyhinews.com/wp-content/uploads/2018/09/winter-park-resort-rentals-260-738.jpg', alt='Winter Park')
-    //       span#mtnName Winter Park
-    //       span#mtnLocation Winter Park, CO
-    //       span#mtnTemperature
-    //       span#mtnSkyStatus
-    //       span#mtnJourneyTime
-    //       span#mtnCoordinates(style='display: none;') 39.888026, -105.762063
-    //     #eldoraMountain.displayRec.col-3
-    //       img(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrqO-pzZ3Sy2cpR9IURDz_ZvP5bYCzPZi2fN5KE4tu9HqRNZeq', alt='Eldora Mountain')
-    //       span#mtnName Eldora Mountain Resort
-    //       span#mtnLocation Nederland, CO
-    //       span#mtnTemperature
-    //       span#mtnSkyStatus
-    //       span#mtnJourneyTime
-    //       span#mtnCoordinates(style='display: none;') 39.937904, -105.583854
-    //     #keystoneResort.displayRec.col-3
-    //       img(src='https://slopeskishop.com/wp-content/uploads/2018/10/keystone-logo.png', alt='Keystone Resort')
-    //       span#mtnName Keystone Resort
-    //       span#mtnLocation Keystone, CO
-    //       span#mtnTemperature
-    //       span#mtnSkyStatus
-    //       span#mtnJourneyTime
-    //       span#mtnCoordinates(style='display: none;') 39.605381, -105.954722
-    //     #arapahoeBasin.displayRec.col-3
-    //       img(src='https://artbymike.files.wordpress.com/2010/09/abasin-logo-under-construction.jpg', alt='Keystone Resort')
-    //       span#mtnName Arapahoe Basin
-    //       span#mtnLocation Keystone, CO
-    //       span#mtnTemperature
-    //       span#mtnSkyStatus
-    //       span#mtnJourneyTime
-    //       span#mtnCoordinates(style='display: none;') 39.642733, -105.872157
-    //     #breckenridgeResort.displayRec.col-3
-    //       img(src='https://everythingsummit.com/sites/default/files/styles/medium/public/business/968/logo/breck_logo_9-14.jpg?itok=aaXdM_MC')
-    //       span#mtnName Breckenridge Resort
-    //       span#mtnLocation Breckenridge, CO
-    //       span#mtnTemperature
-    //       span#mtnSkyStatus
-    //       span#mtnJourneyTime
-    //       span#mtnCoordinates(style='display: none;') 39.482793, -106.065168
-    #map
-    // Google Maps API scripts
+          //- li.rec-item
+          //-   span
+          //-     p.m-auto Name: 
+          //-     p.m-auto Snowfall 
+          //-     p.m-auto Runs open 
+          //-     p.ml-auto Pass
 block scripts
   
   script.
     $(function(){
       $('#algButton').click(()=>{
-        console.log("Pressed");
         $.getJSON("/cave/alg", function(data){
           data.forEach(function(resort){
-
             $( ".skiRecs" ).append('<li class="rec-item"><span><p>'+resort.resort_name+': </p><p>'+resort.snowfall.today +'" </p><p>'+resort.runs.open +' runs of '+resort.runs.total+' open </p><p>'+resort.pass[0]+'</p></span></li>');
           });
         });
