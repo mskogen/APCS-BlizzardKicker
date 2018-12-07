@@ -112,7 +112,7 @@ UserSchema.statics.auth = function(email, password, cb){
 //load resorts into users
 UserSchema.methods.loadResorts = function(){
   this.resorts=[];
-  var ikonPass = ['Loveland','Steamboat','Eldora Mountain Resort','Copper Mountain Resort','Aspen / Snowmass','Winter Park Resort']; 
+  var ikonPass = ['Loveland','Eldora Mountain Resort','Copper Mountain Resort','Aspen / Snowmass','Winter Park Resort']; 
   var epicPass = ['Arapahoe Basin Ski Area','Vail','Breckenridge','Telluride','Arapahoe Basin Ski Area','Crested Butte Mountain Resort','Beaver Creek','Keystone']; 
   if(this.pass){  
       this.pass.forEach((pass)=>{

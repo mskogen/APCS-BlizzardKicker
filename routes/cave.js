@@ -45,7 +45,7 @@ router.get('/alg', (req, res) => {
 	return User.findOne({email: currentUser}).exec()
 	.then((user)=>{
 		user.resorts.forEach((resort)=>{
-			Resort.updateResort(resort)
+			Resort.updateResort(resort,0.1)
 			.then((mess)=>{
 				console.log(mess);
 			});

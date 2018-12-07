@@ -43,9 +43,9 @@ const resortInfo = new mongoose.Schema({
 
 resortInfo.statics.loadStartData = function(){
   Res.countDocuments({}, function(err, count){
-    var skiInfo=[
-      {resort_name: "Steamboat", url: "/colorado/steamboat/", pass: ["Ikon"]},
+    var skiInfo=[ //steamboat scraping is not working
       {resort_name: "Eldora Mountain Resort", url: "/colorado/eldora-mountain-resort/", pass: ["Ikon"]},
+      //{resort_name: "Steamboat", url: "/colorado/steamboat/", pass: ["Ikon"]},
       {resort_name: "Copper Mountain Resort", url: "/colorado/copper-mountain-resort/", pass: ["Ikon"]},
       {resort_name: "Aspen / Snowmass", url: "/colorado/aspen-snowmass/", pass: ["Ikon"]},
       {resort_name: "Winter Park Resort", url: "/colorado/winter-park-resort/", pass: ["Ikon"]},
@@ -89,6 +89,8 @@ resortInfo.methods.pullSkiInfo = function(){
     }
     //console.log(skiData);
     return skiData;
+  }).catch((err)=>{
+    return err;
   });
 }
 
@@ -121,11 +123,11 @@ resortInfo.statics.updateResort = function(resort_name, time){
     }
   })
   //this is thening pullSkiInfo()
-  .then(function(skiData,err){
+  .then(function(skiData){
     //update using skiData
     return Res.updateOne({resort_name: skiData.resort_name}, skiData).exec()
   })
-  .then(function(dat,err){
+  .then(function(dat){
     var message = resort_name + " updated";
     return message;
   })
