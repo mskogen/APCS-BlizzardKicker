@@ -66,9 +66,10 @@ block content
         ul.skiRecs
           li.rec-item
             span
-              p Name: 
-              p Snowfall
-          li test
+              p.m-auto Name: 
+              p.m-auto Snowfall 
+              p.m-auto Runs open 
+              p.ml-auto Pass
     // #mtnRecommendation.row
     //     .col-3.disCol
     //       #copperMountain.displayRe
@@ -129,7 +130,8 @@ block scripts
         console.log("Pressed");
         $.getJSON("/cave/alg", function(data){
           data.forEach(function(resort){
-            $( ".skiRecs" ).append('<li class="rec-item">'+resort.resort_name+'</li>');
+
+            $( ".skiRecs" ).append('<li class="rec-item"><span><p>'+resort.resort_name+': </p><p>'+resort.snowfall.today +'" </p><p>'+resort.runs.open +' runs of '+resort.runs.total+' open </p><p>'+resort.pass[0]+'</p></span></li>');
           });
         });
       });
