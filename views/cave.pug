@@ -35,7 +35,7 @@ block content
       nav#sidebar
         .sidebar-header
           h3 Customize Your Stoke
-        form(action='/cave/cavePrefs' method="put")
+        form(action='/cave/cavePrefs' method="POST")
           label Pass Held:
           select.form-control(name='pass_held')
             option None

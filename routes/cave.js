@@ -23,13 +23,13 @@ function matchedResort(name, condition, snowfall) {
 	}
 
 router.get('/', (req, res) => {
-	Resort.updateResort("Loveland")
-	.then((mess)=>{
-		console.log(mess);
-	})
-	.catch((err)=>{
-		console.log(err);
-	})
+	// Resort.updateResort("Loveland")
+	// .then((mess)=>{
+	// 	console.log(mess);
+	// })
+	// .catch((err)=>{
+	// 	console.log(err);
+	// })
 	currentUser = req.session.userId;
 	data.currentUser = currentUser;
 	console.log('from cave.js', currentUser);
@@ -76,40 +76,73 @@ router.post('/alg', (req, res) => {
 */
 
 
+//
+// /* Prints to console but not to pug! */
+// router.post('/alg', (req, res) => {
+// 	currentUser = req.session.userId;
+// 	data.currentUser = currentUser
+// 	var userResorts = [];
+// 		User.findOne({email: currentUser}).exec(function (err, user) {
+// 		// console.log(user.resort_id_list.length);
+// 			for (var i=0; i<user.resort_id_list.length; i++) {
+// 				var resortObject = {name:"", condition:"", snowfall: 0};
+// 				resortObject.name = user.resort_id_list[i];
+// 				// userResorts.push(resortObject.name);
+// 				Resort.findOne({resort_name: resortObject.name}).exec(function(err,resort) {
+// 					if (resort.resort_name == resortObject.name) {
+// 						resortObject.condition = resort.snow_condition;
+// 						resortObject.snowfall = resort.newsnow_in;
+// 						userResorts.push(resortObject);
+// 					}
+// 				});
+// 			}
+// 		});
+// 		setTimeout(function(){
+// 			// return userResorts object with highest resortObject.newsnow_in;
+// 			userResorts.sort(function(a, b){return b.snowfall - a.snowfall})
+// 			console.log(userResorts);
+// 			var bestChoice = userResorts[0].name;
+// 			console.log('from algo', bestChoice);
+// 			data.bestChoice = bestChoice;
+// 			return res.render('/cave', {data});
+// 		},1000);
+//  });
 
-/* Prints to console but not to pug! */
-router.post('/alg', (req, res) => {
-	currentUser = req.session.userId;
-	data.currentUser = currentUser
-	var userResorts = [];
-		User.findOne({email: currentUser}).exec(function (err, user) {
-		// console.log(user.resort_id_list.length);
-			for (var i=0; i<user.resort_id_list.length; i++) {
-				var resortObject = {name:"", condition:"", snowfall: 0};
-				resortObject.name = user.resort_id_list[i];
-				// userResorts.push(resortObject.name);
-				Resort.findOne({resort_name: resortObject.name}).exec(function(err,resort) {
-					if (resort.resort_name == resortObject.name) {
-						resortObject.condition = resort.snow_condition;
-						resortObject.snowfall = resort.newsnow_in;
-						userResorts.push(resortObject);
-					}
-				});
-			}
-		});
-		setTimeout(function(){
-			// return userResorts object with highest resortObject.newsnow_in;
-			userResorts.sort(function(a, b){return b.snowfall - a.snowfall})
-			console.log(userResorts);
-			var bestChoice = userResorts[0].name;
-			console.log('from algo', bestChoice);
-			data.bestChoice = bestChoice;
-			return res.render('/cave', {data});
-		},1000);
- });
+ // POST to update prefrences
+ router.post('/cavePrefs', (req, res) => {
+
+	currentUser = { email: req.session.userId};
+	updatedData = { $set: {	preferred_snowType: req.body.preferred_snowType} };
+	console.log('in function', updatedData);
+
+	User.updateOne(currentUser, updatedData, { upsert: true }, function(err, result) {
+	if (err) {
+		return err;
+	} else {
+		console.log("Data Updated");
+	}
+	});
+});
 
 
-// GET for logout logout
+// router.post('/cavePrefs', (req, res) => {
+	 // User.updateOne(
+ 		//  { email: currentUser},
+ 		//  { $set: {	preferred_snowType: req.body.preferred_snowType, //string
+ 		// 	 // preferred_travelTime: localPrefTravel, //boolean
+ 		// 	 preferred_temperature: req.body.preferred_temperature} },
+ 		//  { upsert: true }
+ 	// ).then(function (err, result) {
+  //      if (err) {
+  //      console.log('an error occured', err);
+  //    } else {
+  //     console.log("Data Updated");
+  //     return res.render('cave');
+  // 	}
+	// });
+// });
+
+// GET for logout
 router.get('/cave/logout', function (req, res, next) {
 	console.log('logging out current user');
 	if (req.session) {

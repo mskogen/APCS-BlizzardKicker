@@ -37,7 +37,7 @@ var UserSchema = new mongoose.Schema({
     type: String, // string (whatever options there are from the api)
   },
   preferred_travelTime: {
-    type: String, // string, is travel time an issue/desire?
+    type: Boolean, // string, is travel time an issue/desire?
   },
   pass: {
     type: [String],
@@ -92,7 +92,7 @@ UserSchema.statics.auth = function(email, password, cb){
 
     //Authenticate password if the user exits
     user.comparePassword(password, function(err, isMatch){
-      
+
       //toss an error
       if (err) throw err;
       //if there's no match they entered the wrong password

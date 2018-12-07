@@ -3,34 +3,10 @@
 
 // Takes as input - currentl user prefs - time of last pull from API - use mongoDB dataCache
 
-// db.DataCacheAPI.find(query, projection)
-
-// var record = db.data.findOne();
-// var localNow = new Date( record.date.getTime() -  ( record.offset * 60000 ) );
-
-
-// MongoClient mongo = new MongoClient( "localhost" , 27017 );
-// DB db = mongo.getDB(dbName);
-// DBCollection collection = db.getCollection(collectionName);
-//
-// BasicDBObject whereQuery = new BasicDBObject();
-// whereQuery.put("movie_id", id);
-//
-// DBObject document = collection.findOne(whereQuery);
-// BasicDBList list = (BasicDBList) document.get("genre");
-//
-// List<String> res = new ArrayList<String>();
-//
-// for(Object el: list) {
-//      res.add((String) el);
-// }
-
-// Fill in areas once dataypes from API are concrete -Kaimar
-
 const express = require('express');
 const mongoose = require('mongoose'); //mongodb databases
 const router = express.Router();
-const User = require('../models/users');
+const Users = require('../models/users');
 const url = require('url');
 const { body, validationResult } = require('express-validator/check'); //checks inputs for validity
 const bodyParser = require('body-parser');
@@ -39,8 +15,9 @@ const session = require('express-session');
 // router.get('/', function(req, res){
 // 	res.render('cave');
 // });
-//POST for updating
 
+
+//POST for updating
 // router.post('/', function (req, res, next){
 // 	if (req) {
 // 		currentUser = req.session.userId;
@@ -55,21 +32,21 @@ const session = require('express-session');
 // });
 
 // PUT request to update user prefrences
-router.put('/cave/cavePrefs', (req, res) => {
-	currentUser = req.session.userId;
-	data.currentUser = currentUser;
-	console.log('getting user preferences for ', currentUser);
-    findOneAndUpdate({name: currentUser}, {
-    	$set: {
-	    	preferred_temperature: req.body.preferred_temperature,
-	  		preferred_snowType: req.body.preferred_snowType,
-	  		preferred_travelTime: req.body.preferred_travelTime,
-	  		pass_held: req.body.pass_held
-	    }
-    }, (err,result) => {
-    	if (err) return res.send(err)
-    	res.send(result)
-    }) 
+// router.put('/cave/cavePrefs', (req, res) => {
+// 	currentUser = req.session.userId;
+// 	data.currentUser = currentUser;
+// 	console.log('getting user preferences for ', currentUser);
+//     findOneAndUpdate({name: currentUser}, {
+//     	$set: {
+// 	    	preferred_temperature: req.body.preferred_temperature,
+// 	  		preferred_snowType: req.body.preferred_snowType,
+// 	  		preferred_travelTime: req.body.preferred_travelTime,
+// 	  		pass_held: req.body.pass_held
+// 	    }
+//     }, (err,result) => {
+//     	if (err) return res.send(err)
+//     	res.send(result)
+//     })
 
 // router.post('/', function (req, res, next){
 // 	if (req) {
@@ -79,7 +56,7 @@ router.put('/cave/cavePrefs', (req, res) => {
 // 			{ pass: req.body.pass, //string
 // 			 	// preferred_snowType: req.body.snowConditionsRange, //string
 // 			 	// preferred_travelTime: req.body.trafficRange, //boolean
-// 			 	// preferred_temperature: req.body.weatherRange 
+// 			 	// preferred_temperature: req.body.weatherRange
 // 			} //string
 // 			,{upsert:true}
 // 		).then(function(out){
@@ -94,21 +71,28 @@ router.put('/cave/cavePrefs', (req, res) => {
 // });
 
 // PUT to update prefrences
-// router.put('/cave/cavePrefs', function(req, res, next){
-// 	User.findById(req.session.userId)
-//     .exec(function (error, user) {
-//       if (error) {
-//         return next(error);
-//       } else {
-//         if (user === null) {
-//           var err = new Error('Not authorized! Go back!');
-//           err.status = 400;
-//           return next(err);
-//         } else {
-//           return res.send('<h1>Name: </h1>' + user.username + '<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/logout">Logout</a>')
-//         }
-//       }
-//     });
+router.put('/cave/cavePrefs', function(req, res, next){
+	currentUser = req.session.userId;
+	var localPrefTravel = true;
+	if (rec.body.preferred_travelTime == 'No Rush'){
+		localPrefTravel = false;
+	}
+
+	try {
+		console.log('here');
+	   Users.updateOne(
+	      { email: currentUser},
+	      { $set: {	preferred_snowType: req.body.preferred_snowType, //string
+					preferred_travelTime: localPrefTravel, //boolean
+					preferred_temperature: req.body.preferred_temperature} },
+	      { upsert: true }
+	   );
+	} catch (error) {
+	   consle.log(error);
+	}
+});
+
+
 
 
 // 	// User.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){
