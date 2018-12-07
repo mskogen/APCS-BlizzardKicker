@@ -82,12 +82,9 @@ block content
           form(action="/cave/logout" method="get")
             button.btn.btn-warning(type="submit") Log Me Out
           br
-          form(action="/cave/alg" method="get")
+          form(action="/cave/alg" method="post")
             button.btn.btn-warning(type="submit") My Preferences Are Up To Date.. Show me the Gnar!
           br
-          //- form#algorithm(action='cave/alg', method='POST')
-          //-   button(type="submit" id="algorithm" name="algorithm") My Preferences Are Up To Date.. Show me the Gnar!
-          //- div#response
           table
             th According to our calculations, you will receive maximum shred potential at:
                 td= data.bestChoice
