@@ -25,6 +25,9 @@
     });
   }
 
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-QwVCYVzGxcwYP1MFAIBEG5Jav0hDNa8&callback=initMap"
+      async defer></script>
+//This call is what's supposed to make the functions above work. I'm struggling right now though, big time
 
 //currently trying to figure out why this doesn't work for directions:
 /* 
