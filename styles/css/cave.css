@@ -4,10 +4,6 @@ label {
 padding-top:5px;
 }
 
-#sidebarRow{
-background: #222;
-}
-
 #sidebarRow .collapsing {
   position: relative;
   height: 0;
@@ -18,11 +14,6 @@ background: #222;
   transition-duration: 0.35s;
   -webkit-transition-timing-function: ease;
   transition-timing-function: ease;
-}
-
-#sidebar {
-background: #222;
-color: #999;
 }
 
 input, h6 {
@@ -40,3 +31,23 @@ padding-top:10px;
 	border: 1px solid black;
 }
 
+#introContent{
+  text-align: center;
+}
+#introContent button{
+  margin:5px;
+}
+
+.skiRecs{
+  list-style-type: none;
+}
+
+.rec-item{
+  background: #bcd2e5;
+  font-size: 200%;
+}
+.rec-item{
+}
+.rec-item p{
+  display: inline;
+}

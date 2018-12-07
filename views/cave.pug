@@ -53,96 +53,101 @@ block content
   // actual main page
   .col
     #introContent.row
-      .col
+      .col.mt-2.mb-5
+        h1 Welcome to The Cave!
         button#sidebarCollapse.btn.btn-info(type='button' data-toggle="collapse" data-target="#sidebarRow" aria-expanded="false" aria-controls="collapseExample")
           i.fas.fa-align-left
           span Customize your stoke 
-        .clearfix
-        br
-        form(action="/cave/alg" method="get")
-          button.btn.btn-warning(type="submit") My Preferences Are Up To Date.. Show me the Gnar!
-        br
-        table
-          th According to our calculations, you will receive maximum shred potential at:
-              td= data.bestChoice
-        br
-        br
-    #mtnRecommendation.row
-        .col-3.disCol
-          #copperMountain.displayRe
-            img(src='https://media.glassdoor.com/sqll/345206/copper-mountain-squarelogo-1481645745154.png', alt='Copper Mountain')
-            span#mtnName Copper Mountain
-            span#mtnLocation Frisco, CO
-            span#mtnTemperature
-            span#mtnSkyStatus
-            span#mtnJourneyTime
-            span#mtnCoordinates(style='display: none;') 39.503467, -106.142187
-        #winterPark.displayRec.col-3
-          img(src='https://www.skyhinews.com/wp-content/uploads/2018/09/winter-park-resort-rentals-260-738.jpg', alt='Winter Park')
-          span#mtnName Winter Park
-          span#mtnLocation Winter Park, CO
-          span#mtnTemperature
-          span#mtnSkyStatus
-          span#mtnJourneyTime
-          span#mtnCoordinates(style='display: none;') 39.888026, -105.762063
-        #eldoraMountain.displayRec.col-3
-          img(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrqO-pzZ3Sy2cpR9IURDz_ZvP5bYCzPZi2fN5KE4tu9HqRNZeq', alt='Eldora Mountain')
-          span#mtnName Eldora Mountain Resort
-          span#mtnLocation Nederland, CO
-          span#mtnTemperature
-          span#mtnSkyStatus
-          span#mtnJourneyTime
-          span#mtnCoordinates(style='display: none;') 39.937904, -105.583854
-        #keystoneResort.displayRec.col-3
-          img(src='https://slopeskishop.com/wp-content/uploads/2018/10/keystone-logo.png', alt='Keystone Resort')
-          span#mtnName Keystone Resort
-          span#mtnLocation Keystone, CO
-          span#mtnTemperature
-          span#mtnSkyStatus
-          span#mtnJourneyTime
-          span#mtnCoordinates(style='display: none;') 39.605381, -105.954722
-        #arapahoeBasin.displayRec.col-3
-          img(src='https://artbymike.files.wordpress.com/2010/09/abasin-logo-under-construction.jpg', alt='Keystone Resort')
-          span#mtnName Arapahoe Basin
-          span#mtnLocation Keystone, CO
-          span#mtnTemperature
-          span#mtnSkyStatus
-          span#mtnJourneyTime
-          span#mtnCoordinates(style='display: none;') 39.642733, -105.872157
-        #breckenridgeResort.displayRec.col-3
-          img(src='https://everythingsummit.com/sites/default/files/styles/medium/public/business/968/logo/breck_logo_9-14.jpg?itok=aaXdM_MC')
-          span#mtnName Breckenridge Resort
-          span#mtnLocation Breckenridge, CO
-          span#mtnTemperature
-          span#mtnSkyStatus
-          span#mtnJourneyTime
-          span#mtnCoordinates(style='display: none;') 39.482793, -106.065168
+        //form(action="/cave/alg" method="get")
+        button#algButton.btn.btn-warning(type="button") My Preferences Are Up To Date.. Show me the Gnar!
+    .row#recommendations
+      .col
+        h3 According to our calculations, you will receive maximum shred potential at:
+        ul.skiRecs
+          li.rec-item
+            span
+              p Name: 
+              p Snowfall
+          li test
+    // #mtnRecommendation.row
+    //     .col-3.disCol
+    //       #copperMountain.displayRe
+    //         img(src='https://media.glassdoor.com/sqll/345206/copper-mountain-squarelogo-1481645745154.png', alt='Copper Mountain')
+    //         span#mtnName Copper Mountain
+    //         span#mtnLocation Frisco, CO
+    //         span#mtnTemperature
+    //         span#mtnSkyStatus
+    //         span#mtnJourneyTime
+    //         span#mtnCoordinates(style='display: none;') 39.503467, -106.142187
+    //     #winterPark.displayRec.col-3
+    //       img(src='https://www.skyhinews.com/wp-content/uploads/2018/09/winter-park-resort-rentals-260-738.jpg', alt='Winter Park')
+    //       span#mtnName Winter Park
+    //       span#mtnLocation Winter Park, CO
+    //       span#mtnTemperature
+    //       span#mtnSkyStatus
+    //       span#mtnJourneyTime
+    //       span#mtnCoordinates(style='display: none;') 39.888026, -105.762063
+    //     #eldoraMountain.displayRec.col-3
+    //       img(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrqO-pzZ3Sy2cpR9IURDz_ZvP5bYCzPZi2fN5KE4tu9HqRNZeq', alt='Eldora Mountain')
+    //       span#mtnName Eldora Mountain Resort
+    //       span#mtnLocation Nederland, CO
+    //       span#mtnTemperature
+    //       span#mtnSkyStatus
+    //       span#mtnJourneyTime
+    //       span#mtnCoordinates(style='display: none;') 39.937904, -105.583854
+    //     #keystoneResort.displayRec.col-3
+    //       img(src='https://slopeskishop.com/wp-content/uploads/2018/10/keystone-logo.png', alt='Keystone Resort')
+    //       span#mtnName Keystone Resort
+    //       span#mtnLocation Keystone, CO
+    //       span#mtnTemperature
+    //       span#mtnSkyStatus
+    //       span#mtnJourneyTime
+    //       span#mtnCoordinates(style='display: none;') 39.605381, -105.954722
+    //     #arapahoeBasin.displayRec.col-3
+    //       img(src='https://artbymike.files.wordpress.com/2010/09/abasin-logo-under-construction.jpg', alt='Keystone Resort')
+    //       span#mtnName Arapahoe Basin
+    //       span#mtnLocation Keystone, CO
+    //       span#mtnTemperature
+    //       span#mtnSkyStatus
+    //       span#mtnJourneyTime
+    //       span#mtnCoordinates(style='display: none;') 39.642733, -105.872157
+    //     #breckenridgeResort.displayRec.col-3
+    //       img(src='https://everythingsummit.com/sites/default/files/styles/medium/public/business/968/logo/breck_logo_9-14.jpg?itok=aaXdM_MC')
+    //       span#mtnName Breckenridge Resort
+    //       span#mtnLocation Breckenridge, CO
+    //       span#mtnTemperature
+    //       span#mtnSkyStatus
+    //       span#mtnJourneyTime
+    //       span#mtnCoordinates(style='display: none;') 39.482793, -106.065168
     #map
     // Google Maps API scripts
 block scripts
+  
   script.
-    /*
     $(function(){
-      $('#sidebarCollapse').click(()=>{
-        $('#sidebarRow').toggleClass('d-none');
-      })
-    });
-    */
-    var map;
-    function initMap() {
-    // For now, this is the location of Copper mountain
-    //We will need to figure out how to pull the recommended lat/long from Mongo
-    //and put it in here. PS slash comments are sick, shut up
-    var mtRecommend = {lat: 39.502, lng: -106.151};
-    // The map, centered at our recommendation (CURRENTLY JUST COPPER, #IKONFTW)
-    var map = new google.maps.Map(
-    document.getElementById('map'), {zoom: 8, center: mtRecommend});
-    // The marker, positioned at Uluru
-    var marker = new google.maps.Marker({position: mtRecommend, map: map});
-    }
-  script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC-QwVCYVzGxcwYP1MFAIBEG5Jav0hDNa8&callback=initMap', async='', defer='')
-  // jQuery Custom Scroller CDN
-  script(src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js')
-    // Google Maps jQuery Library and meta tags
-  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
-  // script that is supposed to expand/collapse the sidebar
+      $('#algButton').click(()=>{
+        console.log("Pressed");
+        $.getJSON("/cave/alg", function(data){
+          data.forEach(function(resort){
+            $( ".skiRecs" ).append('<li class="rec-item">'+resort.resort_name+'</li>');
+          });
+        });
+      });
+      // var map;
+      // function initMap() {
+      // // For now, this is the location of Copper mountain
+      // //We will need to figure out how to pull the recommended lat/long from Mongo
+      // //and put it in here. PS slash comments are sick, shut up
+      // var mtRecommend = {lat: 39.502, lng: -106.151};
+      // // The map, centered at our recommendation (CURRENTLY JUST COPPER, #IKONFTW)
+      // var map = new google.maps.Map(
+      // document.getElementById('map'), {zoom: 8, center: mtRecommend});
+      // // The marker, positioned at Uluru
+      // var marker = new google.maps.Marker({position: mtRecommend, map: map});
+      });
+  //- script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC-QwVCYVzGxcwYP1MFAIBEG5Jav0hDNa8&callback=initMap', async='', defer='')
+  //- // jQuery Custom Scroller CDN
+  //- script(src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js')
+  //-   // Google Maps jQuery Library and meta tags
+  //- script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+  //- // script that is supposed to expand/collapse the sidebar

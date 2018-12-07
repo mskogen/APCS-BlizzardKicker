@@ -17,12 +17,12 @@ var data = {
 	currentUser: 'currentUser',
 	bestChoice:'Make sure you have saved some resorts to your profile!'};
 
-// look this up from resorts.js
-var ikonPass = ['Loveland','Steamboat','Eldora Mountain Resort','Copper Mountain Resort',
-				'Aspen / Snowmass','Winter Park Resort']; 
-// look this up from resorts.js
-var epicPass = ['Arapahoe Basin Ski Area','Vail','Breckenridge','Telluride','Arapahoe Basin Ski Area',
-				'Crested Butte Mountain Resort','Beaver Creek','Keystone']; 
+// // look this up from resorts.js
+// var ikonPass = ['Loveland','Steamboat','Eldora Mountain Resort','Copper Mountain Resort',
+// 				'Aspen / Snowmass','Winter Park Resort']; 
+// // look this up from resorts.js
+// var epicPass = ['Arapahoe Basin Ski Area','Vail','Breckenridge','Telluride','Arapahoe Basin Ski Area',
+// 				'Crested Butte Mountain Resort','Beaver Creek','Keystone']; 
 
 function matchedResort(name, condition, snowfall) {
     this.name = name;
@@ -46,13 +46,21 @@ router.get('/alg', (req, res) => {
 	.then((user)=>{
 		//update all resorts user needs to check out
 		var resorts=Promise.all(user.resorts.map((resorts)=>{
-			return Resort.updateResort(resorts,.1);
+			return Resort.updateResort(resorts);
 		}));
 		//return user data and resort report
 		return Promise.all([user,resorts]);
 	})
-	.then((outs)=>{
-		console.log(outs);
+	.then((data)=>{
+		var user=data[0];
+		var resortList=Promise.all(user.resorts.map((resorts)=>{
+			return Resort.findOne({resort_name: resorts}).exec();
+		}));
+		return Promise.all([user,resortList]);
+	})
+	.then((data)=>{
+		console.log(data[1][0].resort_name);
+		res.json(data[1]);
 	})
 	// .then(res.redirect('/cave'));
 	// .then(function(user){
