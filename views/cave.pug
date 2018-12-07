@@ -35,15 +35,14 @@ block content
       nav#sidebar
         .sidebar-header
           h3 Customize Your Stoke
-        .form-group
-          label(for='passHeld') Pass Held:
-          select#passHeld.form-control(name='passHeld')
+        form(action='/cave/cavePrefs' method="put")
+          label Pass Held:
+          select.form-control(name='pass_held')
             option None
             option Ikon Pass
             option Epic Local Pass
-        .form-group
-          label(for='snowConditionsRange') Snow Surface Type:
-          select#snowConditionsRange.form-control(name='snowConditionsRange')
+          label Snow Surface Type:
+          select.form-control(name='preferred_snowType')
             option Powder
             option Packed Powder
             option Machine Made
@@ -53,17 +52,17 @@ block content
             option Corn
             option Variable
             option Wet
-        .form-group
-          label(for='trafficRange') Arrival Time:
-          select#trafficRange.form-control(name='trafficRange')
+          label Arrival Time:
+          select.form-control(name='preferred_travelTime')
             option ASAP
             option No Rush
-        .form-group
-          label(for='weatherRange') Preferred Weather:
-          select#weatherRange.form-control(name='weatherRange')
+          label Preferred Weather:
+          select.form-control(name='preferred_temperature')
             option No Preference
             option Cold
             option Hot
+          br
+          button.btn.btn-warning(type="submit") Save
       // Page Content
       #content
         nav.navbar.navbar-expand-lg.navbar-light.bg-light

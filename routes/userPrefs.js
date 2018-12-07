@@ -36,21 +36,64 @@ const { body, validationResult } = require('express-validator/check'); //checks 
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
-router.get('/', function(req, res){
-	res.render('prefs');
-});
+// router.get('/', function(req, res){
+// 	res.render('cave');
+// });
 //POST for updating
-router.post('/', function (req, res, next){
-	if (req) {
-		currentUser = req.session.userId;
-			User.replaceOne(
-				 { email: currentUser },
-				 { pass_held: req.body.passHeld , //string
-				 	preferred_snowType: req.body.snowConditionsRange, //string
-				 	preferred_travelTime: req.body.trafficRange, //boolean
-				 	preferred_temperature: req.body.weatherRange } //string
-			)
-    };
+// router.post('/', function (req, res, next){
+// 	if (req) {
+// 		currentUser = req.session.userId;
+// 			User.replaceOne(
+// 				 { email: currentUser },
+// 				 { pass_held: req.body.passHeld , //string
+// 				 	preferred_snowType: req.body.snowConditionsRange, //string
+// 				 	preferred_travelTime: req.body.trafficRange, //boolean
+// 				 	preferred_temperature: req.body.weatherRange } //string
+// 			)
+//     };
+// });
+
+// PUT request to update user prefrences
+router.put('/cave/cavePrefs', (req, res) => {
+	currentUser = req.session.userId;
+	data.currentUser = currentUser;
+	console.log('getting user preferences for ', currentUser);
+    findOneAndUpdate({name: currentUser}, {
+    	$set: {
+	    	preferred_temperature: req.body.preferred_temperature,
+	  		preferred_snowType: req.body.preferred_snowType,
+	  		preferred_travelTime: req.body.preferred_travelTime,
+	  		pass_held: req.body.pass_held
+	    }
+    }, (err,result) => {
+    	if (err) return res.send(err)
+    	res.send(result)
+    }) 
 });
+
+// PUT to update prefrences
+// router.put('/cave/cavePrefs', function(req, res, next){
+// 	User.findById(req.session.userId)
+//     .exec(function (error, user) {
+//       if (error) {
+//         return next(error);
+//       } else {
+//         if (user === null) {
+//           var err = new Error('Not authorized! Go back!');
+//           err.status = 400;
+//           return next(err);
+//         } else {
+//           return res.send('<h1>Name: </h1>' + user.username + '<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/logout">Logout</a>')
+//         }
+//       }
+//     });
+
+
+// 	// User.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){
+// 	// 	Users.findOne({_id: req.params.id}).then(function(users){
+// 	// 		res.send(users);
+// 	// 	});
+// 	// });
+// });
 
 module.exports = router;
