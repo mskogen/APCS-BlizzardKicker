@@ -54,9 +54,9 @@ app.use('/cave', cave);
 app.use('/register', reg);
 app.use('/userPrefs', prefs);
 app.use('/status_API', datapull);
-app.use('/viewData', viewData);
-app.use('/viewSkiData', viewSkiData);
-app.use('/learn_more', learn_more);
+// app.use('/viewData', viewData);
+// app.use('/viewSkiData', viewSkiData);
+// app.use('/learn_more', learn_more);
 app.use('/', index);
 
 module.exports = app;
