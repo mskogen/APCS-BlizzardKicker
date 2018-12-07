@@ -53,7 +53,7 @@ block content
   .col
     #introContent.row
       .col
-        button#sidebarCollapse.btn.btn-info(type='button')
+        button#sidebarCollapse.btn.btn-info(type='button' data-toggle="collapse" data-target="#sidebarRow" aria-expanded="false" aria-controls="collapseExample")
           i.fas.fa-align-left
           span Toggle Sidebar  
         .clearfix
@@ -125,11 +125,13 @@ block content
     // Google Maps API scripts
 block scripts
   script.
+    /*
     $(function(){
       $('#sidebarCollapse').click(()=>{
         $('#sidebarRow').toggleClass('d-none');
       })
     });
+    */
     var map;
     function initMap() {
     // For now, this is the location of Copper mountain
