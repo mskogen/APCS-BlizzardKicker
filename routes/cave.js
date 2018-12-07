@@ -42,14 +42,17 @@ router.get('/', (req, res) => {
 /* fancy version that doesn't get past step 5 */
 router.get('/alg', (req, res) => {
 	currentUser = req.session.userId;
-	return User.findOne({email: currentUser}).exec()
+	User.findOne({email: currentUser}).exec()
 	.then((user)=>{
-		user.resorts.forEach((resort)=>{
-			Resort.updateResort(resort,0.1)
-			.then((mess)=>{
-				console.log(mess);
-			});
-		})
+		//update all resorts user needs to check out
+		var resorts=Promise.all(user.resorts.map((resorts)=>{
+			return Resort.updateResort(resorts,.1);
+		}));
+		//return user data and resort report
+		return Promise.all([user,resorts]);
+	})
+	.then((outs)=>{
+		console.log(outs);
 	})
 	// .then(res.redirect('/cave'));
 	// .then(function(user){

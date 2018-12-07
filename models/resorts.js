@@ -129,6 +129,7 @@ resortInfo.statics.updateResort = function(resort_name, time){
   })
   .then(function(dat){
     var message = resort_name + " updated";
+    //console.log(message);
     return message;
   })
   .catch(function(err){
