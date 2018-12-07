@@ -14,13 +14,14 @@ block head
 
 block vars
 .container-fluid.wrapper
-  .row.justify-content-center.h-100
+  .row.justify-content-center.h-100.w-100
     .col-2.h-100.pl-0.mr-2#sidebarRow
       block sidebar
 
     .col.m-2.h-100
       header
         .row.justify-content-center.m-1
+          .col
             nav.navbar.navbar-expand-lg.navbar-light
               a.navbar-brand(href="/") Blizzardkicker
               //Makes the menu collapsable
@@ -45,14 +46,15 @@ block vars
 
                 if data
                   if data.currentUser
-                    li.nav-item=  data.currentUser
-                    form(action="/cave/logout" method="get")
-                      button.btn.btn-warning(type="submit") Log Me Out
-                  script.
-                    document.getElementById('#{currentPage}').classList.add('active')
+                      span.navbar-text=  data.currentUser
+                      form.form-inline(action="/cave/logout" method="get")
+                        button.btn.btn-warning(type="submit") Log Me Out
+
+              script.
+                document.getElementById('#{currentPage}').classList.add('active')
                 
 
-      .row
+      .row.w-100
         block content
 
         
