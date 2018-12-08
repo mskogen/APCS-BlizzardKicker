@@ -57,7 +57,7 @@ UserSchema.pre('save', function(next) {
       if (err) return next(err);
 
       // hash the password using our new salt
-      bcrypt.hash(user.password, salt, function(err, hash) {
+      bcrypt.hash(user.password, salt, null, null, function(err, hash) {
           if (err) return next(err);
 
           // override the cleartext password with the hashed one
@@ -112,9 +112,9 @@ UserSchema.statics.auth = function(email, password, cb){
 //load resorts into users
 UserSchema.methods.loadResorts = function(){
   this.resorts=[];
-  var ikonPass = ['Eldora Mountain Resort','Copper Mountain Resort','Aspen / Snowmass','Winter Park Resort']; 
-  var epicPass = ['Arapahoe Basin Ski Area','Vail','Breckenridge','Telluride','Crested Butte Mountain Resort','Beaver Creek','Keystone']; 
-  if(this.pass){  
+  var ikonPass = ['Eldora Mountain Resort','Copper Mountain Resort','Aspen / Snowmass','Winter Park Resort'];
+  var epicPass = ['Arapahoe Basin Ski Area','Vail','Breckenridge','Telluride','Crested Butte Mountain Resort','Beaver Creek','Keystone'];
+  if(this.pass){
       this.pass.forEach((pass)=>{
         if(pass=="Epic"){
           this.resorts=this.resorts.concat(epicPass);
